@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: mymove-mysql
+    environment:
+      MYSQL_DATABASE: mymove
+      MYSQL_USER: mymove
+      MYSQL_PASSWORD: mymove
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    container_name: mymove-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mymove-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/mymove?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: mymove
+    password: mymove
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+mymove:
+  video:
+    storage:
+      base-dir: data/videos
