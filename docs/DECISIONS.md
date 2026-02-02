@@ -257,3 +257,61 @@ Langfristige Plattform, B2B Integrationen möglich.
 Keine Versionierung (verworfen).
 
 ---
+
+# DECISIONS.md
+
+## Video Handling & Privacy Policy
+
+### Status
+✅ Accepted
+
+### Context
+MyMove nutzt vom Kunden hochgeladene Videos ausschließlich zur automatisierten Erstellung einer Liste transportierter Gegenstände.  
+Die Videos können sensible persönliche Daten enthalten (Wohnraum, Besitz, Personen) und dürfen daher **nicht dauerhaft gespeichert** oder anderweitig genutzt werden.
+
+Datenschutz, Vertrauen und Transparenz gegenüber Endkunden haben höchste Priorität.
+
+### Decision
+Videos werden **nur temporär gespeichert** und **ausschließlich** für die Erstellung der Gegenstandsliste verwendet.
+
+Sobald ein **Angebot an den Kunden versendet wird**, gilt das Video als nicht mehr erforderlich und wird **vollständig gelöscht**.
+
+Konkret bedeutet das:
+
+1. **Kein Download- oder Streaming-Zugriff**
+    - Es existieren **keine API-Endpunkte** zum Abspielen oder Herunterladen von Videos.
+    - Videos sind ausschließlich intern zugänglich.
+
+2. **Löschzeitpunkt**
+    - Das Video wird gelöscht, **sobald ein Angebot an den Kunden gesendet wurde**.
+    - Die Löschung umfasst:
+        - die binäre Videodatei (Storage)
+        - den zugehörigen Datenbankeintrag (Hard Delete)
+
+3. **Fail-Safety (TTL)**
+    - Zusätzlich existiert ein zeitbasierter Fallback-Mechanismus:
+        - Videos, die älter als **24 Stunden** sind, werden automatisch gelöscht,
+          falls der reguläre Prozess nicht abgeschlossen wurde (z. B. Fehler, Abbruch).
+
+4. **Kein langfristiger Video-Status**
+    - Videos sind kein dauerhaftes Domänenobjekt.
+    - Sie sind ein rein technisches Hilfsmittel im Angebotsprozess.
+
+### Resulting Architecture Implications
+- VideoStorage ist austauschbar (lokal, S3, etc.), aber immer **ephemeral**
+- Kein Bedarf für:
+    - Streaming
+    - Download
+    - Versionierung
+    - Archivierung
+- Klare Trennung:
+    - Video → technischer Input
+    - Item-Liste → fachliches Ergebnis (persistiert)
+
+### Rationale
+- Maximales Vertrauen für Endkunden
+- DSGVO-konformes, defensives Datenhandling
+- Reduzierte Angriffsfläche und geringere Betriebskosten
+- Klare Kommunikation: *„Wir behalten Ihr Video nicht“*
+
+---
