@@ -1,49 +1,29 @@
 package at.mymove.offer.infrastructure.persistence;
 
 import at.mymove.offer.domain.Offer;
-import at.mymove.offer.domain.OfferStatus;
+import at.mymove.offer.domain.OfferRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
-final class OfferMapper {
+@Repository
+@RequiredArgsConstructor
+class OfferRepositoryImpl implements OfferRepository {
 
-    private OfferMapper() {
+    private final OfferJpaRepository jpaRepository;
+
+    @Override
+    public Offer save(Offer offer) {
+        OfferJpaEntity entity = OfferMapper.toJpa(offer);
+        OfferJpaEntity saved = jpaRepository.save(entity);
+        return OfferMapper.toDomain(saved);
     }
 
-    static OfferJpaEntity toJpa(Offer offer) {
-        return new OfferJpaEntity(
-                offer.id(),
-                offer.status(),
-                offer.videoId(),
-                offer.createdAt(),
-                offer.sentAt()
-        );
-    }
-
-    static Offer toDomain(OfferJpaEntity entity) {
-        return new Offer(
-                entity.getId(),
-                entity.getStatus(),
-                entity.getVideoId(),
-                entity.getCreatedAt(),
-                entity.getSentAt()
-        );
-    }
-
-    static Offer newDraft(UUID videoId) {
-        return Offer.draft(videoId);
-    }
-
-    static Offer sent(Offer offer) {
-        return offer.markSent(Instant.now());
-    }
-
-    static Offer readyToSend(Offer offer) {
-        return offer.markReadyToSend();
-    }
-
-    static Offer failed(Offer offer) {
-        return offer.markFailed();
+    @Override
+    public Optional<Offer> findById(UUID id) {
+        return jpaRepository.findById(id)
+                .map(OfferMapper::toDomain);
     }
 }

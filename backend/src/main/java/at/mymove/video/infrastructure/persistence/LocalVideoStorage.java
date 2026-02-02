@@ -11,17 +11,21 @@ import java.nio.file.StandardCopyOption;
 @Component
 public class LocalVideoStorage implements VideoStorage {
 
-    private static final Path BASE_DIR = Path.of("data/videos");
+    private final Path baseDir = Path.of("data/videos");
 
     @Override
-    public String store(String key, InputStream data) {
-        try {
-            Files.createDirectories(BASE_DIR);
-            Path target = BASE_DIR.resolve(key);
-            Files.copy(data, target, StandardCopyOption.REPLACE_EXISTING);
-            return target.toString();
-        } catch (Exception e) {
-            throw new IllegalStateException("Failed to store video", e);
-        }
+    public String store(String videoId, InputStream data) throws Exception {
+        Files.createDirectories(baseDir);
+        String fileName = videoId + ".bin";
+        Path target = baseDir.resolve(fileName);
+        Files.copy(data, target, StandardCopyOption.REPLACE_EXISTING);
+        return fileName;
+    }
+
+    @Override
+    public void delete(String storageRef) throws Exception {
+        if (storageRef == null || storageRef.isBlank()) return;
+        Path target = baseDir.resolve(storageRef);
+        Files.deleteIfExists(target);
     }
 }

@@ -12,15 +12,21 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class VideoRepositoryImpl implements VideoRepository {
 
-    private final VideoJpaRepository jpa;
+    private final VideoJpaRepository videoJpaRepository;
 
     @Override
     public Video save(Video video) {
-        return VideoMapper.toDomain(jpa.save(VideoMapper.toJpa(video)));
+        var saved = videoJpaRepository.save(VideoMapper.toJpa(video));
+        return VideoMapper.toDomain(saved);
     }
 
     @Override
     public Optional<Video> findById(UUID id) {
-        return jpa.findById(id).map(VideoMapper::toDomain);
+        return videoJpaRepository.findById(id).map(VideoMapper::toDomain);
+    }
+
+    @Override
+    public void deleteById(UUID id) {
+        videoJpaRepository.deleteById(id);
     }
 }
