@@ -1,21 +1,22 @@
 package at.mymove.offer.infrastructure.persistence;
 
+import at.mymove.move.domain.MoveDetails;
 import at.mymove.offer.domain.Offer;
-import at.mymove.offer.domain.OfferStatus;
-
-import java.time.Instant;
-import java.util.UUID;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 final class OfferMapper {
 
-    private OfferMapper() {
-    }
+    private static final ObjectMapper MAPPER = new ObjectMapper().findAndRegisterModules();
+
+    private OfferMapper() {}
 
     static OfferJpaEntity toJpa(Offer offer) {
         return new OfferJpaEntity(
                 offer.id(),
                 offer.status(),
                 offer.videoId(),
+                writeMoveDetails(offer.moveDetails()),
                 offer.createdAt(),
                 offer.sentAt()
         );
@@ -26,24 +27,25 @@ final class OfferMapper {
                 entity.getId(),
                 entity.getStatus(),
                 entity.getVideoId(),
+                readMoveDetails(entity.getMoveDetailsJson()),
                 entity.getCreatedAt(),
                 entity.getSentAt()
         );
     }
 
-    static Offer newDraft(UUID videoId) {
-        return Offer.draft(videoId);
+    private static String writeMoveDetails(MoveDetails moveDetails) {
+        try {
+            return MAPPER.writeValueAsString(moveDetails);
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException("Could not serialize MoveDetails", e);
+        }
     }
 
-    static Offer sent(Offer offer) {
-        return offer.markSent(Instant.now());
-    }
-
-    static Offer readyToSend(Offer offer) {
-        return offer.markReadyToSend();
-    }
-
-    static Offer failed(Offer offer) {
-        return offer.markFailed();
+    private static MoveDetails readMoveDetails(String json) {
+        try {
+            return MAPPER.readValue(json, MoveDetails.class);
+        } catch (Exception e) {
+            throw new IllegalStateException("Could not deserialize MoveDetails", e);
+        }
     }
 }

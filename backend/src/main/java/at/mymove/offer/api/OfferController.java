@@ -23,7 +23,7 @@ public class OfferController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OfferResponse create(@Valid @RequestBody CreateOfferRequest request) {
-        Offer created = createOfferUseCase.execute(request.videoId());
+        Offer created = createOfferUseCase.execute(request.videoId(), request.toMoveDetails());
         return toResponse(created);
     }
 

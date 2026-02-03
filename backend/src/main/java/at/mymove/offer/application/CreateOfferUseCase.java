@@ -1,5 +1,6 @@
 package at.mymove.offer.application;
 
+import at.mymove.move.domain.MoveDetails;
 import at.mymove.offer.domain.Offer;
 import at.mymove.offer.domain.OfferRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,17 +15,12 @@ public class CreateOfferUseCase {
 
     private final OfferRepository offerRepository;
 
-    /**
-     * Erstellt ein neues Angebot im Status DRAFT.
-     * Das Video wird nur referenziert (videoId), nicht verarbeitet.
-     */
     @Transactional
-    public Offer execute(UUID videoId) {
-        if (videoId == null) {
-            throw new IllegalArgumentException("videoId is required");
-        }
+    public Offer execute(UUID videoId, MoveDetails moveDetails) {
+        if (videoId == null) throw new IllegalArgumentException("videoId is required");
+        if (moveDetails == null) throw new IllegalArgumentException("moveDetails is required");
 
-        Offer draft = Offer.draft(videoId);
+        Offer draft = Offer.draft(videoId, moveDetails);
         return offerRepository.save(draft);
     }
 }
