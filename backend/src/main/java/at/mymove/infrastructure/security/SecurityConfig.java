@@ -1,4 +1,4 @@
-package at.mymove.core.infrastructure.security;
+package at.mymove.infrastructure.security;
 
 import at.mymove.core.api.ApiPaths;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, ApiPaths.API_V1 + "/ping/**").permitAll()
                         .requestMatchers(HttpMethod.POST, ApiPaths.API_V1 + "/videos/**").permitAll()
-                        // optional: alles unter /api/v1 vorerst offen
+                        .requestMatchers(HttpMethod.POST, "/api/v1/offers/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/offers").permitAll() // optional, aber sauber                        // optional: alles unter /api/v1 vorerst offen
                         // .requestMatchers(ApiPaths.API_V1 + "/**").permitAll()
                         .anyRequest().authenticated()
                 )

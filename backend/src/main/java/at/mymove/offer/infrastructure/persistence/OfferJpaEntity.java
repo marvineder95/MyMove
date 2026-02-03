@@ -1,34 +1,38 @@
 package at.mymove.offer.infrastructure.persistence;
 
+import at.mymove.move.domain.MoveDetails;
 import at.mymove.offer.domain.OfferStatus;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
 
 import java.time.Instant;
 import java.util.UUID;
 
+@Getter
 @Entity
 @Table(name = "offers")
 public class OfferJpaEntity {
 
     @Id
-    @Column(nullable = false, columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 32)
     private OfferStatus status;
 
-    @Column(nullable = false, columnDefinition = "BINARY(16)")
     private UUID videoId;
 
-    @Lob
-    @Column(nullable = false)
-    private String moveDetailsJson;
+    @Convert(converter = MoveDetailsJsonConverter.class)
+    @Column(name = "move_details", columnDefinition = "LONGTEXT")
+    private MoveDetails moveDetails;
 
-    @Column(nullable = false)
     private Instant createdAt;
 
-    @Column
     private Instant sentAt;
 
     protected OfferJpaEntity() {}
@@ -37,22 +41,15 @@ public class OfferJpaEntity {
             UUID id,
             OfferStatus status,
             UUID videoId,
-            String moveDetailsJson,
+            MoveDetails moveDetails,
             Instant createdAt,
             Instant sentAt
     ) {
         this.id = id;
         this.status = status;
         this.videoId = videoId;
-        this.moveDetailsJson = moveDetailsJson;
+        this.moveDetails = moveDetails;
         this.createdAt = createdAt;
         this.sentAt = sentAt;
     }
-
-    public UUID getId() { return id; }
-    public OfferStatus getStatus() { return status; }
-    public UUID getVideoId() { return videoId; }
-    public String getMoveDetailsJson() { return moveDetailsJson; }
-    public Instant getCreatedAt() { return createdAt; }
-    public Instant getSentAt() { return sentAt; }
 }
