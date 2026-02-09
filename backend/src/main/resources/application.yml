@@ -29,3 +29,6 @@ mymove:
   video:
     storage:
       base-dir: data/videos
+  admin:
+    email: admin@mymove.at
+    password: admin123

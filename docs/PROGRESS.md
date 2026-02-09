@@ -1,19 +1,38 @@
 # MyMove – Implementation Progress
 
-Stand: 2026-02-02
-Branch: main
+Stand: 2026-02-03  
+Branch: main  
+Status: Offer-Create stabil (201 CREATED)
+
+---
+
+## ✅ Meilensteine (neu)
+
+- ✅ `POST /api/v1/offers` liefert **201 CREATED**
+- ✅ Offer inkl. vollständiger MoveDetails wird:
+  - validiert
+  - gemappt (DTO → Domain → JPA)
+  - persistiert (JSON via Converter)
+- ✅ Status beim Anlegen: `DRAFT`
+- ✅ End-to-End-Flow: API → Domain → Persistence → DB funktioniert stabil
+
+---
 
 ## Architekturstatus
 
 - Clean Architecture (Domain / Application / Infrastructure)
-- Modulstruktur:
-    - video
-    - offer
+- Klare Modultrennung:
+  - `video`
+  - `offer`
+- Keine Querverweise zwischen Modulen auf DB-/Entity-Ebene
 - Kommunikation:
-    - Offer referenziert Video nur per `videoId`
+  - Offer referenziert Video **nur per `videoId`**
 - Persistenz:
-    - JPA + Hibernate
-    - MySQL (Docker)
+  - JPA + Hibernate
+  - MySQL (Docker)
+  - JSON-Serialisierung für komplexe Value Objects
+
+---
 
 ## Modul: Video
 
@@ -34,7 +53,10 @@ Branch: main
 
 ### Lifecycle
 - Video existiert nur temporär
-- Wird nach Angebotsversand gelöscht (siehe DECISIONS.md)
+- Wird nach Angebotsversand gelöscht  
+  (siehe `DECISIONS.md`)
+
+---
 
 ## Modul: Offer
 
@@ -43,55 +65,65 @@ Branch: main
 - OfferStatus Enum
 - OfferRepository (Domain Interface)
 - CreateOfferUseCase
-- SendOfferUseCase (inkl. Statuswechsel)
+- SendOfferUseCase (Statuswechsel vorbereitet)
 - REST API (Controller + DTOs)
-- JPA Persistence (Entity, Repository, Mapper)
+- JPA Persistence:
+  - OfferJpaEntity
+  - Repository
+  - Mapper
+  - JSON Converter für MoveDetails
 
 ### Angebotslogik
-- Offer wird aus Request-Daten erstellt
-- Video-Ergebnisse (YOLO) werden später über Application Layer eingespeist
-- Angebotsversand triggert Video-Löschung
+- Offer wird vollständig aus Request-Daten erstellt
+- Keine „später füllen wir das noch“-Felder
+- Video-Ergebnisse (YOLO) werden **später** über Application Layer eingespeist
+- Angebotsversand triggert Video-Löschung (Policy)
 
 ### Statusfluss
-- DRAFT
-- READY_TO_SEND
-- SENT
-- FAILED
+- `DRAFT`
+- `READY_TO_SEND`
+- `SENT`
+- `FAILED`
+
+---
 
 ## Infrastruktur
 
 ### Docker
 - docker-compose für:
-    - backend
-    - mysql
-- Netzwerk: mymove_default
-- DB Hostname: mysql
+  - backend
+  - mysql
+- Netzwerk: `mymove_default`
+- DB Hostname: `mysql`
 
 ### Backend
 - Spring Boot 3.4.x
 - Java 21
-- Start erfolgreich über Docker
-- Port: 8080
+- Start über Docker stabil
+- Port: `8080`
 
-## Nicht umsetzen (bewusst ausgeschlossen)
+---
+
+## ❌ Bewusst ausgeschlossen (MVP)
 
 - Video-Streaming
 - Video-Download
 - Langfristige Video-Speicherung
 - Angebotserstellung im Video-Modul
 - Direkte DB-Zugriffe aus Controllern
+- Auth / Security (kommt später)
+
+---
 
 ## 🟡 Noch offen (bewusst verschoben)
 
-### Angebotsdaten (Move Details)
-- Adressen (von / nach / Zwischenstopps)
-- Stockwerk, Aufzug, Distanz, Halteverbot
-- Termin / Zeitfenster
+### Angebotsdaten (bereits technisch möglich, fachlich noch ausbaubar)
+- Zwischenstopps
+- Zeitfenster / Flexibilität
 - Kontaktinformationen
-- Sonderanforderungen (Klavier, Montage, etc.)
-  → werden im nächsten Schritt als Domain-ValueObjects ergänzt
+- Erweiterte Sonderanforderungen
 
-### Authentifizierung
+### Authentifizierung & Rollen
 - Unternehmens-Registrierung
 - Login für Umzugsfirmen
 - Rollen / Rechte
@@ -102,39 +134,48 @@ Branch: main
 - Ableitung von Inventar-Listen
 - Integration **erst nach vollständiger Offer-Logik**
 
-## 🔜 Nächste Schritte (ab morgen)
+---
 
-### 1) Offer: Angebotsdaten sauber modellieren (Domain Value Objects)
-Ziel: Offer bekommt alle Umzugsinfos **über Request**, ohne dass wir später alles umbauen müssen.
+## 🔜 Nächste Schritte (priorisiert)
 
-- Neue Domain-ValueObjects (Paket: at.mymove.offer.domain.*):
-    - MoveRoute (from/to + optional Zwischenstopps)
-    - MoveLocationDetails (Stockwerk, Aufzug, Distanz/Trageweg, Parkplatz/ Halteverbot)
-    - MoveSchedule (Datum, Zeitfenster, Flexibilität)
-    - ContactDetails (Name, Telefon, Email)
-    - SpecialRequirements (Piano, Montage, Verpackung, etc.)
-- Offer bekommt ein Feld wie `moveDetails` (oder einzelne Felder) und wird über Factory/Constructor vollständig befüllt.
+### 1) Offer-Flow erweitern (ohne Auth)
+Ziel: vollständiger Angebotslebenszyklus ohne Security-Abhängigkeit.
 
-### 2) Offer API: CreateOfferRequest erweitern + Mapping
-- DTOs erweitern:
-    - CreateOfferRequest enthält alle MoveDetails-Felder
-    - CreateOfferResponse bleibt schlank (id, status, createdAt, sentAt, videoId)
-- Controller → ruft CreateOfferUseCase → Domain wird aus Request vollständig gebaut (kein „TODO später“).
-
-### 3) Offer UseCases: CRUD-Flow für Company vorbereiten (ohne Auth erstmal)
-- Endpoints (MVP, ohne Login):
-    - GET /api/v1/offers (Liste)
-    - GET /api/v1/offers/{id} (Detail)
-    - PATCH /api/v1/offers/{id}/ready-to-send
-    - POST /api/v1/offers/{id}/send
+- Endpoints:
+  - `GET /api/v1/offers`
+  - `GET /api/v1/offers/{id}`
+  - `PATCH /api/v1/offers/{id}/ready-to-send`
+  - `POST /api/v1/offers/{id}/send`
 - SendOfferUseCase:
-    - Status -> SENT
-    - triggert Video-Löschung (Policy aus DECISIONS)  [oai_citation:1‡DECISIONS.md](sediment://file_000000007a7c71f492014265070aa889)
+  - Status → `SENT`
+  - triggert Video-Löschung
 
-### 4) Datenmodell: Offer <-> Company vorbereiten (Platzhalter)
-- Offer erhält optional `companyId` (noch ohne Security)
-- Später wird Filter/Access darüber gemacht, sobald Auth drin ist.
+---
 
-### 5) Danach erst: Auth (Company Registrierung/Login) und dann YOLO ganz am Schluss
-- Auth kommt NACH vollständiger Offer-Logik
-- YOLO liefert nur Inventory-Vorschläge und wird später über Application Layer eingespeist
+### 2) Company-Zuordnung vorbereiten (Platzhalter)
+- Offer erhält optional `companyId`
+- Noch **keine** Zugriffsbeschränkung
+- Dient nur der späteren Migration zu Auth
+
+---
+
+### 3) Auth (erst danach)
+- User / Company Login
+- Rollen (ADMIN / COMPANY)
+- Zugriff nur auf eigene Offers
+
+---
+
+### 4) YOLO Integration (ganz am Schluss)
+- Liefert **Vorschläge**, keine Pflichtdaten
+- Wird über Application Layer eingespeist
+- Keine Kopplung an REST oder Persistence
+
+---
+
+## 🧠 Leitprinzip
+> Erst **fachlich korrekt & stabil**,  
+> dann **Security**,  
+> dann **KI**.
+
+Kein Schritt blockiert den nächsten.
