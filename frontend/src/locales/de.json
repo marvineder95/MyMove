@@ -1,0 +1,215 @@
+{
+  "nav": {
+    "home": "Home",
+    "register": "Register",
+    "login": "Login",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  "home": {
+    "hero": {
+      "badge": "Verified Partners",
+      "title": "MyMove - Your Move, Our Expertise",
+      "subtitle": "Find verified moving companies in your area. Fast, secure and at fair prices.",
+      "cta": {
+        "register": "Register as Moving Company",
+        "offer": "Request Moving Quote"
+      },
+      "stats": {
+        "companies": "Verified Companies",
+        "moves": "Successful Moves",
+        "rating": "Average Rating"
+      }
+    },
+    "features": {
+      "title": "Why MyMove?",
+      "subtitle": "We connect you with the best moving companies in your region",
+      "verified": {
+        "title": "Verified Partners",
+        "description": "All moving companies are checked and verified by us."
+      },
+      "fairPrices": {
+        "title": "Fair Prices",
+        "description": "Compare offers and find the best solution for your budget."
+      },
+      "stressFree": {
+        "title": "Stress-Free Moving",
+        "description": "Professional support from planning to execution."
+      },
+      "fastResponse": {
+        "title": "Fast Response",
+        "description": "Receive offers from moving companies within 24 hours."
+      },
+      "securePayment": {
+        "title": "Secure Payment",
+        "description": "Your payment is protected by our security guarantee."
+      }
+    },
+    "offer": {
+      "title": "Free Moving Quote",
+      "description": "Describe your move and receive offers from verified moving companies within 24 hours.",
+      "benefits": {
+        "multiple": "Compare multiple offers",
+        "compare": "Fair prices from professionals",
+        "free": "Free and non-binding",
+        "noObligation": "No hidden costs"
+      }
+    }
+  },
+  "offer": {
+    "form": {
+      "title": "Request Moving Quote",
+      "subtitle": "Fill out the form and receive free offers",
+      "fields": {
+        "fromAddress": "From (Current Address)",
+        "toAddress": "To (New Address)",
+        "moveDate": "Moving Date",
+        "moveSize": "Move Size",
+        "name": "Your Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "notes": "Additional Information"
+      },
+      "placeholders": {
+        "fromAddress": "Enter current address",
+        "toAddress": "Enter new address",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "phone": "+43 123 456789",
+        "notes": "Special requirements, heavy furniture, etc."
+      },
+      "contactSection": "Your Contact Details",
+      "submit": "Request Quote"
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "Register as Moving Company",
+      "subtitle": "Register and become part of our network",
+      "info": {
+        "title": "Information",
+        "description": "After registration, we review your details. You will gain access once your account is approved."
+      },
+      "steps": {
+        "company": "Company",
+        "address": "Address",
+        "contact": "Contact",
+        "services": "Services",
+        "license": "License"
+      },
+      "fields": {
+        "companyName": "Company Name",
+        "atuNumber": "VAT Number",
+        "addressLine1": "Street and House Number",
+        "addressLine2": "Address Line 2",
+        "postalCode": "Postal Code",
+        "city": "City",
+        "country": "Country",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "website": "Website",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "services": "Services Offered",
+        "licenseNumber": "Business License Number",
+        "insurance": "Insurance Certificate",
+        "terms": "Accept Terms"
+      },
+      "placeholders": {
+        "companyName": "Example Moves Ltd.",
+        "atuNumber": "ATU12345678",
+        "addressLine1": "Example Street 123",
+        "addressLine2": "Floor, Door Number (optional)",
+        "postalCode": "1010",
+        "city": "Vienna",
+        "country": "Austria",
+        "email": "info@examplemoves.at",
+        "phone": "+43 1 234 5678",
+        "website": "www.examplemoves.at",
+        "password": "At least 8 characters",
+        "confirmPassword": "Repeat password",
+        "licenseNumber": "12345678"
+      },
+      "errors": {
+        "passwordMismatch": "Passwords do not match",
+        "invalidAtu": "Invalid VAT number",
+        "termsRequired": "You must accept the Terms and Conditions",
+        "fileTooLarge": "File is too large (max. 5MB)",
+        "invalidFileType": "Only PDF files are allowed"
+      },
+      "submit": "Complete Registration",
+      "next": "Next",
+      "back": "Back",
+      "success": "Registration successful! Your account is being reviewed."
+    },
+    "login": {
+      "title": "Login",
+      "companyTab": "Moving Company",
+      "adminTab": "Administrator",
+      "fields": {
+        "email": "Email Address",
+        "password": "Password"
+      },
+      "placeholders": {
+        "email": "your@email.com",
+        "password": "Your password"
+      },
+      "submit": "Login",
+      "forgotPassword": "Forgot password?",
+      "rememberMe": "Remember me"
+    },
+    "errors": {
+      "emailExists": "This email address is already registered",
+      "invalidCredentials": "Invalid email address or password",
+      "accountPending": "Your account is still being reviewed. Please be patient.",
+      "accountRejected": "Your account has been rejected. Contact us for more information.",
+      "accountInactive": "Your account has been deactivated",
+      "serverError": "A server error occurred. Please try again later."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "required": "Required",
+    "optional": "Optional",
+    "success": "Success",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "noResults": "No results found",
+    "tryAgain": "Try Again",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "next": "Next"
+  },
+  "validation": {
+    "required": "This field is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordTooShort": "Password must be at least 8 characters long",
+    "postalCodeInvalid": "Please enter a valid postal code",
+    "phoneInvalid": "Please enter a valid phone number",
+    "urlInvalid": "Please enter a valid URL",
+    "minLength": "At least {min} characters required",
+    "maxLength": "Maximum {max} characters allowed",
+    "passwordMismatch": "Passwords do not match",
+    "invalidDate": "Please enter a valid date",
+    "futureDate": "Date must be in the future"
+  },
+  "footer": {
+    "about": "About Us",
+    "contact": "Contact",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "imprint": "Imprint",
+    "copyright": "© {year} MyMove. All rights reserved."
+  }
+}

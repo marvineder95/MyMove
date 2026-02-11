@@ -12,12 +12,18 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    # NEU: Multipart für Datei-Uploads
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+      max-request-size: 10MB
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info
 
 logging:
   level:
@@ -29,6 +35,9 @@ mymove:
   video:
     storage:
       base-dir: data/videos
+  storage:
+    trade-licenses: uploads/trade-licenses
+
   admin:
     email: admin@mymove.at
     password: admin123

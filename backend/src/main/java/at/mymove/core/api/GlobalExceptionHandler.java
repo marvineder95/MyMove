@@ -1,11 +1,12 @@
 package at.mymove.core.api;
 
 import at.mymove.core.api.dto.ApiErrorResponse;
+import at.mymove.infrastructure.storage.FileStorageException; // ✅ NEU: Import
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.web.HttpRequestMethodNotSupportedException; // <--- NEU
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -62,13 +63,23 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.CONFLICT, ex.getMessage(), request);
     }
 
-    // ✅ NEU: 405 statt 500
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiErrorResponse> handleMethodNotSupported(
             HttpRequestMethodNotSupportedException ex,
             HttpServletRequest request
     ) {
         return build(HttpStatus.METHOD_NOT_ALLOWED, ex.getMessage(), request);
+    }
+
+    // ✅ NEU: File Storage Fehler (technische Probleme = 500)
+    @ExceptionHandler(FileStorageException.class)
+    public ResponseEntity<ApiErrorResponse> handleFileStorage(
+            FileStorageException ex,
+            HttpServletRequest request
+    ) {
+        // Im Produktivbetrieb: Logge den Stacktrace, aber zeige dem User nur generische Meldung
+        return build(HttpStatus.INTERNAL_SERVER_ERROR,
+                "Datei konnte nicht gespeichert werden", request);
     }
 
     @ExceptionHandler(Exception.class)
