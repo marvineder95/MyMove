@@ -11,6 +11,7 @@ final class OfferMapper {
                 offer.id(),
                 offer.status(),
                 offer.videoId(),
+                offer.companyId(),
                 offer.moveDetails(),
                 offer.createdAt(),
                 offer.sentAt()
@@ -22,6 +23,7 @@ final class OfferMapper {
                 entity.getId(),
                 entity.getStatus(),
                 entity.getVideoId(),
+                entity.getCompanyId(),
                 entity.getMoveDetails(),
                 entity.getCreatedAt(),
                 entity.getSentAt()

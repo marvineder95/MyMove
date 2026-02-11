@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -35,6 +36,30 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.joining(", "));
 
         return build(HttpStatus.BAD_REQUEST, msg, request);
+    }
+
+    @ExceptionHandler(OfferNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleOfferNotFound(
+            OfferNotFoundException ex,
+            HttpServletRequest request
+    ) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(CompanyNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleCompanyNotFound(
+            CompanyNotFoundException ex,
+            HttpServletRequest request
+    ) {
+        return build(HttpStatus.NOT_FOUND, ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<ApiErrorResponse> handleIllegalState(
+            IllegalStateException ex,
+            HttpServletRequest request
+    ) {
+        return build(HttpStatus.CONFLICT, ex.getMessage(), request);
     }
 
     // ✅ NEU: 405 statt 500
@@ -77,5 +102,17 @@ public class GlobalExceptionHandler {
             return fe.getField() + " is invalid";
         }
         return fe.getField() + ": " + fe.getDefaultMessage();
+    }
+
+    public static class OfferNotFoundException extends RuntimeException {
+        public OfferNotFoundException(UUID offerId) {
+            super("Offer not found: " + offerId);
+        }
+    }
+
+    public static class CompanyNotFoundException extends RuntimeException {
+        public CompanyNotFoundException(UUID companyId) {
+            super("Company not found: " + companyId);
+        }
     }
 }

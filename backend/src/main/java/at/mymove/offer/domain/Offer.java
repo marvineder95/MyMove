@@ -9,6 +9,7 @@ public record Offer(
         UUID id,
         OfferStatus status,
         UUID videoId,
+        UUID companyId,
         MoveDetails moveDetails,
         Instant createdAt,
         Instant sentAt
@@ -17,8 +18,9 @@ public record Offer(
         if (id == null) throw new IllegalArgumentException("id is required");
         if (status == null) throw new IllegalArgumentException("status is required");
         if (videoId == null) throw new IllegalArgumentException("videoId is required");
-        if (moveDetails == null) throw new IllegalArgumentException("moveDetails is required");
         if (createdAt == null) throw new IllegalArgumentException("createdAt is required");
+
+        // companyId ist optional -> keine Pflichtvalidierung
 
         if (sentAt != null && status != OfferStatus.SENT) {
             throw new IllegalArgumentException("sentAt must be null unless status is SENT");
@@ -28,17 +30,28 @@ public record Offer(
         }
     }
 
-    public static Offer draft(UUID videoId, MoveDetails moveDetails) {
-        if (videoId == null) throw new IllegalArgumentException("videoId is required");
-        if (moveDetails == null) throw new IllegalArgumentException("moveDetails is required");
-
+    public static Offer draft(UUID videoId, at.mymove.move.domain.MoveDetails moveDetails) {
         return new Offer(
                 UUID.randomUUID(),
                 OfferStatus.DRAFT,
                 videoId,
+                null,
                 moveDetails,
                 Instant.now(),
                 null
+        );
+    }
+
+    public Offer assignCompany(UUID companyId) {
+        if (companyId == null) throw new IllegalArgumentException("companyId is required");
+        return new Offer(
+                this.id,
+                this.status,
+                this.videoId,
+                companyId,
+                moveDetails,
+                this.createdAt,
+                this.sentAt
         );
     }
 
@@ -47,6 +60,7 @@ public record Offer(
                 this.id,
                 OfferStatus.READY_TO_SEND,
                 this.videoId,
+                this.companyId,
                 this.moveDetails,
                 this.createdAt,
                 null
@@ -59,6 +73,7 @@ public record Offer(
                 this.id,
                 OfferStatus.SENT,
                 this.videoId,
+                this.companyId,
                 this.moveDetails,
                 this.createdAt,
                 now
@@ -70,6 +85,7 @@ public record Offer(
                 this.id,
                 OfferStatus.FAILED,
                 this.videoId,
+                this.companyId,
                 this.moveDetails,
                 this.createdAt,
                 null

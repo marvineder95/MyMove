@@ -5,15 +5,17 @@ import at.mymove.auth.api.dto.RegisterCompanyResponse;
 import at.mymove.auth.domain.Role;
 import at.mymove.auth.infrastructure.persistence.UserAccountJpaEntity;
 import at.mymove.auth.infrastructure.persistence.UserAccountJpaRepository;
+import at.mymove.company.domain.CompanyStatus;
 import at.mymove.company.infrastructure.persistence.CompanyJpaEntity;
 import at.mymove.company.infrastructure.persistence.CompanyJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.UUID;
 
-@Service
+@Service("authRegisterCompanyUseCase")
 @RequiredArgsConstructor
 public class RegisterCompanyUseCase {
 
@@ -27,7 +29,23 @@ public class RegisterCompanyUseCase {
         }
 
         UUID companyId = UUID.randomUUID();
-        companyRepo.save(new CompanyJpaEntity(companyId, req.companyName(), req.email()));
+        companyRepo.save(CompanyJpaEntity.builder()
+                .id(companyId)
+                .email(req.email())
+                .name(req.companyName())
+                .passwordHash(passwordEncoder.encode(req.password()))  // Falls Company auch ein Passwort braucht
+                .addressLine("")  // TODO: In Request ergänzen?
+                .city("")         // TODO: In Request ergänzen?
+                .postalCode("")   // TODO: In Request ergänzen?
+                .country("")      // TODO: In Request ergänzen?
+                .phone("")        // TODO: In Request ergänzen?
+                .website(null)
+                .atuNumber(null)
+                .services(Set.of())  // Leeres Set
+                .tradeLicenseFileRef("")  // TODO: In Request ergänzen?
+                .status(CompanyStatus.PENDING)
+                // createdAt wird automatisch via @PrePersist gesetzt
+                .build());
 
         userRepo.save(new UserAccountJpaEntity(
                 UUID.randomUUID(),

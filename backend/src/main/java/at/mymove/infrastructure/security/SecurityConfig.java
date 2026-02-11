@@ -17,26 +17,47 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
+    private final CompanyAuthenticationEntryPoint authenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
                 .userDetailsService(userDetailsService)
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
+
                 .authorizeHttpRequests(auth -> auth
-                        // Public:
+
+                        // ─────────────────────────────────────
+                        // Public
+                        // ─────────────────────────────────────
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/ping/**").permitAll()
 
-                        // Customer creates offer (vorerst public):
-                        .requestMatchers(HttpMethod.POST, "/api/v1/offers/**").permitAll()
+                        // Kunde erstellt Offer (öffentlich)
+                        .requestMatchers(HttpMethod.POST, "/api/v1/offers", "/api/v1/offers/").permitAll()
 
-                        // Company/Admin später für Listen/Details:
-                        .requestMatchers(HttpMethod.GET, "/api/v1/offers/**").hasAnyRole(Role.ADMIN.name(), Role.COMPANY.name())
-                        .requestMatchers("/api/v1/admin/**").hasRole(Role.ADMIN.name())
+                        // Company-only: Offer-Details und eigene Offer-Liste
+                        .requestMatchers(HttpMethod.GET, "/api/v1/offers/**")
+                        .hasRole(Role.COMPANY.name())
 
+                        // Company-only: Offer senden
+                        .requestMatchers(HttpMethod.POST, "/api/v1/offers/*/send")
+                        .hasRole(Role.COMPANY.name())
+
+                        // Authenticated: Company-Zuweisung
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/offers/*/assign-company")
+                        .authenticated()
+
+                        .requestMatchers("/api/v1/admin/**")
+                        .hasRole(Role.ADMIN.name())
+
+                        // ─────────────────────────────────────
+                        // Alles andere → authentifiziert
+                        // ─────────────────────────────────────
                         .anyRequest().authenticated()
                 )
+
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }

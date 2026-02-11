@@ -26,6 +26,7 @@ public class OfferJpaEntity {
     private OfferStatus status;
 
     private UUID videoId;
+    private UUID companyId;
 
     @Convert(converter = MoveDetailsJsonConverter.class)
     @Column(name = "move_details", columnDefinition = "LONGTEXT")
@@ -41,6 +42,7 @@ public class OfferJpaEntity {
             UUID id,
             OfferStatus status,
             UUID videoId,
+            UUID companyId,
             MoveDetails moveDetails,
             Instant createdAt,
             Instant sentAt
@@ -48,6 +50,7 @@ public class OfferJpaEntity {
         this.id = id;
         this.status = status;
         this.videoId = videoId;
+        this.companyId = companyId;
         this.moveDetails = moveDetails;
         this.createdAt = createdAt;
         this.sentAt = sentAt;
