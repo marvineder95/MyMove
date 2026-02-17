@@ -1,0 +1,63 @@
+# Docker-specific Spring configuration
+# This profile is automatically activated when running in Docker
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mymove-backend
+  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql:3306/mymove?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${SPRING_DATASOURCE_USERNAME:mymove}
+    password: ${SPRING_DATASOURCE_PASSWORD:mymove}
+  
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    at.mymove: DEBUG
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+
+mymove:
+  video:
+    storage:
+      base-dir: ${MYMOVE_VIDEO_STORAGE_BASE_DIR:/app/data/videos}
+  storage:
+    trade-licenses: ${MYMOVE_STORAGE_TRADE_LICENSES:/app/uploads/trade-licenses}
+  
+  admin:
+    email: ${MYMOVE_ADMIN_EMAIL:admin@mymove.at}
+    password: ${MYMOVE_ADMIN_PASSWORD:admin123}
+
+# AI Service Configuration
+ai:
+  service:
+    url: ${AI_SERVICE_URL:http://mock-ai:8000}
+    timeout-seconds: 300

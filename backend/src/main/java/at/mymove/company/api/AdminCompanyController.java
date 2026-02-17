@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Admin REST Controller für Company-Management.
+ */
 @RestController
 @RequestMapping("/api/v1/admin/companies")
 @RequiredArgsConstructor
@@ -25,29 +28,42 @@ public class AdminCompanyController {
     private final ApproveCompanyUseCase approveCompanyUseCase;
     private final RejectCompanyUseCase rejectCompanyUseCase;
 
+    /**
+     * Listet Firmen nach Status auf.
+     * Unterstützt: PENDING, APPROVED, REJECTED
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
-    public List<CompanyAdminResponse> listPending(@RequestParam(required = false) String status) {
+    public List<CompanyAdminResponse> listCompanies(
+            @RequestParam(required = false, defaultValue = "PENDING") String status
+    ) {
         CompanyStatus requested = parseStatus(status);
-        if (requested != CompanyStatus.PENDING) {
-            throw new IllegalArgumentException("only status=PENDING is supported");
-        }
 
-        return listPendingCompaniesUseCase.execute()
-                .stream()
-                .map(AdminCompanyController::toResponse)
-                .toList();
+        return switch (requested) {
+            case PENDING -> listPendingCompaniesUseCase.execute()
+                    .stream()
+                    .map(CompanyAdminResponse::from)
+                    .toList();
+            // Für APPROVED und REJECTED würde man weitere Use Cases implementieren
+            default -> throw new IllegalArgumentException("Status " + status + " not yet supported in this endpoint");
+        };
     }
 
+    /**
+     * Genehmigt eine PENDING Firma.
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{id}/approve")
     public CompanyAdminResponse approve(@PathVariable String id) {
         UUID companyId = parseCompanyId(id);
 
-        Company approved = approveCompanyUseCase.execute(companyId); // Nur 1 Parameter!
-        return toResponse(approved);
+        Company approved = approveCompanyUseCase.execute(companyId);
+        return CompanyAdminResponse.from(approved);
     }
 
+    /**
+     * Lehnt eine PENDING Firma ab.
+     */
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{id}/reject")
     public CompanyAdminResponse reject(
@@ -62,10 +78,10 @@ public class AdminCompanyController {
         }
 
         Company rejected = rejectCompanyUseCase.execute(companyId, adminEmail, body.reason);
-        return toResponse(rejected);
+        return CompanyAdminResponse.from(rejected);
     }
 
-    // ---- helpers ----
+    // ---- Helper ----
 
     private static UUID parseCompanyId(String id) {
         if (id == null || id.isBlank()) {
@@ -97,16 +113,7 @@ public class AdminCompanyController {
         return authentication.getName();
     }
 
-    private static CompanyAdminResponse toResponse(Company company) {
-        return new CompanyAdminResponse(
-                company.id(),
-                company.name(),
-                company.email(),
-                company.status()
-        );
-    }
-
-    // ---- request dto ----
+    // ---- Request DTO ----
     public static final class RejectCompanyRequest {
         @NotBlank
         public String reason;

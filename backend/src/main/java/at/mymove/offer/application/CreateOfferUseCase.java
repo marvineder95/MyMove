@@ -20,7 +20,7 @@ public class CreateOfferUseCase {
         if (videoId == null) throw new IllegalArgumentException("videoId is required");
         if (moveDetails == null) throw new IllegalArgumentException("moveDetails is required");
 
-        Offer draft = Offer.draft(videoId, moveDetails);
-        return offerRepository.save(draft);
+        Offer offer = Offer.create(videoId, moveDetails);
+        return offerRepository.save(offer);
     }
 }

@@ -5,6 +5,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * Aggregate Root für eine Umzugsfirma.
+ * 
+ * Enthält alle Stammdaten der Firma sowie die Preiskonditionen
+ * für die automatisierte Preisberechnung von Angeboten.
+ */
 public record Company(
         UUID id,
         String email,
@@ -19,6 +25,7 @@ public record Company(
         String atuNumber,
         Set<CompanyService> services,
         String tradeLicenseFileRef,
+        PricingConditions pricingConditions,
         CompanyStatus status,
         Instant createdAt,
         Instant reviewedAt,
@@ -46,6 +53,16 @@ public record Company(
 
         if (isBlank(tradeLicenseFileRef)) {
             throw new IllegalArgumentException("tradeLicenseFileRef is required");
+        }
+
+        // ATU-Nummer ist Pflicht für Firmen
+        if (isBlank(atuNumber)) {
+            throw new IllegalArgumentException("atuNumber is required");
+        }
+
+        // Preiskonditionen sind Pflicht
+        if (pricingConditions == null) {
+            throw new IllegalArgumentException("pricingConditions is required");
         }
 
         if (status == null) throw new IllegalArgumentException("status is required");
@@ -80,6 +97,9 @@ public record Company(
         services = Set.copyOf(services);
     }
 
+    /**
+     * Factory-Methode: Registriert eine neue Firma im Status PENDING.
+     */
     public static Company registerPending(
             String email,
             String passwordHash,
@@ -92,7 +112,8 @@ public record Company(
             String website,
             String atuNumber,
             Set<CompanyService> services,
-            String tradeLicenseFileRef
+            String tradeLicenseFileRef,
+            PricingConditions pricingConditions
     ) {
         return new Company(
                 UUID.randomUUID(),
@@ -108,6 +129,7 @@ public record Company(
                 atuNumber,
                 services,
                 tradeLicenseFileRef,
+                pricingConditions,
                 CompanyStatus.PENDING,
                 Instant.now(),
                 null,
@@ -116,6 +138,9 @@ public record Company(
         );
     }
 
+    /**
+     * Genehmigt eine PENDING Firma.
+     */
     public Company approve(String adminEmail, Instant now) {
         if (status != CompanyStatus.PENDING) {
             throw new IllegalArgumentException("Only PENDING companies can be approved");
@@ -137,6 +162,7 @@ public record Company(
                 atuNumber,
                 services,
                 tradeLicenseFileRef,
+                pricingConditions,
                 CompanyStatus.APPROVED,
                 createdAt,
                 now,
@@ -145,6 +171,9 @@ public record Company(
         );
     }
 
+    /**
+     * Lehnt eine PENDING Firma ab.
+     */
     public Company reject(String adminEmail, String reason, Instant now) {
         if (status != CompanyStatus.PENDING) {
             throw new IllegalArgumentException("Only PENDING companies can be rejected");
@@ -167,12 +196,51 @@ public record Company(
                 atuNumber,
                 services,
                 tradeLicenseFileRef,
+                pricingConditions,
                 CompanyStatus.REJECTED,
                 createdAt,
                 now,
                 normalizeEmail(adminEmail),
                 reason.trim()
         );
+    }
+
+    /**
+     * Aktualisiert die Preiskonditionen der Firma.
+     * Nur für APPROVED Firmen sinnvoll.
+     */
+    public Company updatePricingConditions(PricingConditions newPricingConditions) {
+        if (newPricingConditions == null) {
+            throw new IllegalArgumentException("pricingConditions is required");
+        }
+        return new Company(
+                id,
+                email,
+                passwordHash,
+                name,
+                addressLine,
+                city,
+                postalCode,
+                country,
+                phone,
+                website,
+                atuNumber,
+                services,
+                tradeLicenseFileRef,
+                newPricingConditions,
+                status,
+                createdAt,
+                reviewedAt,
+                reviewedByAdminEmail,
+                rejectionReason
+        );
+    }
+
+    /**
+     * Prüft ob die Firma genehmigt ist und Angebote erstellen kann.
+     */
+    public boolean canReceiveOffers() {
+        return status == CompanyStatus.APPROVED;
     }
 
     private static boolean isBlank(String v) {

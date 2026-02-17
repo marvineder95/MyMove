@@ -3,10 +3,15 @@ package at.mymove.company.infrastructure.persistence;
 import at.mymove.company.domain.Company;
 import at.mymove.company.domain.CompanyService;
 import at.mymove.company.domain.CompanyStatus;
+import at.mymove.company.domain.PricingConditions;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Mapper zwischen Company Domain und JPA Entity.
+ */
 final class CompanyMapper {
 
     private CompanyMapper() {}
@@ -24,6 +29,9 @@ final class CompanyMapper {
                 ? Set.of()
                 : Set.copyOf(entity.getServices());
 
+        // PricingConditions mappen
+        PricingConditions pricingConditions = toDomainPricingConditions(entity.getPricingConditions());
+
         return new Company(
                 entity.getId(),
                 entity.getEmail(),
@@ -38,6 +46,7 @@ final class CompanyMapper {
                 entity.getAtuNumber(),
                 services,
                 entity.getTradeLicenseFileRef(),
+                pricingConditions,
                 status,
                 entity.getCreatedAt(),
                 entity.getReviewedAt(),
@@ -68,11 +77,41 @@ final class CompanyMapper {
                 .atuNumber(company.atuNumber())
                 .services(services)
                 .tradeLicenseFileRef(company.tradeLicenseFileRef())
+                .pricingConditions(toJpaPricingConditions(company.pricingConditions()))
                 .status(company.status())
                 .createdAt(company.createdAt())
                 .reviewedAt(company.reviewedAt())
                 .reviewedByAdminEmail(company.reviewedByAdminEmail())
                 .rejectionReason(company.rejectionReason())
                 .build();
+    }
+
+    private static PricingConditions toDomainPricingConditions(PricingConditionsJpaEmbeddable jpa) {
+        if (jpa == null) {
+            // Fallback für bestehende Daten ohne PricingConditions
+            return PricingConditions.of(BigDecimal.ZERO, BigDecimal.ZERO);
+        }
+        return new PricingConditions(
+                jpa.getHourlyRate(),
+                jpa.getTravelFee(),
+                jpa.getBaseFee(),
+                jpa.getExtraChargePercent(),
+                jpa.getMinimumPrice(),
+                jpa.getCurrency()
+        );
+    }
+
+    private static PricingConditionsJpaEmbeddable toJpaPricingConditions(PricingConditions domain) {
+        if (domain == null) {
+            return null;
+        }
+        return new PricingConditionsJpaEmbeddable(
+                domain.hourlyRate(),
+                domain.travelFee(),
+                domain.baseFee(),
+                domain.extraChargePercent(),
+                domain.minimumPrice(),
+                domain.currency()
+        );
     }
 }

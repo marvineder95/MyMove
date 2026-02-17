@@ -2,6 +2,7 @@ package at.mymove.offer.infrastructure.persistence;
 
 import at.mymove.offer.domain.Offer;
 import at.mymove.offer.domain.OfferRepository;
+import at.mymove.offer.domain.OfferStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +10,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Implementierung des OfferRepository Interface.
+ */
 @Repository
 @RequiredArgsConstructor
 class OfferRepositoryImpl implements OfferRepository {
@@ -48,5 +52,21 @@ class OfferRepositoryImpl implements OfferRepository {
     public Optional<Offer> findByIdAndCompanyId(UUID offerId, UUID companyId) {
         return jpaRepository.findByIdAndCompanyId(offerId, companyId)
                 .map(OfferMapper::toDomain);
+    }
+
+    @Override
+    public List<Offer> findByStatusIn(List<OfferStatus> statuses) {
+        return jpaRepository.findByStatusIn(statuses)
+                .stream()
+                .map(OfferMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Offer> findByStatus(OfferStatus status) {
+        return jpaRepository.findByStatus(status)
+                .stream()
+                .map(OfferMapper::toDomain)
+                .toList();
     }
 }

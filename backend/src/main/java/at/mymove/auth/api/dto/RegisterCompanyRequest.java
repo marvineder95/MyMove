@@ -1,13 +1,15 @@
 package at.mymove.auth.api.dto;
 
 import at.mymove.company.domain.CompanyService;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
+/**
+ * Request DTO für die Firmen-Registrierung.
+ */
 public record RegisterCompanyRequest(
         @NotBlank String companyName,
         @Email @NotBlank String email,
@@ -30,5 +32,14 @@ public record RegisterCompanyRequest(
         @NotEmpty Set<CompanyService> services,
 
         // Gewerbeschein als Bild
-        MultipartFile tradeLicenseFile
+        MultipartFile tradeLicenseFile,
+
+        // Preiskonditionen (Pflicht)
+        @NotNull @DecimalMin("1.00") @DecimalMax("500.00") BigDecimal hourlyRate,
+        @NotNull @DecimalMin("0.00") @DecimalMax("1000.00") BigDecimal travelFee,
+
+        // Optionale Preiskonditionen
+        @DecimalMin("0.00") BigDecimal baseFee,
+        @DecimalMin("0.00") @DecimalMax("100.00") BigDecimal extraChargePercent,
+        @DecimalMin("0.00") BigDecimal minimumPrice
 ) {}

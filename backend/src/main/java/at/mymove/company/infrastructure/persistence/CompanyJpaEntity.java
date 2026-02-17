@@ -10,13 +10,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+/**
+ * JPA Entity für Company.
+ */
 @Entity
 @Table(name = "companies")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)  // JPA braucht das, protected statt public
-@AllArgsConstructor                                // Für den vollen Konstruktor (wenn mal gebraucht)
-@Builder                                           // 🎯 Das ist der Game-Changer für deinen UseCase!
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class CompanyJpaEntity {
 
     @Id
@@ -49,7 +52,7 @@ public class CompanyJpaEntity {
     @Column
     private String website;
 
-    @Column
+    @Column(nullable = false)
     private String atuNumber;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -59,15 +62,18 @@ public class CompanyJpaEntity {
     )
     @Enumerated(EnumType.STRING)
     @Column(name = "service", nullable = false)
-    @Builder.Default  // Wichtig: Setzt Default-Wert für Builder
+    @Builder.Default
     private Set<CompanyService> services = new HashSet<>();
 
     @Column(nullable = false)
     private String tradeLicenseFileRef;
 
+    @Embedded
+    private PricingConditionsJpaEmbeddable pricingConditions;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Builder.Default  // Default für Builder
+    @Builder.Default
     private CompanyStatus status = CompanyStatus.PENDING;
 
     @Column(nullable = false, updatable = false)
@@ -88,5 +94,14 @@ public class CompanyJpaEntity {
         if (status == null) status = CompanyStatus.PENDING;
         if (createdAt == null) createdAt = Instant.now();
         if (services == null) services = new HashSet<>();
+        if (atuNumber == null) atuNumber = "";
+        if (pricingConditions == null) {
+            // Fallback für Datenmigration - sollte in Produktion nie null sein
+            pricingConditions = new PricingConditionsJpaEmbeddable(
+                    java.math.BigDecimal.ZERO,
+                    java.math.BigDecimal.ZERO,
+                    null, null, null, "EUR"
+            );
+        }
     }
 }

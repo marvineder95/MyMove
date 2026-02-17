@@ -1,4 +1,7 @@
+version: "3.8"
+
 services:
+  # MySQL Database
   mysql:
     image: mysql:8.4
     container_name: mymove-mysql
@@ -16,17 +19,75 @@ services:
       interval: 5s
       timeout: 3s
       retries: 20
+    networks:
+      - mymove-network
 
+  # Backend API
   backend:
     container_name: mymove-backend
     build:
       context: ./backend
       dockerfile: Dockerfile
+    environment:
+      # Profile (docker + mock-ai for development)
+      SPRING_PROFILES_ACTIVE: docker,mock-ai
+      
+      # Database
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mymove?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: mymove
+      SPRING_DATASOURCE_PASSWORD: mymove
+      
+      # JPA
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      
+      # Storage paths
+      MYMOVE_VIDEO_STORAGE_BASE_DIR: /app/data/videos
+      MYMOVE_STORAGE_TRADE_LICENSES: /app/uploads/trade-licenses
+      
+      # Admin credentials (change in production!)
+      MYMOVE_ADMIN_EMAIL: admin@mymove.at
+      MYMOVE_ADMIN_PASSWORD: admin123
+      
+      # AI Service (mock for now)
+      AI_SERVICE_URL: http://mock-ai:8000
+      
+    volumes:
+      - video_data:/app/data/videos
+      - upload_data:/app/uploads/trade-licenses
     depends_on:
       mysql:
         condition: service_healthy
     ports:
       - "8080:8080"
+    networks:
+      - mymove-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/api/v1/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  # Mock AI Service (optional - for development)
+  # In production, replace with real Python FastAPI service
+  mock-ai:
+    container_name: mymove-mock-ai
+    image: alpine:latest
+    command: |
+      sh -c "echo 'Mock AI Service - Backend uses AiServiceClientMock' && tail -f /dev/null"
+    networks:
+      - mymove-network
+    profiles:
+      - mock-ai
 
 volumes:
   mysql_data:
+    driver: local
+  video_data:
+    driver: local
+  upload_data:
+    driver: local
+
+networks:
+  mymove-network:
+    driver: bridge
