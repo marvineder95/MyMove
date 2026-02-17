@@ -11,4 +11,6 @@ public interface CompanyRepository {
     Optional<Company> findById(UUID id);
 
     List<Company> findAllByStatus(CompanyStatus status);
+
+    long countByStatus(CompanyStatus status);
 }

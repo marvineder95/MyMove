@@ -8,8 +8,8 @@ import {
   UserIcon, 
   ShieldCheckIcon 
 } from '@heroicons/vue/24/outline'
-import CompanyLoginForm from '@/components/forms/CompanyLoginForm.vue'
-import AdminLoginForm from '@/components/forms/AdminLoginForm.vue'
+import CompanyLoginForm from '@/components/Forms/CompanyLoginForm.vue'
+import AdminLoginForm from '@/components/Forms/AdminLoginForm.vue'
 
 type LoginTab = 'company' | 'admin'
 

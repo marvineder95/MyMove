@@ -22,6 +22,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .userDetailsService(userDetailsService)
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
@@ -32,6 +33,7 @@ public class SecurityConfig {
                         // Public
                         // ─────────────────────────────────────
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/ping/**").permitAll()
 
                         // Kunde erstellt Offer (öffentlich)

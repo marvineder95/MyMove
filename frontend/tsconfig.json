@@ -15,16 +15,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    // Vue 3 spezifische Einstellungen
-    "declaration": true,
-    "declarationMap": true,
-    // Pfad-Aliase für Imports
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    // Typen
-    "types": ["node"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

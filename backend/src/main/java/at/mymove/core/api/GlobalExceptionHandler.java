@@ -1,8 +1,9 @@
 package at.mymove.core.api;
 
 import at.mymove.core.api.dto.ApiErrorResponse;
-import at.mymove.infrastructure.storage.FileStorageException; // ✅ NEU: Import
+import at.mymove.infrastructure.storage.FileStorageException;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -22,6 +24,7 @@ public class GlobalExceptionHandler {
             IllegalArgumentException ex,
             HttpServletRequest request
     ) {
+        log.warn("[400] Bad Request - Path: {}, Message: {}", request.getRequestURI(), ex.getMessage());
         return build(HttpStatus.BAD_REQUEST, ex.getMessage(), request);
     }
 
@@ -36,6 +39,7 @@ public class GlobalExceptionHandler {
                 .map(this::formatFieldError)
                 .collect(Collectors.joining(", "));
 
+        log.warn("[400] Validation Error - Path: {}, Fields: {}", request.getRequestURI(), msg);
         return build(HttpStatus.BAD_REQUEST, msg, request);
     }
 
@@ -44,6 +48,7 @@ public class GlobalExceptionHandler {
             OfferNotFoundException ex,
             HttpServletRequest request
     ) {
+        log.warn("[404] Offer Not Found - Path: {}", request.getRequestURI());
         return build(HttpStatus.NOT_FOUND, ex.getMessage(), request);
     }
 
@@ -52,6 +57,7 @@ public class GlobalExceptionHandler {
             CompanyNotFoundException ex,
             HttpServletRequest request
     ) {
+        log.warn("[404] Company Not Found - Path: {}", request.getRequestURI());
         return build(HttpStatus.NOT_FOUND, ex.getMessage(), request);
     }
 
@@ -60,6 +66,7 @@ public class GlobalExceptionHandler {
             IllegalStateException ex,
             HttpServletRequest request
     ) {
+        log.warn("[409] Conflict - Path: {}, Message: {}", request.getRequestURI(), ex.getMessage());
         return build(HttpStatus.CONFLICT, ex.getMessage(), request);
     }
 
@@ -68,16 +75,16 @@ public class GlobalExceptionHandler {
             HttpRequestMethodNotSupportedException ex,
             HttpServletRequest request
     ) {
+        log.warn("[405] Method Not Allowed - Path: {}, Method: {}", request.getRequestURI(), request.getMethod());
         return build(HttpStatus.METHOD_NOT_ALLOWED, ex.getMessage(), request);
     }
 
-    // ✅ NEU: File Storage Fehler (technische Probleme = 500)
     @ExceptionHandler(FileStorageException.class)
     public ResponseEntity<ApiErrorResponse> handleFileStorage(
             FileStorageException ex,
             HttpServletRequest request
     ) {
-        // Im Produktivbetrieb: Logge den Stacktrace, aber zeige dem User nur generische Meldung
+        log.error("[500] File Storage Error - Path: {}", request.getRequestURI(), ex);
         return build(HttpStatus.INTERNAL_SERVER_ERROR,
                 "Datei konnte nicht gespeichert werden", request);
     }
@@ -87,7 +94,9 @@ public class GlobalExceptionHandler {
             Exception ex,
             HttpServletRequest request
     ) {
-        return build(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected error", request);
+        String requestId = (String) request.getAttribute(at.mymove.core.api.RequestIdFilter.ATTR_REQUEST_ID);
+        log.error("[500] UNEXPECTED ERROR - Path: {}, RequestId: {}", request.getRequestURI(), requestId, ex);
+        return build(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected error: " + ex.getMessage(), request);
     }
 
     private ResponseEntity<ApiErrorResponse> build(

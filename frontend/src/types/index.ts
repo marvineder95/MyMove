@@ -1,466 +1,365 @@
 // ============================================
-// ENUMS
+// Enums (matching backend exactly)
 // ============================================
 
-/**
- * Service types offered by moving companies
- */
-export enum ServiceType {
-  TRANSPORT = 'TRANSPORT',
-  PACKING = 'PACKING',
-  STORAGE = 'STORAGE',
-  CLEANING = 'CLEANING',
-  ASSEMBLY = 'ASSEMBLY',
-  PIANO = 'PIANO',
-  INTERNATIONAL = 'INTERNATIONAL'
-}
-
-/**
- * Company approval status
- */
 export enum CompanyStatus {
   PENDING = 'PENDING',
   APPROVED = 'APPROVED',
-  REJECTED = 'REJECTED',
-  INACTIVE = 'INACTIVE'
+  REJECTED = 'REJECTED'
 }
 
-/**
- * Move size categories
- */
-export enum MoveSize {
-  STUDIO = 'STUDIO',
-  APARTMENT_SMALL = 'APARTMENT_SMALL',
-  APARTMENT_LARGE = 'APARTMENT_LARGE',
-  HOUSE = 'HOUSE',
-  OFFICE = 'OFFICE'
+export enum CompanyService {
+  MOVING = 'MOVING',
+  CLEARANCE = 'CLEARANCE',
+  EVICTION_CLEARANCE = 'EVICTION_CLEARANCE',
+  HOARDER_CLEARANCE = 'HOARDER_CLEARANCE',
+  PIANO_TRANSPORT = 'PIANO_TRANSPORT',
+  SPECIAL_TRANSPORT = 'SPECIAL_TRANSPORT',
+  PACKING_SERVICE = 'PACKING_SERVICE',
+  FURNITURE_ASSEMBLY = 'FURNITURE_ASSEMBLY',
+  STORAGE_SERVICE = 'STORAGE_SERVICE'
 }
 
-/**
- * Offer/request status
- */
-export enum OfferStatus {
-  NEW = 'NEW',
-  CONTACTED = 'CONTACTED',
-  QUOTED = 'QUOTED',
+export enum VideoStatus {
+  UPLOADED = 'UPLOADED',
+  PROCESSING = 'PROCESSING',
+  READY = 'READY',
+  ERROR = 'ERROR'
+}
+
+export enum ItemSource {
+  AI_DETECTED = 'AI_DETECTED',
+  MANUAL = 'MANUAL'
+}
+
+export enum InventoryStatus {
+  DRAFT = 'DRAFT',
+  CONFIRMED = 'CONFIRMED'
+}
+
+export enum FinalOfferStatus {
+  DRAFT = 'DRAFT',
+  SUBMITTED = 'SUBMITTED',
   ACCEPTED = 'ACCEPTED',
-  COMPLETED = 'COMPLETED',
-  CANCELLED = 'CANCELLED'
+  REJECTED = 'REJECTED',
+  EXPIRED = 'EXPIRED'
 }
 
-/**
- * User type for login
- */
-export type UserType = 'company' | 'admin'
+export enum OfferStatus {
+  DRAFT = 'DRAFT',
+  INVENTORY_PENDING = 'INVENTORY_PENDING',
+  INVENTORY_CONFIRMED = 'INVENTORY_CONFIRMED',
+  ESTIMATES_READY = 'ESTIMATES_READY',
+  ESTIMATES_EXPIRED = 'ESTIMATES_EXPIRED',
+  COMPANY_SELECTED = 'COMPANY_SELECTED',
+  FINAL_OFFER_PENDING = 'FINAL_OFFER_PENDING',
+  FINAL_OFFER_SUBMITTED = 'FINAL_OFFER_SUBMITTED',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED',
+  EXPIRED = 'EXPIRED',
+  READY_TO_SEND = 'READY_TO_SEND',
+  SENT = 'SENT',
+  FAILED = 'FAILED'
+}
+
+export enum AnalysisJobStatus {
+  PENDING = 'PENDING',
+  RUNNING = 'RUNNING',
+  SUCCEEDED = 'SUCCEEDED',
+  FAILED = 'FAILED'
+}
+
+export enum Role {
+  CUSTOMER = 'CUSTOMER',
+  COMPANY = 'COMPANY',
+  ADMIN = 'ADMIN'
+}
 
 // ============================================
-// BASE INTERFACES
+// Domain Types
 // ============================================
 
-/**
- * Address structure
- */
 export interface Address {
-  line1: string
-  line2?: string
-  city: string
+  street: string
+  houseNumber: string
   postalCode: string
+  city: string
   country: string
+  additionalInfo?: string
 }
 
-/**
- * Company data structure
- */
-export interface Company {
-  id: string
-  name: string
-  email: string
-  address: Address
-  phone: string
-  website?: string
-  atuNumber: string
-  licenseNumber: string
-  services: ServiceType[]
-  status: CompanyStatus
-  createdAt: string
-  updatedAt?: string
-  logoUrl?: string
-  description?: string
-  rating?: number
-  reviewCount?: number
+export interface FloorDetails {
+  floor: number  // 0 = EG, 1 = 1. Stock, -1 = Keller
+  hasElevator: boolean
+  needsNoParkingZone: boolean
+  walkingDistanceMeters?: number
+  narrowStairs?: boolean
+  carryOverThresholds?: boolean
 }
 
-/**
- * Public company info (limited data)
- */
-export interface PublicCompanyInfo {
-  id: string
-  name: string
-  website?: string
-  services: ServiceType[]
-  rating?: number
-  reviewCount?: number
+export interface SpecialRequirements {
+  needsBoxes: boolean
+  boxesCount?: number
 }
 
 // ============================================
-// REQUEST INTERFACES
+// API Request Types
 // ============================================
 
-/**
- * Company registration request
- */
-export interface CompanyRegistrationRequest {
+export interface RegisterCompanyRequest {
   companyName: string
   email: string
   password: string
-  confirmPassword: string
-  atuNumber: string
-  licenseNumber: string
-  address: Address
+  addressLine: string
+  city: string
+  postalCode: string
+  country: string
   phone: string
   website?: string
-  services: ServiceType[]
-  insuranceDocument?: File
-  acceptTerms: boolean
+  atuNumber: string
+  services: CompanyService[]
+  tradeLicenseFile: File
+  hourlyRate: number  // 1.00 - 500.00
+  travelFee: number   // 0.00 - 1000.00
+  baseFee?: number
+  extraChargePercent?: number  // 0.00 - 100.00
+  minimumPrice?: number
 }
 
-/**
- * Login request
- */
-export interface LoginRequest {
-  email: string
-  password: string
-  type: UserType
-  rememberMe?: boolean
+export interface CreateOfferRequest {
+  videoId?: string
+  fromAddress: Address
+  toAddress: Address
+  fromFloor: FloorDetails
+  toFloor: FloorDetails
+  needsBoxes: boolean
+  boxesCount?: number
+  moveDate: string  // ISO date format YYYY-MM-DD
+  specialRequirements?: SpecialRequirements
 }
 
-/**
- * Public offer request
- */
-export interface OfferRequest {
-  fromAddress: string
-  toAddress: string
-  moveDate: string
-  moveSize: MoveSize
+export interface InventoryItemRequest {
   name: string
-  email: string
-  phone?: string
-  notes?: string
+  quantity: number  // min 1
+  category?: string
+  volume?: number
 }
 
-/**
- * Update company profile request
- */
-export interface UpdateCompanyRequest {
+export interface UpdateInventoryItemRequest {
   name?: string
-  phone?: string
-  website?: string
-  address?: Address
-  services?: ServiceType[]
-  description?: string
-  logo?: File
+  quantity?: number
 }
 
-/**
- * Change password request
- */
-export interface ChangePasswordRequest {
-  currentPassword: string
-  newPassword: string
-  confirmNewPassword: string
+export interface FinalOfferRequest {
+  totalPrice?: number  // 0.01 - 100000.00
+  validityDays?: number  // 1 - 30, default 7
+  notes?: string
+  acceptEstimatePrice?: boolean
 }
 
-/**
- * Password reset request
- */
-export interface PasswordResetRequest {
-  email: string
+export interface RejectCompanyRequest {
+  reason: string
 }
 
-/**
- * Admin action request
- */
-export interface AdminActionRequest {
-  companyId: string
+export interface RejectFinalOfferRequest {
   reason?: string
 }
 
-// ============================================
-// RESPONSE INTERFACES
-// ============================================
-
-/**
- * Generic API response wrapper
- */
-export interface ApiResponse<T = unknown> {
-  success: boolean
-  data?: T
-  message?: string
-  errors?: ValidationError[]
-}
-
-/**
- * Validation error structure
- */
-export interface ValidationError {
-  field: string
-  message: string
-  code?: string
-}
-
-/**
- * Paginated response
- */
-export interface PaginatedResponse<T> {
-  items: T[]
-  total: number
-  page: number
-  pageSize: number
-  totalPages: number
-}
-
-/**
- * Login response
- */
-export interface LoginResponse {
-  token: string
-  refreshToken: string
-  expiresIn: number
-  user: {
-    id: string
-    email: string
-    type: UserType
-    company?: Company
-  }
+export interface AssignCompanyRequest {
+  companyId: string
 }
 
 // ============================================
-// DASHBOARD & OFFER INTERFACES
+// API Response Types
 // ============================================
 
-/**
- * Offer/Move request from customer
- */
-export interface Offer {
+export interface RegisterCompanyResponse {
+  companyId: string
+  email: string
+}
+
+export interface VideoResponse {
   id: string
-  fromAddress: string
-  toAddress: string
-  moveDate: string
-  moveSize: MoveSize
-  customerName: string
-  customerEmail: string
-  customerPhone?: string
-  notes?: string
-  status: OfferStatus
+  filename: string
+  contentType: string
+  sizeBytes: number
+  status: string
   createdAt: string
-  updatedAt?: string
-  assignedCompanyId?: string
-  quoteAmount?: number
+  storageRef: string
 }
 
-/**
- * Dashboard statistics
- */
-export interface DashboardStats {
-  totalOffers: number
-  pendingOffers: number
-  completedMoves: number
-  rating: number
+export interface BoundingBoxResponse {
+  x: number
+  y: number
+  width: number
+  height: number
 }
 
-/**
- * Company dashboard data
- */
-export interface CompanyDashboard {
-  company: Company
-  stats: DashboardStats
-  recentOffers: Offer[]
-}
-
-// ============================================
-// ADMIN INTERFACES
-// ============================================
-
-/**
- * Admin dashboard data
- */
-export interface AdminDashboard {
-  totalCompanies: number
-  pendingCompanies: number
-  approvedCompanies: number
-  rejectedCompanies: number
-  totalOffers: number
-}
-
-/**
- * Company filter options
- */
-export interface CompanyFilter {
-  status?: CompanyStatus
-  search?: string
-  page?: number
-  pageSize?: number
-  sortBy?: string
-  sortOrder?: 'asc' | 'desc'
-}
-
-// ============================================
-// FORM & UI INTERFACES
-// ============================================
-
-/**
- * Form field state
- */
-export interface FormFieldState<T = string> {
-  value: T
-  error?: string
-  touched: boolean
-  dirty: boolean
-}
-
-/**
- * Registration step state
- */
-export interface RegistrationStep {
-  id: string
+export interface DetectedItemResponse {
   label: string
-  isValid: boolean
-  isComplete: boolean
+  description?: string
+  confidence: number
+  boundingBox?: BoundingBoxResponse
+  estimatedVolumeM3?: number
+  quantity: number
 }
 
-/**
- * Toast/Notification
- */
-export interface Notification {
+export interface AnalysisJobResponse {
   id: string
-  type: 'success' | 'error' | 'warning' | 'info'
-  message: string
-  duration?: number
+  videoId: string
+  offerId?: string
+  status: AnalysisJobStatus
+  detectedItems: DetectedItemResponse[]
+  errorMessage?: string
+  totalVolumeM3?: number
+  roomType?: string
+  processingTimeSeconds?: number
+  createdAt: string
+  startedAt?: string
+  completedAt?: string
+  retryCount: number
+  isCompleted: boolean
+}
+
+export interface InventoryItemResponse {
+  name: string
+  quantity: number
+  confidence?: number
+  source: ItemSource
+  category?: string
+  volume?: number
+  totalVolume: number
+}
+
+export interface InventoryResponse {
+  id: string
+  offerId: string
+  status: InventoryStatus
+  items: InventoryItemResponse[]
+  itemTypeCount: number
+  totalItemCount: number
+  aiDetectedItemCount: number
+  manualItemCount: number
+  averageAiConfidence?: number
+  totalVolume: number
+  createdAt: string
+  confirmedAt?: string
+}
+
+export interface PriceBreakdownResponse {
+  baseFee: number
+  travelFee: number
+  laborCost: number
+  volumeCost: number
+  floorSurcharge: number
+  distanceSurcharge: number
+  otherSurcharges: number
+  subtotal: number
+  total: number
+  details: Record<string, number>
+}
+
+export interface PriceEstimateResponse {
+  id: string
+  offerId: string
+  companyId: string
+  totalPrice: number
+  priceRangeLow: number
+  priceRangeHigh: number
+  breakdown: PriceBreakdownResponse
+  estimatedHours: number
+  estimatedVolume: number
+  currency: string
+  calculatedAt: string
+  validUntil: string
+  isValid: boolean
+}
+
+export interface FinalOfferResponse {
+  id: string
+  offerId: string
+  companyId: string
+  totalPrice: number
+  breakdown?: PriceBreakdownResponse
+  validityDays: number
+  notes?: string
+  status: FinalOfferStatus
+  createdAt: string
+  submittedAt?: string
+  acceptedAt?: string
+  rejectedAt?: string
+  rejectionReason?: string
+  isExpired: boolean
+}
+
+export interface OfferResponse {
+  id: string
+  status: OfferStatus
+  videoId?: string
+  createdAt: string
+  sentAt?: string
+}
+
+export interface CompanyOfferResponse {
+  offerId: string
+  status: OfferStatus
+  moveDate?: string
+  fromCity: string
+  toCity: string
+  fromFloor: number
+  toFloor: number
+  fromHasElevator: boolean
+  toHasElevator: boolean
+  priceEstimate?: PriceEstimateResponse
+  canSubmitFinalOffer: boolean
+}
+
+export interface PricingConditionsResponse {
+  hourlyRate: number
+  travelFee: number
+  baseFee?: number
+  extraChargePercent?: number
+  minimumPrice?: number
+  currency: string
+}
+
+export interface CompanyAdminResponse {
+  id: string
+  name: string
+  email: string
+  atuNumber: string
+  phone: string
+  city: string
+  services: string[]
+  pricingConditions?: PricingConditionsResponse
+  status: CompanyStatus
+  createdAt: string
+  reviewedAt?: string
+  rejectionReason?: string
+}
+
+export interface CompanyStatsResponse {
+  pendingCount: number
+  approvedCount: number
+  rejectedCount: number
+  totalCount: number
 }
 
 // ============================================
-// STORE STATE INTERFACES
+// Auth Types
 // ============================================
 
-/**
- * Auth store state
- */
+export interface UserCredentials {
+  email: string
+  password: string
+}
+
 export interface AuthState {
   isAuthenticated: boolean
   user: {
-    id: string
     email: string
-    type: UserType
-    company?: Company
+    role: Role
+    companyId?: string
   } | null
-  token: string | null
-  refreshToken: string | null
-  loading: boolean
-  error: string | null
-}
-
-/**
- * Company store state
- */
-export interface CompanyState {
-  currentCompany: Company | null
-  dashboard: CompanyDashboard | null
-  offers: Offer[]
-  loading: boolean
-  error: string | null
-}
-
-/**
- * Admin store state
- */
-export interface AdminState {
-  companies: Company[]
-  dashboard: AdminDashboard | null
-  selectedCompany: Company | null
-  loading: boolean
-  error: string | null
-  filter: CompanyFilter
-}
-
-/**
- * UI store state
- */
-export interface UIState {
-  notifications: Notification[]
-  sidebarOpen: boolean
-  modalOpen: boolean
-  currentModal: string | null
-}
-
-// ============================================
-// UTILITY TYPES
-// ============================================
-
-/**
- * Nullable type helper
- */
-export type Nullable<T> = T | null
-
-/**
- * Optional type helper
- */
-export type Optional<T> = T | undefined
-
-/**
- * API error response
- */
-export interface ApiError {
-  status: number
-  message: string
-  errors?: ValidationError[]
-}
-
-// ============================================
-// CONSTANTS
-// ============================================
-
-/**
- * Service type labels mapping
- */
-export const ServiceTypeLabels: Record<ServiceType, string> = {
-  [ServiceType.TRANSPORT]: 'Transport',
-  [ServiceType.PACKING]: 'Verpackung',
-  [ServiceType.STORAGE]: 'Lagerung',
-  [ServiceType.CLEANING]: 'Reinigung',
-  [ServiceType.ASSEMBLY]: 'Möbelmontage',
-  [ServiceType.PIANO]: 'Klaviertransport',
-  [ServiceType.INTERNATIONAL]: 'Internationaler Umzug'
-}
-
-/**
- * Company status labels mapping
- */
-export const CompanyStatusLabels: Record<CompanyStatus, string> = {
-  [CompanyStatus.PENDING]: 'Ausstehend',
-  [CompanyStatus.APPROVED]: 'Genehmigt',
-  [CompanyStatus.REJECTED]: 'Abgelehnt',
-  [CompanyStatus.INACTIVE]: 'Inaktiv'
-}
-
-/**
- * Move size labels mapping
- */
-export const MoveSizeLabels: Record<MoveSize, string> = {
-  [MoveSize.STUDIO]: 'Studio/Wohnung bis 40m²',
-  [MoveSize.APARTMENT_SMALL]: '1-2 Zimmer Wohnung (40-70m²)',
-  [MoveSize.APARTMENT_LARGE]: '3-4 Zimmer Wohnung (70-120m²)',
-  [MoveSize.HOUSE]: 'Haus (ab 120m²)',
-  [MoveSize.OFFICE]: 'Büroumzug'
-}
-
-/**
- * Offer status labels mapping
- */
-export const OfferStatusLabels: Record<OfferStatus, string> = {
-  [OfferStatus.NEW]: 'Neu',
-  [OfferStatus.CONTACTED]: 'Kontaktiert',
-  [OfferStatus.QUOTED]: 'Angebot erstellt',
-  [OfferStatus.ACCEPTED]: 'Angenommen',
-  [OfferStatus.COMPLETED]: 'Abgeschlossen',
-  [OfferStatus.CANCELLED]: 'Storniert'
+  credentials: string | null  // base64 encoded credentials for Basic Auth
 }

@@ -12,4 +12,6 @@ public interface CompanyJpaRepository extends JpaRepository<CompanyJpaEntity, UU
     List<CompanyJpaEntity> findAllByStatus(CompanyStatus status);
 
     List<CompanyJpaEntity> findAllByStatusOrStatusIsNull(CompanyStatus status);
+
+    long countByStatus(CompanyStatus status);
 }

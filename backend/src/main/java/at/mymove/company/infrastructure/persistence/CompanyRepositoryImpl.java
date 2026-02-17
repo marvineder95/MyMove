@@ -39,4 +39,9 @@ class CompanyRepositoryImpl implements CompanyRepository {
                 .map(CompanyMapper::toDomain)
                 .toList();
     }
+
+    @Override
+    public long countByStatus(CompanyStatus status) {
+        return jpaRepository.countByStatus(status);
+    }
 }

@@ -1,148 +1,151 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import type { RouteRecordRaw } from 'vue-router'
 
-// Lazy-loaded views for better performance
-const HomeView = () => import('@/views/HomeView.vue')
-const RegisterView = () => import('@/views/RegisterView.vue')
-const LoginView = () => import('@/views/LoginView.vue')
-const DashboardView = () => import('@/views/DashboardView.vue')
-const AdminView = () => import('@/views/AdminView.vue')
-const NotFoundView = () => import('@/views/NotFoundView.vue')
-
-// Route definitions
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'Home',
-    component: HomeView,
-    meta: {
-      title: 'MyMove - Ihre Umzugsplattform'
-    }
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: RegisterView,
-    meta: {
-      title: 'Registrieren - MyMove',
-      guestOnly: true
-    }
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: LoginView,
-    meta: {
-      title: 'Anmelden - MyMove',
-      guestOnly: true
-    }
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardView,
-    meta: {
-      title: 'Dashboard - MyMove',
-      requiresAuth: true,
-      isAdmin: false
-    }
-  },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: AdminView,
-    meta: {
-      title: 'Admin - MyMove',
-      requiresAuth: true,
-      isAdmin: true
-    }
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: NotFoundView,
-    meta: {
-      title: 'Seite nicht gefunden - MyMove'
-    }
-  }
-]
-
-// Create router instance
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-  scrollBehavior(to, _from, savedPosition) {
-    // Scroll to top on route change, or restore saved position
-    if (savedPosition) {
-      return savedPosition
+  routes: [
+    // Public routes
+    {
+      path: '/',
+      name: 'Landing',
+      component: () => import('@/views/public/LandingView.vue')
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/views/public/LoginView.vue'),
+      meta: { public: true }
+    },
+    {
+      path: '/register/customer',
+      name: 'RegisterCustomer',
+      component: () => import('@/views/public/RegisterCustomerView.vue'),
+      meta: { public: true }
+    },
+    {
+      path: '/register/company',
+      name: 'RegisterCompany',
+      component: () => import('@/views/public/RegisterCompanyView.vue'),
+      meta: { public: true }
+    },
+
+    // Customer routes
+    {
+      path: '/customer',
+      component: () => import('@/layouts/CustomerLayout.vue'),
+      meta: { requiresAuth: true, role: 'CUSTOMER' },
+      children: [
+        {
+          path: '',
+          name: 'CustomerDashboard',
+          component: () => import('@/views/customer/DashboardView.vue')
+        },
+        {
+          path: 'wizard',
+          name: 'MoveWizard',
+          component: () => import('@/views/customer/MoveWizardView.vue')
+        },
+        {
+          path: 'offers/:id',
+          name: 'CustomerOfferDetail',
+          component: () => import('@/views/customer/OfferDetailView.vue'),
+          props: true
+        }
+      ]
+    },
+
+    // Company routes
+    {
+      path: '/company',
+      component: () => import('@/layouts/CompanyLayout.vue'),
+      meta: { requiresAuth: true, role: 'COMPANY' },
+      children: [
+        {
+          path: '',
+          name: 'CompanyDashboard',
+          component: () => import('@/views/company/DashboardView.vue')
+        },
+        {
+          path: 'profile',
+          name: 'CompanyProfile',
+          component: () => import('@/views/company/ProfileView.vue')
+        },
+        {
+          path: 'offers/:id',
+          name: 'CompanyOfferDetail',
+          component: () => import('@/views/company/OfferDetailView.vue'),
+          props: true
+        },
+        {
+          path: 'my-offers',
+          name: 'CompanyMyOffers',
+          component: () => import('@/views/company/MyOffersView.vue')
+        }
+      ]
+    },
+
+    // Admin routes
+    {
+      path: '/admin',
+      component: () => import('@/layouts/AdminLayout.vue'),
+      meta: { requiresAuth: true, role: 'ADMIN' },
+      children: [
+        {
+          path: '',
+          name: 'AdminDashboard',
+          component: () => import('@/views/admin/DashboardView.vue')
+        },
+        {
+          path: 'companies/:id',
+          name: 'AdminCompanyDetail',
+          component: () => import('@/views/admin/CompanyDetailView.vue'),
+          props: true
+        }
+      ]
+    },
+
+    // Catch-all
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('@/views/public/NotFoundView.vue')
     }
-    if (to.hash) {
-      return {
-        el: to.hash,
-        behavior: 'smooth'
-      }
-    }
-    return { top: 0, behavior: 'smooth' }
-  }
+  ]
 })
 
-// Global navigation guard
-router.beforeEach(async (to, _from, next) => {
+// Navigation guard
+router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
-
-  // Update page title
-  const title = to.meta.title as string
-  if (title) {
-    document.title = title
-  }
-
-  // Check if route requires authentication
-  if (to.meta.requiresAuth) {
-    // Check if user is authenticated (Token existiert)
-    if (!authStore.isAuthenticated) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-      return
-    }
-
-    // Check admin access (wenn Admin-Route)
-    const isAdminRoute = to.meta.isAdmin as boolean
-    if (isAdminRoute && !authStore.isAdmin) {
-      // Nicht Admin -> Dashboard
-      next({ path: '/dashboard' })
-      return
-    }
-
-    // Check company access (wenn Company-Route aber Admin versucht zuzugreifen)
-    if (!isAdminRoute && authStore.isAdmin) {
-      // Admin versucht auf Company Dashboard -> Admin View
-      next({ path: '/admin' })
-      return
-    }
-  }
-
-  // Check guest-only routes (login, register) for authenticated users
-  if (to.meta.guestOnly && authStore.isAuthenticated) {
-    // Redirect authenticated users away from login/register
-    if (authStore.isAdmin) {
-      next({ path: '/admin' })
-    } else {
-      next({ path: '/dashboard' })
-    }
+  
+  // Public routes are always accessible
+  if (to.meta.public) {
+    next()
     return
   }
-
-  // Allow navigation
+  
+  // Check if route requires authentication
+  if (to.meta.requiresAuth) {
+    if (!authStore.isAuthenticated) {
+      next('/login')
+      return
+    }
+    
+    // Check role requirements
+    const requiredRole = to.meta.role as string
+    if (requiredRole && authStore.user?.role !== requiredRole) {
+      // Redirect to appropriate dashboard based on role
+      if (authStore.isAdmin) {
+        next('/admin')
+      } else if (authStore.isCompany) {
+        next('/company')
+      } else {
+        next('/customer')
+      }
+      return
+    }
+  }
+  
   next()
-})
-
-// Global after hook for analytics/logging
-router.afterEach((to, from) => {
-  // Log navigation for debugging
-  console.log(`[Router] Navigated from "${from.name?.toString() || 'unknown'}" to "${to.name?.toString() || 'unknown'}"`)
 })
 
 export default router

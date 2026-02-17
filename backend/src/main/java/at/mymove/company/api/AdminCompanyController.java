@@ -1,10 +1,14 @@
 package at.mymove.company.api;
 
 import at.mymove.company.api.dto.CompanyAdminResponse;
+import at.mymove.company.api.dto.CompanyStatsResponse;
 import at.mymove.company.application.ApproveCompanyUseCase;
+import at.mymove.company.application.ListApprovedCompaniesUseCase;
 import at.mymove.company.application.ListPendingCompaniesUseCase;
+import at.mymove.company.application.ListRejectedCompaniesUseCase;
 import at.mymove.company.application.RejectCompanyUseCase;
 import at.mymove.company.domain.Company;
+import at.mymove.company.domain.CompanyRepository;
 import at.mymove.company.domain.CompanyStatus;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +29,24 @@ import java.util.UUID;
 public class AdminCompanyController {
 
     private final ListPendingCompaniesUseCase listPendingCompaniesUseCase;
+    private final ListApprovedCompaniesUseCase listApprovedCompaniesUseCase;
+    private final ListRejectedCompaniesUseCase listRejectedCompaniesUseCase;
     private final ApproveCompanyUseCase approveCompanyUseCase;
     private final RejectCompanyUseCase rejectCompanyUseCase;
+    private final CompanyRepository companyRepository;
+
+    /**
+     * Statistik über alle Firmen-Status
+     */
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/stats")
+    public CompanyStatsResponse getStats() {
+        long pending = companyRepository.countByStatus(CompanyStatus.PENDING);
+        long approved = companyRepository.countByStatus(CompanyStatus.APPROVED);
+        long rejected = companyRepository.countByStatus(CompanyStatus.REJECTED);
+        
+        return new CompanyStatsResponse(pending, approved, rejected, pending + approved + rejected);
+    }
 
     /**
      * Listet Firmen nach Status auf.
@@ -44,8 +64,14 @@ public class AdminCompanyController {
                     .stream()
                     .map(CompanyAdminResponse::from)
                     .toList();
-            // Für APPROVED und REJECTED würde man weitere Use Cases implementieren
-            default -> throw new IllegalArgumentException("Status " + status + " not yet supported in this endpoint");
+            case APPROVED -> listApprovedCompaniesUseCase.execute()
+                    .stream()
+                    .map(CompanyAdminResponse::from)
+                    .toList();
+            case REJECTED -> listRejectedCompaniesUseCase.execute()
+                    .stream()
+                    .map(CompanyAdminResponse::from)
+                    .toList();
         };
     }
 

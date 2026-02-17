@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 import { BuildingOfficeIcon, ArrowLeftIcon } from '@heroicons/vue/24/outline'
-import CompanyRegisterForm from '@/components/forms/CompanyRegisterForm.vue'
+import CompanyRegisterForm from '@/components/Forms/CompanyRegisterForm.vue'
 
 const { t } = useI18n()
 </script>
