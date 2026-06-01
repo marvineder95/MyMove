@@ -1,0 +1,144 @@
+- generic [ref=e3]:
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - complementary [ref=e6]:
+        - link "MyMove" [ref=e8] [cursor=pointer]:
+          - /url: /dashboard
+          - img "MyMove" [ref=e9]
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: AS
+            - generic [ref=e13]:
+              - paragraph [ref=e14]: Ana Schmidt
+              - paragraph [ref=e15]: Kunde
+          - button "Deutsch" [ref=e17] [cursor=pointer]:
+            - img [ref=e18]
+            - generic [ref=e21]: Deutsch
+            - img [ref=e22]
+        - navigation [ref=e24]:
+          - button "Übersicht" [ref=e25] [cursor=pointer]:
+            - img [ref=e26]
+            - generic [ref=e29]: Übersicht
+          - button "Meine Umzüge" [ref=e30] [cursor=pointer]:
+            - img [ref=e31]
+            - generic [ref=e35]: Meine Umzüge
+          - button "Angebote" [ref=e36] [cursor=pointer]:
+            - img [ref=e37]
+            - generic [ref=e40]: Angebote
+          - button "Nachrichten" [ref=e41] [cursor=pointer]:
+            - img [ref=e42]
+            - generic [ref=e44]: Nachrichten
+          - button "Profil" [ref=e45] [cursor=pointer]:
+            - img [ref=e46]
+            - generic [ref=e49]: Profil
+          - button "Einstellungen" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - generic [ref=e54]: Einstellungen
+        - generic [ref=e55]:
+          - button "Abmelden" [ref=e56] [cursor=pointer]:
+            - img [ref=e57]
+            - generic [ref=e60]: Abmelden
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - img [ref=e63]
+              - generic [ref=e66]: Hilfe benötigt?
+            - paragraph [ref=e67]: Wir sind für dich da!
+            - button "Zum Support" [ref=e68] [cursor=pointer]:
+              - text: Zum Support
+              - img [ref=e69]
+      - main [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e75]:
+            - generic [ref=e77]:
+              - img [ref=e79]
+              - generic [ref=e81]: Basisdaten
+            - generic [ref=e84]:
+              - img [ref=e86]
+              - generic [ref=e88]: Video Upload
+            - generic [ref=e91]:
+              - img [ref=e93]
+              - generic [ref=e95]: Inventar prüfen
+            - generic [ref=e98]:
+              - img [ref=e100]
+              - generic [ref=e102]: Umzugsdetails
+            - generic [ref=e105]:
+              - generic [ref=e107]: "5"
+              - generic [ref=e108]: Firmen vergleichen
+            - generic [ref=e111]:
+              - generic [ref=e113]: "6"
+              - generic [ref=e114]: Anfrage senden
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - heading "Verfügbare Umzugsfirmen" [level=1] [ref=e118]
+              - paragraph [ref=e119]: Diese Firmen haben an deinem Umzugstermin Kapazitäten frei.
+            - generic [ref=e120]:
+              - generic [ref=e121]: Entfernung (km)
+              - generic [ref=e122]:
+                - spinbutton [ref=e123]: "10"
+                - button "Firmen suchen" [ref=e124] [cursor=pointer]
+            - generic [ref=e125]:
+              - generic [ref=e127] [cursor=pointer]:
+                - img [ref=e129]
+                - generic [ref=e132]:
+                  - generic [ref=e133]:
+                    - heading "Eder & Steiner GmbH" [level=3] [ref=e134]
+                    - img [ref=e136]
+                  - generic [ref=e138]:
+                    - generic [ref=e139]:
+                      - img [ref=e140]
+                      - generic [ref=e142]: "4.5"
+                    - generic [ref=e143]: (128 Bewertungen)
+                  - generic [ref=e144]:
+                    - generic [ref=e145]: 3 Personen
+                    - generic [ref=e146]: ca. 4h
+                    - generic [ref=e147]: Min. 3h
+                - generic [ref=e148]:
+                  - paragraph [ref=e149]: €150
+                  - paragraph [ref=e150]: geschätzt
+              - generic [ref=e152] [cursor=pointer]:
+                - img [ref=e154]
+                - generic [ref=e157]:
+                  - generic [ref=e158]:
+                    - heading "Fabal" [level=3] [ref=e159]
+                    - img [ref=e161]
+                  - generic [ref=e163]:
+                    - generic [ref=e164]:
+                      - img [ref=e165]
+                      - generic [ref=e167]: "4.5"
+                    - generic [ref=e168]: (128 Bewertungen)
+                  - generic [ref=e169]:
+                    - generic [ref=e170]: 3 Personen
+                    - generic [ref=e171]: ca. 4h
+                    - generic [ref=e172]: Min. 3h
+                - generic [ref=e173]:
+                  - paragraph [ref=e174]: €120
+                  - paragraph [ref=e175]: geschätzt
+              - generic [ref=e177] [cursor=pointer]:
+                - img [ref=e179]
+                - generic [ref=e182]:
+                  - generic [ref=e183]:
+                    - heading "FTL – Fink Transport und Logistik GmbH" [level=3] [ref=e184]
+                    - img [ref=e186]
+                  - generic [ref=e188]:
+                    - generic [ref=e189]:
+                      - img [ref=e190]
+                      - generic [ref=e192]: "4.5"
+                    - generic [ref=e193]: (128 Bewertungen)
+                  - generic [ref=e194]:
+                    - generic [ref=e195]: 4 Personen
+                    - generic [ref=e196]: ca. 3h
+                    - generic [ref=e197]: Min. 3h
+                - generic [ref=e198]:
+                  - paragraph [ref=e199]: €150
+                  - paragraph [ref=e200]: geschätzt
+          - generic [ref=e202]:
+            - button "Zurück" [ref=e203] [cursor=pointer]:
+              - img [ref=e204]
+              - text: Zurück
+            - button "Weiter" [disabled] [ref=e206]:
+              - text: Weiter
+              - img [ref=e207]
+      - button "Benachrichtigungen" [ref=e210] [cursor=pointer]:
+        - img [ref=e211]
+  - region "Notifications alt+T":
+    - list

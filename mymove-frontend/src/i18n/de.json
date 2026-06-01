@@ -1,0 +1,827 @@
+{
+  "landing": {
+    "nav": {
+      "howItWorks": "So funktioniert's",
+      "pricing": "Preise",
+      "solutions": "Lösungen",
+      "login": "Anmelden",
+      "getQuote": "Angebot anfordern"
+    },
+    "hero": {
+      "headline": "Umziehen war noch nie so einfach.",
+      "subheadline": "Erleben Sie die Zukunft des Umzugs mit unserem KI-gestützten Video-Inventarsystem. Erhalten Sie in Minuten verbindliche Angebote – ohne Vor-Ort-Termin.",
+      "planMove": "Umzug planen",
+      "registerCompany": "Als Firma registrieren"
+    },
+    "howItWorks": {
+      "title": "So funktioniert's",
+      "subtitle": "In fünf einfachen Schritten zu Ihrem stressfreien Umzug.",
+      "steps": {
+        "1": {
+          "title": "Registrieren",
+          "description": "Erstellen Sie in wenigen Sekunden Ihr kostenloses Konto. Keine versteckten Kosten, keine Bindung."
+        },
+        "2": {
+          "title": "Video hochladen & Daten eingeben",
+          "description": "Film Sie Ihre Räume und laden Sie das Video hoch. Ergänzen Sie Adressen, Datum und besondere Wünsche."
+        },
+        "3": {
+          "title": "Umzugsfirmen ansehen",
+          "description": "Sehen Sie alle verfügbaren, geprüften Umzugsunternehmen in Ihrer Region mit Bewertungen und Preisen."
+        },
+        "4": {
+          "title": "Firma anfragen",
+          "description": "Wählen Sie Ihre bevorzugte Firma aus und senden Sie eine unverbindliche Anfrage mit Ihrem Inventar."
+        },
+        "5": {
+          "title": "Angebot erhalten",
+          "description": "Innerhalb von 24 Stunden erhalten Sie ein verbindliches, konkretes Angebot – ohne Umwege."
+        }
+      }
+    },
+    "forCustomers": {
+      "title": "Für Umzugswillige",
+      "subtitle": "Ob privat oder geschäftlich – wir machen Ihren Umzug zum Kinderspiel. Registrieren Sie sich kostenlos und starten Sie direkt.",
+      "features": {
+        "video": {
+          "title": "Video-Inventar",
+          "description": "Film Sie einfach Ihre Räume. Unsere KI erkennt Möbel und Gegenstände und erstellt das Inventar automatisch."
+        },
+        "quotes": {
+          "title": "Firmenvergleich",
+          "description": "Sehen Sie alle verfügbaren Umzugsfirmen auf einen Blick – mit Bewertungen, Preisen und Verfügbarkeit."
+        },
+        "verified": {
+          "title": "Geprüfte Partner",
+          "description": "Alle Umzugsfirmen sind lizenziert, versichert und von echten Kunden bewertet."
+        },
+        "tracking": {
+          "title": "24h-Angebot",
+          "description": "Nach Ihrer Anfrage erhalten Sie innerhalb von 24 Stunden ein verbindliches, konkretes Angebot."
+        }
+      }
+    },
+    "forCompanies": {
+      "title": "Für Umzugsunternehmen",
+      "subtitle": "Gewinnen Sie neue Kunden und optimieren Sie Ihre Prozesse mit moderner Technologie.",
+      "features": {
+        "leads": {
+          "title": "Qualifizierte Leads",
+          "description": "Erhalten Sie vorkalkulierte Aufträge mit genauem Inventar und Volumen – keine Zeitverschwendung mehr."
+        },
+        "ai": {
+          "title": "KI-gestützte Planung",
+          "description": "Unsere KI berechnet automatisch Teamgröße, Fahrzeuge und Zeitbedarf basierend auf dem Video-Inventar."
+        },
+        "reviews": {
+          "title": "Bewertungssystem",
+          "description": "Sammeln Sie authentische Kundenbewertungen und heben Sie sich von der Konkurrenz ab."
+        },
+        "payments": {
+          "title": "Sichere Zahlungen",
+          "description": "Integriertes Zahlungssystem mit Anzahlungsschutz und automatischer Rechnungsstellung."
+        }
+      },
+      "cta": "Jetzt Partner werden"
+    },
+    "features": {
+      "title": "Warum MyMove?",
+      "subtitle": "Wir haben den Umzugsprozess von Grund auf neu gedacht.",
+      "items": {
+        "time": {
+          "title": "Zeitersparnis",
+          "description": "Sparen Sie bis zu 80% der Zeit im Vergleich zu traditionellen Umzugsangeboten."
+        },
+        "price": {
+          "title": "Transparenz",
+          "description": "Keine versteckten Kosten. Festpreise, die vorher kalkuliert werden."
+        },
+        "security": {
+          "title": "Sicherheit",
+          "description": "Ihre Daten sind verschlüsselt. Ihr Video ist nur für geprüfte Firmen sichtbar."
+        },
+        "flexibility": {
+          "title": "Flexibilität",
+          "description": "Buchen Sie kurzfristig oder planen Sie Monate im Voraus – ganz wie es Ihnen passt."
+        }
+      }
+    },
+    "testimonials": {
+      "title": "Das sagen unsere Kunden",
+      "subtitle": "Echte Erfahrungen von Menschen, die mit MyMove umgezogen sind.",
+      "items": {
+        "1": {
+          "quote": "Wir haben in 48 Stunden 4 verbindliche Angebote erhalten. Der Umzug war problemlos und deutlich günstiger als erwartet.",
+          "author": "Familie Müller",
+          "role": "Umzug von Hamburg nach München",
+          "rating": 5
+        },
+        "2": {
+          "quote": "Das Video-Inventar hat uns enorme Zeit gespart. Keine Termine, kein Stress. Einfach durch die Wohnung gefilmt und fertig.",
+          "author": "Lisa Schäfer",
+          "role": "Privater Umzug in Berlin",
+          "rating": 5
+        },
+        "3": {
+          "quote": "Seit wir bei MyMove sind, erhalten wir wöchentlich qualifizierte Anfragen. Die KI-Planung spart uns Stunden an Vorbereitung.",
+          "author": "Thomas Weber",
+          "role": "Geschäftsführer, Weber Umzüge GmbH",
+          "rating": 5
+        }
+      }
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "subtitle": "Alles, was Sie über MyMove wissen müssen.",
+      "items": {
+        "1": {
+          "question": "Ist die Nutzung von MyMove kostenlos?",
+          "answer": "Ja, für Privatkunden ist MyMove komplett kostenlos. Sie zahlen nur den vereinbarten Preis an die Umzugsfirma. Für Unternehmen fallen moderate Plattformgebühren an."
+        },
+        "2": {
+          "question": "Wie funktioniert das Video-Inventar?",
+          "answer": "Sie filmen einfach Ihre Räume mit dem Smartphone. Unsere KI erkennt automatisch Möbel und Gegenstände, schätzt das Volumen und erstellt ein detailliertes Inventar. Sie können es jederzeit bearbeiten und ergänzen."
+        },
+        "3": {
+          "question": "Sind die Umzugsfirmen auf MyMove geprüft?",
+          "answer": "Absolut. Jede Firma wird vor der Zulassung überprüft: Lizenz, Versicherung, und ein sauberes Gewerbe-register-Profil. Zusätzlich zeigen wir echte Kundenbewertungen."
+        },
+        "4": {
+          "question": "Wie lange dauert es, bis ich ein Angebot erhalte?",
+          "answer": "In der Regel erhalten Sie innerhalb von 24 Stunden ein verbindliches Angebot von der von Ihnen ausgewählten Firma. Bei dringenden Anfragen oft noch schneller."
+        },
+        "5": {
+          "question": "Was passiert mit meinen Daten und dem Video?",
+          "answer": "Ihre Daten werden verschlüsselt gespeichert und ausschließlich an die von Ihnen ausgewählte Umzugsfirma weitergegeben. Das Video ist nur für geprüfte Partner sichtbar und kann jederzeit von Ihnen gelöscht werden."
+        }
+      }
+    },
+    "cookieBanner": {
+      "text": "Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Durch die weitere Nutzung stimmen Sie unserer Datenschutzerklärung zu.",
+      "accept": "Akzeptieren"
+    },
+    "ctaBanner": {
+      "title": "Bereit umzuziehen?",
+      "subtitle": "Tausende zufriedene Kunden und geprüfte Umzugsunternehmen vertrauen bereits auf MyMove.",
+      "customerButton": "Umzug planen",
+      "companyButton": "Partner werden"
+    },
+    "footer": {
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "support": "Support",
+      "careers": "Karriere",
+      "copyright": "MyMove Logistics Marketplace. Alle Rechte vorbehalten."
+    }
+  },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "phone": "Telefon",
+    "logout": "Abmelden",
+    "googleLogin": "Mit Google anmelden",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?",
+    "loginError": "Anmeldung fehlgeschlagen",
+    "registerError": "Registrierung fehlgeschlagen"
+  },
+  "dashboard": {
+    "title": "Meine Umzüge",
+    "newMove": "Neuer Umzug",
+    "noMoves": "Noch keine Umzüge vorhanden",
+    "status": "Status",
+    "date": "Datum",
+    "from": "Von",
+    "to": "Nach",
+    "actions": "Aktionen",
+    "view": "Ansehen",
+    "uploadVideo": "Video hochladen",
+    "inventory": "Inventar",
+    "estimate": "Preisschätzung",
+    "offers": "Angebote"
+  },
+  "move": {
+    "createTitle": "Neuen Umzug erstellen",
+    "originAddress": "Abholadresse",
+    "destinationAddress": "Zieladresse",
+    "moveDate": "Umzugsdatum",
+    "floorsOrigin": "Stockwerk (Abholung)",
+    "floorsDestination": "Stockwerk (Ziel)",
+    "elevator": "Fahrstuhl vorhanden",
+    "parkingDistance": "Entfernung Parkplatz (Meter)",
+    "extras": "Zusatzleistungen",
+    "assemblyRequired": "Montage erforderlich",
+    "boxesNeeded": "Umzugskartons benötigt",
+    "noParkingZone": "Halteverbot erforderlich",
+    "submit": "Umzug erstellen",
+    "cancel": "Abbrechen",
+    "success": "Umzug erfolgreich erstellt"
+  },
+  "video": {
+    "title": "Video hochladen",
+    "description": "Laden Sie ein Video Ihrer Räumlichkeiten hoch, damit Unternehmen Ihr Inventar einschätzen können.",
+    "selectFile": "Datei auswählen",
+    "upload": "Hochladen",
+    "uploading": "Wird hochgeladen...",
+    "success": "Video erfolgreich hochgeladen",
+    "error": "Upload fehlgeschlagen"
+  },
+  "inventory": {
+    "title": "Inventar",
+    "addItem": "Gegenstand hinzufügen",
+    "name": "Name",
+    "quantity": "Anzahl",
+    "volume": "Volumen (m³)",
+    "weight": "Gewicht (kg)",
+    "noItems": "Noch keine Gegenstände vorhanden",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "totalItems": "Gegenstände",
+    "totalVolume": "Gesamtvolumen",
+    "totalWeight": "Gesamtgewicht"
+  },
+  "estimate": {
+    "title": "Preisschätzung",
+    "distance": "Entfernung (km)",
+    "calculate": "Berechnen",
+    "company": "Unternehmen",
+    "price": "Preis",
+    "breakdown": "Aufschlüsselung",
+    "baseFee": "Grundgebühr",
+    "labor": "Arbeitskosten",
+    "distanceCost": "Entfernungskosten",
+    "extras": "Zusatzkosten",
+    "noCompanies": "Keine verfügbaren Unternehmen für dieses Datum",
+    "hours": "Stunden",
+    "teamSize": "Teamgröße"
+  },
+  "offers": {
+    "title": "Angebote",
+    "noOffers": "Noch keine Angebote vorhanden",
+    "from": "von",
+    "price": "Preis",
+    "message": "Nachricht",
+    "accept": "Annehmen",
+    "reject": "Ablehnen",
+    "accepted": "Angenommen",
+    "rejected": "Abgelehnt",
+    "sent": "Gesendet",
+    "acceptedSuccess": "Angebot angenommen!",
+    "acceptedError": "Annahme fehlgeschlagen"
+  },
+  "companyDashboard": {
+    "greeting": {
+      "morning": "Guten Morgen",
+      "day": "Guten Tag",
+      "evening": "Guten Abend"
+    },
+    "subtitle": "Hier ist, was heute bei {companyName} ansteht.",
+    "yourCompany": "Ihrem Unternehmen",
+    "newOffer": "Neues Angebot",
+    "newOfferDesc": "Erstelle schnell ein neues Angebot für einen Kunden.",
+    "newOfferButton": "Angebot erstellen",
+    "kpi": {
+      "openRequests": "Offene Anfragen",
+      "sentOffers": "Gesendete Angebote",
+      "confirmedOrders": "Bestätigte Aufträge",
+      "averageRating": "Durchschnittsbewertung",
+      "vsLastWeek": "vs. letzte Woche"
+    },
+    "requests": {
+      "title": "Aktuelle Anfragen",
+      "emptyTitle": "Keine offenen Anfragen",
+      "empty": "Aktuell gibt es keine neuen Anfragen für dein Unternehmen.",
+      "status": {
+        "new": "Neu",
+        "pending": "Angebot erwartet",
+        "sent": "Angebot gesendet",
+        "negotiation": "In Verhandlung"
+      },
+      "action": {
+        "createOffer": "Angebot erstellen",
+        "viewOffer": "Angebot ansehen"
+      },
+      "rooms": "Zimmer",
+      "today": "Heute",
+      "yesterday": "Gestern",
+      "showAll": "Alle Anfragen anzeigen"
+    },
+    "help": {
+      "title": "Hilfe benötigt?",
+      "subtitle": "Wir sind für dich da!",
+      "link": "Zum Support"
+    },
+    "sidebar": {
+      "overview": "Übersicht",
+      "orders": "Aufträge",
+      "offers": "Angebote",
+      "calendar": "Kalender",
+      "team": "Mein Team",
+      "vehicles": "Fahrzeuge",
+      "pricing": "Preise & Leistungen",
+      "reviews": "Kundenbewertungen",
+      "messages": "Nachrichten",
+      "profile": "Profil",
+      "settings": "Einstellungen",
+      "help": "Hilfe & Support",
+      "logout": "Abmelden",
+      "company": "Firma"
+    }
+  },
+  "customerDashboard": {
+    "welcome": "Willkommen zurück, {name}!",
+    "welcomeSub": "Wir machen deinen Umzug einfach, transparent und stressfrei.",
+    "newMoveCard": {
+      "title": "Neuer Umzug",
+      "desc": "Starte jetzt deine Anfrage und erhalte passende Angebote.",
+      "button": "Umzug erstellen"
+    },
+    "howItWorks": {
+      "title": "So funktioniert MyMove",
+      "subtitle": "In 5 einfachen Schritten zu deinem Umzug",
+      "videoPlaceholder": "Erklärvideo folgt bald",
+      "learnMore": "Mehr über den Ablauf erfahren"
+    },
+    "benefits": {
+      "title": "Deine Vorteile mit MyMove",
+      "free": {
+        "title": "100% kostenlos & unverbindlich",
+        "desc": "Anfragen und Angebote sind immer kostenlos"
+      },
+      "verified": {
+        "title": "Geprüfte Umzugsfirmen",
+        "desc": "Nur zertifizierte und bewertete Partner"
+      },
+      "transparent": {
+        "title": "Sicher & transparent",
+        "desc": "Keine versteckten Kosten, volle Transparenz"
+      },
+      "support": {
+        "title": "Persönlicher Support",
+        "desc": "Wir sind bei jedem Schritt für dich da"
+      }
+    },
+    "myMoves": {
+      "title": "Deine Umzüge",
+      "showAll": "Alle anzeigen",
+      "emptyTitle": "Noch kein Umzug angelegt",
+      "emptyDesc": "Erstelle jetzt deinen ersten Umzug und erhalte passende Angebote von Umzugsfirmen.",
+      "emptyButton": "Ersten Umzug erstellen"
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "showAll": "Alle Fragen anzeigen",
+      "1": {
+        "q": "Wie funktioniert MyMove?",
+        "a": "Erstelle deinen Umzug, lade ein Video deiner Räume hoch und erhalte in kürzester Zeit Angebote von geprüften Umzugsfirmen."
+      },
+      "2": {
+        "q": "Was kostet mich die Nutzung?",
+        "a": "Die Nutzung von MyMove ist für dich komplett kostenlos. Du zahlst nur den vereinbarten Preis an die Umzugsfirma."
+      },
+      "3": {
+        "q": "Wie werden Umzugsfirmen geprüft?",
+        "a": "Jede Firma wird vor der Zulassung überprüft: Lizenz, Versicherung und ein sauberes Gewerberegister-Profil."
+      },
+      "4": {
+        "q": "Kann ich mehrere Angebote vergleichen?",
+        "a": "Ja! Du erhältst Angebote von mehreren Firmen und kannst Preis, Leistungen und Bewertungen direkt vergleichen."
+      }
+    },
+    "sidebar": {
+      "overview": "Übersicht",
+      "myMoves": "Meine Umzüge",
+      "offers": "Angebote",
+      "messages": "Nachrichten",
+      "favorites": "Favoriten",
+      "profile": "Profil",
+      "settings": "Einstellungen",
+      "customer": "Kunde"
+    },
+    "help": {
+      "title": "Hilfe benötigt?",
+      "subtitle": "Wir sind für dich da!",
+      "link": "Zum Support"
+    }
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "subtitle": "Verwalte Benachrichtigungen, Datenschutz und persönliche Präferenzen",
+    "saveError": "Speichern fehlgeschlagen",
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "subtitle": "Entscheide, wann wir dich per E-Mail informieren",
+      "newOffers": "Neue Angebote",
+      "newOffersDesc": "E-Mail, wenn ein Umzugsunternehmen ein Angebot sendet",
+      "offerUpdates": "Angebots-Updates",
+      "offerUpdatesDesc": "E-Mail bei Annahme oder Ablehnung eines Angebots",
+      "reminders": "Erinnerungen",
+      "remindersDesc": "E-Mail-Erinnerungen vor deinem Umzugstermin",
+      "saveSuccess": "Benachrichtigungen gespeichert"
+    },
+    "privacy": {
+      "title": "Datenschutz & Sicherheit",
+      "subtitle": "Deine Daten gehören dir",
+      "infoText": "Deine Daten sind sicher. Videos werden automatisch nach Abschluss des Umzugs gelöscht.",
+      "exportData": "Daten exportieren",
+      "exportComingSoon": "Bald verfügbar",
+      "deleteAccount": "Account löschen"
+    },
+    "preferences": {
+      "title": "Präferenzen",
+      "subtitle": "Passe MyMove an deine Bedürfnisse an",
+      "language": "Sprache",
+      "movingDays": "Bevorzugte Umzugstage",
+      "movingDaysPlaceholder": "z.B. Wochenenden, Werktage",
+      "movingDaysHint": "Hilft uns, passende Terminvorschläge zu machen",
+      "services": "Bevorzugte Zusatzleistungen",
+      "servicePacking": "PackService",
+      "serviceAssembly": "Montage & Demontage",
+      "serviceStorage": "Einlagerung",
+      "serviceCleaning": "Reinigung",
+      "saveSuccess": "Präferenzen gespeichert"
+    },
+    "support": {
+      "title": "Hilfe & Support",
+      "subtitle": "Wir helfen dir gerne weiter",
+      "contact": "Support kontaktieren",
+      "faq": "Häufige Fragen"
+    },
+    "deleteDialogTitle": "Account wirklich löschen?",
+    "deleteDialogText": "Bist du sicher, dass du dein Konto löschen möchtest? Alle deine Umzüge, Angebote und Daten werden unwiderruflich entfernt.",
+    "deleteDialogWarning": "Dieser Schritt kann nicht rückgängig gemacht werden!",
+    "deleteConfirmLabel": "Bitte gib zur Bestätigung ein:",
+    "deleteConfirmWord": "LÖSCHEN",
+    "deleteError": "Löschen fehlgeschlagen"
+  },
+  "profile": {
+    "title": "Mein Profil",
+    "subtitle": "Verwalte deine persönlichen Daten und dein Passwort",
+    "roleCustomer": "Endkunde",
+    "roleCompany": "Umzugsunternehmen",
+    "passwordTitle": "Passwort ändern",
+    "passwordSubtitle": "Aktualisiere dein Passwort für mehr Sicherheit",
+    "currentPassword": "Aktuelles Passwort",
+    "newPassword": "Neues Passwort",
+    "confirmPassword": "Neues Passwort bestätigen",
+    "changePassword": "Passwort ändern",
+    "passwordMinLength": "Mindestens 8 Zeichen",
+    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "saveSuccess": "Profil erfolgreich gespeichert",
+    "saveError": "Speichern fehlgeschlagen",
+    "passwordSuccess": "Passwort erfolgreich geändert",
+    "passwordError": "Passwort ändern fehlgeschlagen",
+    "deleteTitle": "Profil löschen",
+    "deleteSubtitle": "Lösche dein Konto und alle damit verbundenen Daten permanent.",
+    "deleteButton": "Profil löschen",
+    "deleteDialogTitle": "Profil wirklich löschen?",
+    "deleteDialogText": "Bist du sicher, dass du dein Konto löschen möchtest? Alle deine Umzüge, Angebote und Daten werden unwiderruflich entfernt.",
+    "deleteDialogWarning": "Dieser Schritt kann nicht rückgängig gemacht werden!",
+    "deleteConfirmLabel": "Bitte gib zur Bestätigung ein:",
+    "deleteConfirmWord": "LÖSCHEN",
+    "deleteError": "Löschen fehlgeschlagen"
+  },
+  "comingSoon": {
+    "title": "Bald verfügbar",
+    "subtitle": "Diese Funktion wird in Kürze freigeschaltet."
+  },
+  "wizard": {
+    "stepOf": "Schritt {step} von {total}",
+    "steps": {
+      "basics": { "title": "Basisdaten", "subtitle": "Wohin ziehst du um?" },
+      "video": { "title": "Video Upload", "subtitle": "Zeig uns deinen Umzug" },
+      "inventory": { "title": "Inventar prüfen", "subtitle": "KI-Analyse anpassen" },
+      "details": { "title": "Umzugsdetails", "subtitle": "Zusätzliche Informationen" },
+      "companies": { "title": "Firmen vergleichen", "subtitle": "Verfügbare Angebote" },
+      "summary": { "title": "Anfrage senden", "subtitle": "Firma anfragen & Angebot erhalten" }
+    },
+    "basics": {
+      "headline": "Wohin ziehst du um?",
+      "subtitle": "Erzähl uns kurz von deinem Umzug.",
+      "origin": "Startadresse",
+      "destination": "Zieladresse",
+      "stop": "Zwischenstopp",
+      "addStop": "Zwischenstopp hinzufügen",
+      "moveDate": "Umzugsdatum",
+      "addressPlaceholder": "Straße, Hausnummer, PLZ, Ort",
+      "streetPlaceholder": "Straße",
+      "houseNumberPlaceholder": "Nr.",
+      "zipPlaceholder": "PLZ",
+      "cityPlaceholder": "Ort",
+      "flexibleDate": "Datum ist flexibel (± einige Tage)",
+      "createError": "Umzug konnte nicht erstellt werden"
+    },
+    "video": {
+      "headline": "Lade ein Video deiner Gegenstände hoch",
+      "subtitle": "Wir analysieren dein Video mit KI und erstellen dein Inventar.",
+      "dragDrop": "Video hierher ziehen & ablegen",
+      "or": "oder",
+      "selectFile": "Video auswählen",
+      "uploading": "Video wird hochgeladen...",
+      "analyzing": "KI analysiert dein Video...",
+      "analyzingSubtitle": "Wir erkennen automatisch Möbel und Gegenstände.",
+      "detected": "Erkannt",
+      "demoTitle": "Demo-Video: Wohnungsbegehung",
+      "demoSubtitle": "Dieses Video simuliert deine Aufnahme",
+      "aiInfoTitle": "KI-gestützte Objekterkennung",
+      "aiInfoText": "Unsere KI analysiert das Video und erkennt automatisch Möbel und Gegenstände für dein Umzugsinventar.",
+      "startAnalysis": "KI-Analyse starten",
+      "skip": "Überspringen – Inventar manuell erstellen",
+      "analysisComplete": "Analyse abgeschlossen!",
+      "detectedCount": "{count} Gegenstände erkannt",
+      "nextStepHint": "Die erkannten Gegenstände wurden deinem Inventar hinzugefügt.",
+      "nextStepSubHint": "Im nächsten Schritt kannst du sie bearbeiten oder ergänzen."
+    },
+    "inventory": {
+      "headline": "Überprüfe dein Inventar",
+      "subtitle": "Unsere KI hat folgende Gegenstände erkannt. Du kannst sie bearbeiten oder ergänzen.",
+      "totalItems": "Gegenstände",
+      "totalVolume": "Gesamtvolumen",
+      "totalWeight": "Gesamtgewicht",
+      "addItem": "Gegenstand hinzufügen",
+      "addShort": "Hinzufügen",
+      "name": "Name",
+      "itemPlaceholder": "Gegenstand",
+      "quantityPlaceholder": "Anzahl",
+      "volume": "Volumen (m³)",
+      "volumeEstimate": "Volumen schätzen",
+      "weight": "Gewicht (kg)",
+      "weightEstimate": "Gewicht schätzen",
+      "items": "Gegenstände",
+      "itemsLabel": "Gegenstände",
+      "empty": "Noch keine Gegenstände vorhanden.",
+      "added": "Hinzugefügt",
+      "error": "Fehler",
+      "nameRequired": "Bitte gib einen Gegenstand ein.",
+      "quantityRequired": "Bitte gib eine gültige Anzahl ein."
+    },
+    "details": {
+      "headline": "Zusatzleistungen",
+      "subtitle": "Wähle die Leistungen und Materialien, die du für deinen Umzug benötigst.",
+      "importantServices": "Wichtige Leistungen",
+      "assemblyLabel": "Montage benötigt",
+      "assemblySub": "Auf- und Abbau von Möbeln",
+      "boxRentalLabel": "Umzugskartons benötigt",
+      "boxRentalSub": "Wir liefern dir die passenden Kartons",
+      "boxCountLabel": "Anzahl Kartons",
+      "boxCountUnit": "Stück",
+      "boxRecommendation": "Empfohlen: ca. {count} Kartons",
+      "boxBasedOnInventory": "Basierend auf deinem Inventar",
+      "insuranceLabel": "Zusatzversicherung gewünscht",
+      "insuranceSub": "Zusätzlicher Schutz für deine Gegenstände",
+      "materials": "Weitere Umzugsmaterialien (optional)",
+      "showMore": "Weitere anzeigen",
+      "showLess": "Weniger anzeigen",
+      "priceNote": "Die Preise werden dir im nächsten Schritt von den Umzugsunternehmen bestätigt.",
+      "sidebar": {
+        "title": "Dein Umzug auf einen Blick",
+        "from": "Von",
+        "to": "Nach",
+        "moveDate": "Umzugsdatum",
+        "inventory": "Inventar",
+        "itemsCount": "{count} Gegenstände",
+        "volumeWeight": "{volume} m³ · {weight} kg",
+        "selectedServices": "Ausgewählte Leistungen",
+        "assembly": "Montage benötigt",
+        "boxesSelected": "Umzugskartons: {count} Stück",
+        "additionalInsurance": "Zusatzversicherung",
+        "noMaterials": "0 weitere Materialien",
+        "trust": "Sicher & zuverlässig",
+        "trustText": "Alle Leistungen werden von geprüften Umzugsunternehmen erbracht."
+      },
+      "materialItems": {
+        "tape": { "name": "Klebeband", "unit": "6 Rollen", "price": "2,90" },
+        "wrap": { "name": "Stretchfolie", "unit": "1 Rolle", "price": "7,90" },
+        "mattressCover": { "name": "Matratzenhüllen", "unit": "2 Stück", "price": "5,80" },
+        "blanket": { "name": "Schutzdecken", "unit": "10 Stück", "price": "12,90" },
+        "wardrobeBox": { "name": "Kleiderboxen", "unit": "5 Stück", "price": "14,90" }
+      },
+      "floors": "Stockwerk & Aufzug",
+      "originFloor": "Startadresse Stockwerk",
+      "destinationFloor": "Zieladresse Stockwerk",
+      "elevatorOrigin": "Aufzug Start",
+      "elevatorDestination": "Aufzug Ziel",
+      "apartmentSize": "Wohnungsgröße",
+      "apartmentSizeUnit": "m²",
+      "apartmentSizePlaceholder": "z.B. 75",
+      "apartmentSizeHint": "Hilft uns, die Kartonanzahl zu schätzen",
+      "parking": "Entfernung zur Parkmöglichkeit",
+      "parkingPlaceholder": "z.B. 20",
+      "parkingTooltip": "Wie weit muss vom Parkplatz bis zur Haustür getragen werden?",
+      "noParkingZone": "Halteverbotszone benötigt",
+      "saveError": "Details konnten nicht gespeichert werden"
+    },
+    "companies": {
+      "headline": "Verfügbare Umzugsfirmen",
+      "subtitle": "Diese Firmen haben an deinem Umzugstermin Kapazitäten frei.",
+      "distance": "Entfernung (km)",
+      "search": "Firmen suchen",
+      "estimated": "geschätzt",
+      "noResults": "Keine Firmen für dieses Datum verfügbar.",
+      "enterDistance": "Gib die Entfernung ein",
+      "distanceHint": "Wir benötigen die Entfernung, um passende Angebote zu berechnen."
+    },
+    "summary": {
+      "headline": "Deine Anfrage im Überblick",
+      "subtitle": "Bitte prüfe deine Angaben vor dem Absenden.",
+      "moveData": "Deine Umzugsdaten",
+      "details": "Details",
+      "from": "Von",
+      "to": "Nach",
+      "date": "Datum",
+      "originFloor": "Stockwerk Start",
+      "destinationFloor": "Stockwerk Ziel",
+      "elevatorYes": "mit Aufzug",
+      "elevatorNo": "ohne Aufzug",
+      "apartmentSize": "Wohnfläche",
+      "boxRental": "Umzugskartons",
+      "assembly": "Montage",
+      "parking": "Parkdistanz",
+      "noParkingZone": "Halteverbotszone",
+      "yes": "Ja",
+      "no": "Nein",
+      "inventory": "Inventar",
+      "selectedCompany": "Ausgewählte Firma",
+      "materialsSubtotal": "Materialien Zwischensumme",
+      "costOverview": "Kostenübersicht",
+      "moveCost": "Umzugskosten (geschätzt)",
+      "materialsCost": "Materialien",
+      "totalCost": "Gesamtkosten",
+      "send": "Anfrage senden",
+      "sendError": "Anfrage konnte nicht gesendet werden",
+      "success": "Deine Anfrage wurde erfolgreich gesendet!",
+      "successTitle": "Anfrage gesendet!",
+      "successMessage": "Deine Anfrage wurde erfolgreich an die Umzugsfirma übermittelt. Du erhältst in Kürze ein verbindliches Angebot.",
+      "autoRedirect": "Automatische Weiterleitung zum Dashboard...",
+      "nextStepsTitle": "Wie geht es weiter?",
+      "nextStepsText": "Nach dem Absenden prüft die Firma deine Angaben und sendet dir ein verbindliches Angebot zu.",
+      "toDashboard": "Zum Dashboard"
+    }
+  },
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Ein Fehler ist aufgetreten",
+    "retry": "Erneut versuchen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "save": "Speichern",
+    "saving": "Speichern...",
+    "sending": "Wird gesendet...",
+    "deleting": "Wird gelöscht...",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "close": "Schließen",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "empty": "Keine neuen Benachrichtigungen",
+    "newMessages": "Du hast {count} neue Nachrichten",
+    "viewAll": "Alle anzeigen"
+  },
+  "companyProfile": {
+    "title": "Firmenprofil",
+    "subtitle": "Verwalte dein Firmenprofil, Leistungen und Preise.",
+    "saveSuccess": "Profil erfolgreich gespeichert",
+    "saveError": "Speichern fehlgeschlagen",
+    "tabs": {
+      "profile": "Profil",
+      "services": "Leistungen",
+      "pricing": "Preise",
+      "verification": "Verifizierung"
+    },
+    "completeness": {
+      "title": "Profil-Vollständigkeit",
+      "complete": "Profil vollständig!"
+    },
+    "preview": {
+      "title": "Öffentliche Vorschau",
+      "noDescription": "Noch keine Beschreibung vorhanden"
+    },
+    "info": {
+      "title": "Firmeninformationen",
+      "subtitle": "Grundlegende Informationen über dein Unternehmen",
+      "companyName": "Firmenname",
+      "contactPerson": "Ansprechpartner",
+      "description": "Firmenbeschreibung",
+      "phone": "Telefon",
+      "email": "E-Mail",
+      "supportEmail": "Support-E-Mail",
+      "website": "Webseite",
+      "taxId": "Steuernummer",
+      "foundingYear": "Gründungsjahr",
+      "employeeCount": "Mitarbeiteranzahl"
+    },
+    "serviceArea": {
+      "title": "Einsatzgebiet",
+      "subtitle": "Definiere, in welchen Regionen du aktiv bist",
+      "mainLocation": "Hauptstandort",
+      "radius": "Aktionsradius",
+      "cities": "Abgedeckte Städte",
+      "addCity": "Stadt hinzufügen",
+      "addCityPrompt": "Stadtname eingeben:",
+      "international": "Internationale Umzüge anbieten"
+    },
+    "capacity": {
+      "title": "Kapazität & Statistiken",
+      "subtitle": "Übersicht über deine aktuelle Kapazität und Leistungen",
+      "maxJobs": "Max. parallele Jobs",
+      "responseTime": "Ø Antwortzeit",
+      "completedMoves": "Abgeschlossene Umzüge",
+      "rating": "Bewertung"
+    },
+    "services": {
+      "title": "Leistungen & Angebote",
+      "subtitle": "Wähle die Dienstleistungen aus, die dein Unternehmen anbietet",
+      "list": {
+        "private_move": "Privatumzug",
+        "business_move": "Firmenumzug",
+        "long_distance": "Fernumzug",
+        "international": "Internationaler Umzug",
+        "assembly": "Montage & Demontage",
+        "packing": "PackService",
+        "storage": "Einlagerung",
+        "disposal": "Entsorgung",
+        "piano": "Klaviertransport",
+        "heavy_transport": "Schwertransport",
+        "cleaning": "Reinigung",
+        "no_parking_zone": "Halteverbot"
+      }
+    },
+    "pricing": {
+      "title": "Preise & Konditionen",
+      "subtitle": "Konfiguriere deine Preismodelle und Aufschläge",
+      "baseTitle": "Basispreise",
+      "materialsTitle": "Materialien",
+      "extrasTitle": "Zusatzleistungen",
+      "surchargesTitle": "Aufschläge",
+      "baseFee": "Grundgebühr",
+      "pricePerHour": "Stundensatz",
+      "pricePerWorker": "Preis pro Arbeiter",
+      "additionalWorker": "Zusätzlicher Arbeiter",
+      "pricePerKm": "Kilometerpauschale",
+      "travelFee": "Anfahrtskosten",
+      "minimumHours": "Mindeststunden",
+      "teamSize": "Standard-Teamgröße",
+      "boxRental": "Kartonmiete",
+      "wardrobeBox": "Kleiderboxen",
+      "stretchFilm": "Stretchfolie",
+      "tape": "Klebeband",
+      "mattressCover": "Matratzenhüllen",
+      "furnitureBlanket": "Schutzdecken",
+      "packingService": "PackService (Stundensatz)",
+      "noParkingZone": "Halteverbot",
+      "storage": "Einlagerung (pro m²)",
+      "disposal": "Entsorgung",
+      "weekend": "Wochenendaufschlag",
+      "holiday": "Feiertagsaufschlag",
+      "evening": "Abendaufschlag",
+      "urgent": "Express-Aufschlag"
+    },
+    "verification": {
+      "badgesTitle": "Vertrauens-Abzeichen",
+      "badgesSubtitle": "Zeige Kunden deine Zuverlässigkeit und Qualität",
+      "badges": {
+        "business": "Gewerblicher Betrieb",
+        "insurance": "Versichert",
+        "identity": "Identität bestätigt",
+        "premium": "Premium-Partner",
+        "topRated": "Top-Bewertet"
+      },
+      "documentsTitle": "Dokumente",
+      "documentsSubtitle": "Hochgeladene Dokumente und deren Status",
+      "noDocuments": "Noch keine Dokumente hochgeladen"
+    }
+  },
+  "messages": {
+    "title": "Nachrichten",
+    "noConversations": "Noch keine Unterhaltungen vorhanden.",
+    "noMessages": "Noch keine Nachrichten. Schreibe die erste!",
+    "selectConversation": "Wähle eine Unterhaltung aus",
+    "unknownCompany": "Unbekannte Firma",
+    "unknownCustomer": "Unbekannter Kunde",
+    "requestSummary": "Anfrage-Zusammenfassung",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "inputPlaceholder": "Nachricht schreiben...",
+    "securityNote": "Deine Nachrichten sind sicher und werden nicht an Dritte weitergegeben.",
+    "contactWarning": "Kontaktdaten dürfen vor Auftragsbestätigung nicht ausgetauscht werden. Erkannt: {types}",
+    "moveDetails": "Umzugsdetails",
+    "status": "Status",
+    "viewOffer": "Angebot ansehen",
+    "viewInventory": "Inventar öffnen",
+    "acceptOffer": "Angebot akzeptieren",
+    "uploadFile": "Datei hochladen",
+    "uploading": "Datei wird hochgeladen...",
+    "fileTooLarge": "Die Datei ist zu groß. Maximal 10 MB erlaubt.",
+    "reportProblem": "Problem melden"
+  }
+}

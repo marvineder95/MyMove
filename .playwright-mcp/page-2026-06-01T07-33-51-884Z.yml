@@ -1,0 +1,166 @@
+- generic [ref=e3]:
+  - main [ref=e4]:
+    - generic [ref=e229]:
+      - complementary [ref=e230]:
+        - link "MyMove" [ref=e232] [cursor=pointer]:
+          - /url: /dashboard
+          - img "MyMove" [ref=e233]
+        - generic [ref=e234]:
+          - generic [ref=e235]:
+            - generic [ref=e236]: AS
+            - generic [ref=e237]:
+              - paragraph [ref=e238]: Ana Schmidt
+              - paragraph [ref=e239]: Kunde
+          - button "Deutsch" [ref=e241] [cursor=pointer]:
+            - img [ref=e242]
+            - generic [ref=e245]: Deutsch
+            - img [ref=e246]
+        - navigation [ref=e248]:
+          - button "Übersicht" [ref=e249] [cursor=pointer]:
+            - img [ref=e250]
+            - generic [ref=e253]: Übersicht
+          - button "Meine Umzüge" [ref=e254] [cursor=pointer]:
+            - img [ref=e255]
+            - generic [ref=e259]: Meine Umzüge
+          - button "Angebote" [ref=e260] [cursor=pointer]:
+            - img [ref=e261]
+            - generic [ref=e264]: Angebote
+          - button "Nachrichten" [ref=e265] [cursor=pointer]:
+            - img [ref=e266]
+            - generic [ref=e268]: Nachrichten
+          - button "Profil" [ref=e269] [cursor=pointer]:
+            - img [ref=e270]
+            - generic [ref=e273]: Profil
+          - button "Einstellungen" [ref=e274] [cursor=pointer]:
+            - img [ref=e275]
+            - generic [ref=e278]: Einstellungen
+        - generic [ref=e279]:
+          - button "Abmelden" [ref=e280] [cursor=pointer]:
+            - img [ref=e281]
+            - generic [ref=e284]: Abmelden
+          - generic [ref=e285]:
+            - generic [ref=e286]:
+              - img [ref=e287]
+              - generic [ref=e290]: Hilfe benötigt?
+            - paragraph [ref=e291]: Wir sind für dich da!
+            - button "Zum Support" [ref=e292] [cursor=pointer]:
+              - text: Zum Support
+              - img [ref=e293]
+      - main [ref=e295]:
+        - generic [ref=e296]:
+          - generic [ref=e297]:
+            - generic [ref=e298]:
+              - heading "Willkommen zurück, Ana! 👋" [level=1] [ref=e299]
+              - paragraph [ref=e300]: Wir machen deinen Umzug einfach, transparent und stressfrei.
+            - generic [ref=e301]:
+              - heading "Neuer Umzug" [level=3] [ref=e302]
+              - paragraph [ref=e303]: Starte jetzt deine Anfrage und erhalte passende Angebote.
+              - button "Umzug erstellen" [ref=e304] [cursor=pointer]
+          - generic [ref=e305]:
+            - heading "So funktioniert MyMove" [level=2] [ref=e306]
+            - paragraph [ref=e307]: In 5 einfachen Schritten zu deinem Umzug
+            - generic [ref=e308]:
+              - generic [ref=e309]:
+                - generic [ref=e311]:
+                  - img [ref=e312]
+                  - paragraph [ref=e315]: Erklärvideo folgt bald
+                - button "Mehr über den Ablauf erfahren" [ref=e316] [cursor=pointer]:
+                  - text: Mehr über den Ablauf erfahren
+                  - img [ref=e317]
+              - generic [ref=e319]:
+                - generic [ref=e320]:
+                  - img [ref=e322]
+                  - generic [ref=e324]:
+                    - paragraph [ref=e325]: Registrieren
+                    - paragraph [ref=e326]: Erstellen Sie in wenigen Sekunden Ihr kostenloses Konto. Keine versteckten Kosten, keine Bindung.
+                - generic [ref=e327]:
+                  - generic [ref=e328]: "2"
+                  - generic [ref=e329]:
+                    - paragraph [ref=e330]: Video hochladen & Daten eingeben
+                    - paragraph [ref=e331]: Film Sie Ihre Räume und laden Sie das Video hoch. Ergänzen Sie Adressen, Datum und besondere Wünsche.
+                - generic [ref=e332]:
+                  - generic [ref=e333]: "3"
+                  - generic [ref=e334]:
+                    - paragraph [ref=e335]: Umzugsfirmen ansehen
+                    - paragraph [ref=e336]: Sehen Sie alle verfügbaren, geprüften Umzugsunternehmen in Ihrer Region mit Bewertungen und Preisen.
+                - generic [ref=e337]:
+                  - generic [ref=e338]: "4"
+                  - generic [ref=e339]:
+                    - paragraph [ref=e340]: Firma anfragen
+                    - paragraph [ref=e341]: Wählen Sie Ihre bevorzugte Firma aus und senden Sie eine unverbindliche Anfrage mit Ihrem Inventar.
+                - generic [ref=e342]:
+                  - generic [ref=e343]: "5"
+                  - generic [ref=e344]:
+                    - paragraph [ref=e345]: Angebot erhalten
+                    - paragraph [ref=e346]: Innerhalb von 24 Stunden erhalten Sie ein verbindliches, konkretes Angebot – ohne Umwege.
+          - generic [ref=e347]:
+            - heading "Deine Vorteile mit MyMove" [level=2] [ref=e348]
+            - generic [ref=e349]:
+              - generic [ref=e350]:
+                - img [ref=e352]
+                - generic [ref=e356]:
+                  - paragraph [ref=e357]: 100% kostenlos & unverbindlich
+                  - paragraph [ref=e358]: Anfragen und Angebote sind immer kostenlos
+              - generic [ref=e359]:
+                - img [ref=e361]
+                - generic [ref=e364]:
+                  - paragraph [ref=e365]: Geprüfte Umzugsfirmen
+                  - paragraph [ref=e366]: Nur zertifizierte und bewertete Partner
+              - generic [ref=e367]:
+                - img [ref=e369]
+                - generic [ref=e371]:
+                  - paragraph [ref=e372]: Sicher & transparent
+                  - paragraph [ref=e373]: Keine versteckten Kosten, volle Transparenz
+              - generic [ref=e374]:
+                - img [ref=e376]
+                - generic [ref=e378]:
+                  - paragraph [ref=e379]: Persönlicher Support
+                  - paragraph [ref=e380]: Wir sind bei jedem Schritt für dich da
+          - generic [ref=e381]:
+            - generic [ref=e382]:
+              - generic [ref=e383]:
+                - heading "Deine Umzüge" [level=2] [ref=e384]
+                - button "Alle anzeigen" [ref=e385] [cursor=pointer]:
+                  - text: Alle anzeigen
+                  - img [ref=e386]
+              - generic [ref=e388]:
+                - generic [ref=e389]:
+                  - img [ref=e391]
+                  - generic [ref=e394]:
+                    - paragraph [ref=e395]: Musterstraße 12, 10115 Berlin → Hauptstraße 45, 20095 Hamburg
+                    - paragraph [ref=e396]: 2.6.2026
+                  - generic [ref=e397]: SENT_TO_COMPANIES
+                - generic [ref=e398]:
+                  - img [ref=e400]
+                  - generic [ref=e403]:
+                    - paragraph [ref=e404]: Musterstraße 12, 10115 Berlin → Hauptstraße 45, 20095 Hamburg
+                    - paragraph [ref=e405]: 2.6.2026
+                  - generic [ref=e406]: READY_FOR_REQUEST
+                - generic [ref=e407]:
+                  - img [ref=e409]
+                  - generic [ref=e412]:
+                    - paragraph [ref=e413]: Musterstraße 12, 10115 Berlin → Hauptstraße 45, 20095 Hamburg
+                    - paragraph [ref=e414]: 2.6.2026
+                  - generic [ref=e415]: DRAFT
+            - generic [ref=e416]:
+              - heading "Häufige Fragen" [level=2] [ref=e417]
+              - generic [ref=e418]:
+                - button "Wie funktioniert MyMove?" [ref=e420] [cursor=pointer]:
+                  - text: Wie funktioniert MyMove?
+                  - img [ref=e421]
+                - button "Was kostet mich die Nutzung?" [ref=e424] [cursor=pointer]:
+                  - text: Was kostet mich die Nutzung?
+                  - img [ref=e425]
+                - button "Wie werden Umzugsfirmen geprüft?" [ref=e428] [cursor=pointer]:
+                  - text: Wie werden Umzugsfirmen geprüft?
+                  - img [ref=e429]
+                - button "Kann ich mehrere Angebote vergleichen?" [ref=e432] [cursor=pointer]:
+                  - text: Kann ich mehrere Angebote vergleichen?
+                  - img [ref=e433]
+              - button "Alle Fragen anzeigen" [ref=e435] [cursor=pointer]:
+                - text: Alle Fragen anzeigen
+                - img [ref=e436]
+      - button "Benachrichtigungen" [ref=e439] [cursor=pointer]:
+        - img [ref=e440]
+  - region "Notifications alt+T":
+    - list

@@ -1,0 +1,42 @@
+{
+  "name": "mymove-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "@types/leaflet": "^1.9.21",
+    "@vue/test-utils": "^2.4.10",
+    "axios": "^1.6.5",
+    "jsdom": "^29.1.1",
+    "leaflet": "^1.9.4",
+    "lucide-vue-next": "^1.0.0",
+    "pinia": "^2.1.7",
+    "vee-validate": "^4.15.1",
+    "vitest": "^4.1.5",
+    "vue": "^3.4.0",
+    "vue-i18n": "^9.8.0",
+    "vue-router": "^4.2.5",
+    "vue-sonner": "^2.0.9",
+    "zod": "^4.4.1"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.16.1",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.7.0",
+    "autoprefixer": "^10.4.16",
+    "eslint-plugin-vue": "^10.9.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vue-tsc": "^2.2.12"
+  }
+}

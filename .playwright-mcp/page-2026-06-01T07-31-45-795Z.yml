@@ -1,0 +1,156 @@
+- generic [ref=e3]:
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - complementary [ref=e6]:
+        - link "MyMove" [ref=e8] [cursor=pointer]:
+          - /url: /dashboard
+          - img "MyMove" [ref=e9]
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: AS
+            - generic [ref=e13]:
+              - paragraph [ref=e14]: Ana Schmidt
+              - paragraph [ref=e15]: Kunde
+          - button "Deutsch" [ref=e17] [cursor=pointer]:
+            - img [ref=e18]
+            - generic [ref=e21]: Deutsch
+            - img [ref=e22]
+        - navigation [ref=e24]:
+          - button "Übersicht" [ref=e25] [cursor=pointer]:
+            - img [ref=e26]
+            - generic [ref=e29]: Übersicht
+          - button "Meine Umzüge" [ref=e30] [cursor=pointer]:
+            - img [ref=e31]
+            - generic [ref=e35]: Meine Umzüge
+          - button "Angebote" [ref=e36] [cursor=pointer]:
+            - img [ref=e37]
+            - generic [ref=e40]: Angebote
+          - button "Nachrichten" [ref=e41] [cursor=pointer]:
+            - img [ref=e42]
+            - generic [ref=e44]: Nachrichten
+          - button "Profil" [ref=e45] [cursor=pointer]:
+            - img [ref=e46]
+            - generic [ref=e49]: Profil
+          - button "Einstellungen" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - generic [ref=e54]: Einstellungen
+        - generic [ref=e55]:
+          - button "Abmelden" [ref=e56] [cursor=pointer]:
+            - img [ref=e57]
+            - generic [ref=e60]: Abmelden
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - img [ref=e63]
+              - generic [ref=e66]: Hilfe benötigt?
+            - paragraph [ref=e67]: Wir sind für dich da!
+            - button "Zum Support" [ref=e68] [cursor=pointer]:
+              - text: Zum Support
+              - img [ref=e69]
+      - main [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e75]:
+            - generic [ref=e77]:
+              - generic [ref=e79]: "1"
+              - generic [ref=e80]: Basisdaten
+            - generic [ref=e83]:
+              - generic [ref=e85]: "2"
+              - generic [ref=e86]: Video Upload
+            - generic [ref=e89]:
+              - generic [ref=e91]: "3"
+              - generic [ref=e92]: Inventar prüfen
+            - generic [ref=e95]:
+              - generic [ref=e97]: "4"
+              - generic [ref=e98]: Umzugsdetails
+            - generic [ref=e101]:
+              - generic [ref=e103]: "5"
+              - generic [ref=e104]: Firmen vergleichen
+            - generic [ref=e107]:
+              - generic [ref=e109]: "6"
+              - generic [ref=e110]: Anfrage senden
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - heading "Wohin ziehst du um?" [level=1] [ref=e114]
+              - paragraph [ref=e115]: Erzähl uns kurz von deinem Umzug.
+            - generic [ref=e116]:
+              - generic [ref=e117]:
+                - img [ref=e118]
+                - text: Startadresse
+              - textbox "Straße" [ref=e122]
+              - generic [ref=e123]:
+                - textbox "Nr." [ref=e124]
+                - textbox "PLZ" [ref=e125]
+                - textbox "Ort" [ref=e126]
+            - generic [ref=e127]:
+              - generic [ref=e128]:
+                - img [ref=e129]
+                - text: Zieladresse
+              - textbox "Straße" [ref=e133]
+              - generic [ref=e134]:
+                - textbox "Nr." [ref=e135]
+                - textbox "PLZ" [ref=e136]
+                - textbox "Ort" [ref=e137]
+            - button "Zwischenstopp hinzufügen" [ref=e138] [cursor=pointer]:
+              - img [ref=e139]
+              - text: Zwischenstopp hinzufügen
+            - generic [ref=e140]:
+              - generic [ref=e141]:
+                - img [ref=e142]
+                - text: Umzugsdatum
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - button [ref=e146] [cursor=pointer]:
+                    - img [ref=e147]
+                  - generic [ref=e149]: Juni 2026
+                  - button [ref=e150] [cursor=pointer]:
+                    - img [ref=e151]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Mo
+                  - generic [ref=e155]: Di
+                  - generic [ref=e156]: Mi
+                  - generic [ref=e157]: Do
+                  - generic [ref=e158]: Fr
+                  - generic [ref=e159]: Sa
+                  - generic [ref=e160]: So
+                - generic [ref=e161]:
+                  - button "1" [ref=e162] [cursor=pointer]
+                  - button "2" [ref=e163] [cursor=pointer]
+                  - button "3" [ref=e164] [cursor=pointer]
+                  - button "4" [ref=e165] [cursor=pointer]
+                  - button "5" [ref=e166] [cursor=pointer]
+                  - button "6" [ref=e167] [cursor=pointer]
+                  - button "7" [ref=e168] [cursor=pointer]
+                  - button "8" [ref=e169] [cursor=pointer]
+                  - button "9" [ref=e170] [cursor=pointer]
+                  - button "10" [ref=e171] [cursor=pointer]
+                  - button "11" [ref=e172] [cursor=pointer]
+                  - button "12" [ref=e173] [cursor=pointer]
+                  - button "13" [ref=e174] [cursor=pointer]
+                  - button "14" [ref=e175] [cursor=pointer]
+                  - button "15" [ref=e176] [cursor=pointer]
+                  - button "16" [ref=e177] [cursor=pointer]
+                  - button "17" [ref=e178] [cursor=pointer]
+                  - button "18" [ref=e179] [cursor=pointer]
+                  - button "19" [ref=e180] [cursor=pointer]
+                  - button "20" [ref=e181] [cursor=pointer]
+                  - button "21" [ref=e182] [cursor=pointer]
+                  - button "22" [ref=e183] [cursor=pointer]
+                  - button "23" [ref=e184] [cursor=pointer]
+                  - button "24" [ref=e185] [cursor=pointer]
+                  - button "25" [ref=e186] [cursor=pointer]
+                  - button "26" [ref=e187] [cursor=pointer]
+                  - button "27" [ref=e188] [cursor=pointer]
+                  - button "28" [ref=e189] [cursor=pointer]
+                  - button "29" [ref=e190] [cursor=pointer]
+                  - button "30" [ref=e191] [cursor=pointer]
+              - generic [ref=e192]:
+                - generic [ref=e193]: Umzugsdatum auswählen
+                - generic [ref=e194] [cursor=pointer]:
+                  - checkbox "Datum ist flexibel (± einige Tage)" [ref=e195]
+                  - generic [ref=e196]: Datum ist flexibel (± einige Tage)
+          - button "Weiter" [disabled] [ref=e199]:
+            - text: Weiter
+            - img [ref=e200]
+      - button "Benachrichtigungen" [ref=e203] [cursor=pointer]:
+        - img [ref=e204]
+  - region "Notifications alt+T":
+    - list

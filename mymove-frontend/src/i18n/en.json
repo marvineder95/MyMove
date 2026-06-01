@@ -1,0 +1,827 @@
+{
+  "landing": {
+    "nav": {
+      "howItWorks": "How it Works",
+      "pricing": "Pricing",
+      "solutions": "Solutions",
+      "login": "Login",
+      "getQuote": "Get a Quote"
+    },
+    "hero": {
+      "headline": "Moving has never been easier.",
+      "subheadline": "Experience the future of relocation with our AI-powered video inventory system. Get binding quotes in minutes — no in-home visit required.",
+      "planMove": "Plan a Move",
+      "registerCompany": "Register as Company"
+    },
+    "howItWorks": {
+      "title": "How it Works",
+      "subtitle": "Five simple steps to your stress-free move.",
+      "steps": {
+        "1": {
+          "title": "Register",
+          "description": "Create your free account in seconds. No hidden costs, no commitment."
+        },
+        "2": {
+          "title": "Upload Video & Enter Details",
+          "description": "Film your rooms and upload the video. Add addresses, dates, and any special requests."
+        },
+        "3": {
+          "title": "Browse Moving Companies",
+          "description": "See all available, verified moving companies in your area with ratings and prices."
+        },
+        "4": {
+          "title": "Request a Company",
+          "description": "Select your preferred company and send a non-binding request with your inventory."
+        },
+        "5": {
+          "title": "Receive an Offer",
+          "description": "Within 24 hours, receive a binding, concrete offer — no detours."
+        }
+      }
+    },
+    "forCustomers": {
+      "title": "For Those Moving",
+      "subtitle": "Whether private or business — we make your move a breeze. Register for free and get started right away.",
+      "features": {
+        "video": {
+          "title": "Video Inventory",
+          "description": "Simply film your rooms. Our AI recognizes furniture and items and creates the inventory automatically."
+        },
+        "quotes": {
+          "title": "Company Comparison",
+          "description": "See all available moving companies at a glance — with ratings, prices, and availability."
+        },
+        "verified": {
+          "title": "Verified Partners",
+          "description": "All moving companies are licensed, insured, and rated by real customers."
+        },
+        "tracking": {
+          "title": "24h Offer",
+          "description": "After your request, receive a binding, concrete offer within 24 hours."
+        }
+      }
+    },
+    "forCompanies": {
+      "title": "For Moving Companies",
+      "subtitle": "Win new customers and optimize your processes with modern technology.",
+      "features": {
+        "leads": {
+          "title": "Qualified Leads",
+          "description": "Receive pre-calculated orders with exact inventory and volume — no more wasted time."
+        },
+        "ai": {
+          "title": "AI-Powered Planning",
+          "description": "Our AI automatically calculates team size, vehicles, and time requirements based on the video inventory."
+        },
+        "reviews": {
+          "title": "Review System",
+          "description": "Collect authentic customer reviews and stand out from the competition."
+        },
+        "payments": {
+          "title": "Secure Payments",
+          "description": "Integrated payment system with deposit protection and automatic invoicing."
+        }
+      },
+      "cta": "Become a Partner"
+    },
+    "features": {
+      "title": "Why MyMove?",
+      "subtitle": "We have rethought the moving process from the ground up.",
+      "items": {
+        "time": {
+          "title": "Time Saving",
+          "description": "Save up to 80% of time compared to traditional moving quotes."
+        },
+        "price": {
+          "title": "Transparency",
+          "description": "No hidden costs. Fixed prices calculated in advance."
+        },
+        "security": {
+          "title": "Security",
+          "description": "Your data is encrypted. Your video is only visible to verified companies."
+        },
+        "flexibility": {
+          "title": "Flexibility",
+          "description": "Book last minute or plan months in advance — whatever suits you."
+        }
+      }
+    },
+    "testimonials": {
+      "title": "What our customers say",
+      "subtitle": "Real experiences from people who moved with MyMove.",
+      "items": {
+        "1": {
+          "quote": "We received 4 binding offers within 48 hours. The move was hassle-free and significantly cheaper than expected.",
+          "author": "The Müller Family",
+          "role": "Move from Hamburg to Munich",
+          "rating": 5
+        },
+        "2": {
+          "quote": "The video inventory saved us enormous amounts of time. No appointments, no stress. Simply filmed the apartment and done.",
+          "author": "Lisa Schäfer",
+          "role": "Private move in Berlin",
+          "rating": 5
+        },
+        "3": {
+          "quote": "Since joining MyMove, we receive qualified requests weekly. The AI planning saves us hours of preparation.",
+          "author": "Thomas Weber",
+          "role": "CEO, Weber Umzüge GmbH",
+          "rating": 5
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about MyMove.",
+      "items": {
+        "1": {
+          "question": "Is MyMove free to use?",
+          "answer": "Yes, MyMove is completely free for private customers. You only pay the agreed price to the moving company. For businesses, moderate platform fees apply."
+        },
+        "2": {
+          "question": "How does the video inventory work?",
+          "answer": "Simply film your rooms with your smartphone. Our AI automatically recognizes furniture and items, estimates the volume, and creates a detailed inventory. You can edit and add to it at any time."
+        },
+        "3": {
+          "question": "Are the moving companies on MyMove verified?",
+          "answer": "Absolutely. Every company is checked before admission: license, insurance, and a clean trade register profile. Additionally, we show real customer reviews."
+        },
+        "4": {
+          "question": "How long does it take to receive an offer?",
+          "answer": "You typically receive a binding offer from your selected company within 24 hours. For urgent requests, often even faster."
+        },
+        "5": {
+          "question": "What happens to my data and the video?",
+          "answer": "Your data is encrypted and only shared with the moving company you select. The video is only visible to verified partners and can be deleted by you at any time."
+        }
+      }
+    },
+    "cookieBanner": {
+      "text": "We use cookies to improve your experience on our website. By continuing to use the site, you agree to our privacy policy.",
+      "accept": "Accept"
+    },
+    "ctaBanner": {
+      "title": "Ready to move?",
+      "subtitle": "Thousands of satisfied customers and verified moving companies already trust MyMove.",
+      "customerButton": "Plan a Move",
+      "companyButton": "Become a Partner"
+    },
+    "footer": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "support": "Support",
+      "careers": "Careers",
+      "copyright": "MyMove Logistics Marketplace. All rights reserved."
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "logout": "Logout",
+    "googleLogin": "Login with Google",
+    "noAccount": "No account yet?",
+    "hasAccount": "Already have an account?",
+    "loginError": "Login failed",
+    "registerError": "Registration failed"
+  },
+  "dashboard": {
+    "title": "My Moves",
+    "newMove": "New Move",
+    "noMoves": "No moves yet",
+    "status": "Status",
+    "date": "Date",
+    "from": "From",
+    "to": "To",
+    "actions": "Actions",
+    "view": "View",
+    "uploadVideo": "Upload Video",
+    "inventory": "Inventory",
+    "estimate": "Price Estimate",
+    "offers": "Offers"
+  },
+  "move": {
+    "createTitle": "Create New Move",
+    "originAddress": "Origin Address",
+    "destinationAddress": "Destination Address",
+    "moveDate": "Move Date",
+    "floorsOrigin": "Floor (Origin)",
+    "floorsDestination": "Floor (Destination)",
+    "elevator": "Elevator Available",
+    "parkingDistance": "Parking Distance (meters)",
+    "extras": "Extras",
+    "assemblyRequired": "Assembly Required",
+    "boxesNeeded": "Boxes Needed",
+    "noParkingZone": "No-Parking Zone Required",
+    "submit": "Create Move",
+    "cancel": "Cancel",
+    "success": "Move created successfully"
+  },
+  "video": {
+    "title": "Upload Video",
+    "description": "Upload a video of your space so companies can assess your inventory.",
+    "selectFile": "Select File",
+    "upload": "Upload",
+    "uploading": "Uploading...",
+    "success": "Video uploaded successfully",
+    "error": "Upload failed"
+  },
+  "inventory": {
+    "title": "Inventory",
+    "addItem": "Add Item",
+    "name": "Name",
+    "quantity": "Quantity",
+    "volume": "Volume (m³)",
+    "weight": "Weight (kg)",
+    "noItems": "No items yet",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "totalItems": "Items",
+    "totalVolume": "Total Volume",
+    "totalWeight": "Total Weight"
+  },
+  "estimate": {
+    "title": "Price Estimate",
+    "distance": "Distance (km)",
+    "calculate": "Calculate",
+    "company": "Company",
+    "price": "Price",
+    "breakdown": "Breakdown",
+    "baseFee": "Base Fee",
+    "labor": "Labor Cost",
+    "distanceCost": "Distance Cost",
+    "extras": "Extras Cost",
+    "noCompanies": "No available companies for this date",
+    "hours": "Hours",
+    "teamSize": "Team Size"
+  },
+  "offers": {
+    "title": "Offers",
+    "noOffers": "No offers yet",
+    "from": "from",
+    "price": "Price",
+    "message": "Message",
+    "accept": "Accept",
+    "reject": "Reject",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "sent": "Sent",
+    "acceptedSuccess": "Offer accepted!",
+    "acceptedError": "Failed to accept offer"
+  },
+  "companyDashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "day": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "subtitle": "Here's what's happening at {companyName} today.",
+    "yourCompany": "your company",
+    "newOffer": "New Offer",
+    "newOfferDesc": "Quickly create a new offer for a customer.",
+    "newOfferButton": "Create Offer",
+    "kpi": {
+      "openRequests": "Open Requests",
+      "sentOffers": "Sent Offers",
+      "confirmedOrders": "Confirmed Orders",
+      "averageRating": "Average Rating",
+      "vsLastWeek": "vs. last week"
+    },
+    "requests": {
+      "title": "Current Requests",
+      "emptyTitle": "No open requests",
+      "empty": "There are currently no new requests for your company.",
+      "status": {
+        "new": "New",
+        "pending": "Offer Expected",
+        "sent": "Offer Sent",
+        "negotiation": "In Negotiation"
+      },
+      "action": {
+        "createOffer": "Create Offer",
+        "viewOffer": "View Offer"
+      },
+      "rooms": "rooms",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "showAll": "Show all requests"
+    },
+    "help": {
+      "title": "Need help?",
+      "subtitle": "We're here for you!",
+      "link": "Go to Support"
+    },
+    "sidebar": {
+      "overview": "Overview",
+      "orders": "Orders",
+      "offers": "Offers",
+      "calendar": "Calendar",
+      "team": "My Team",
+      "vehicles": "Vehicles",
+      "pricing": "Pricing & Services",
+      "reviews": "Customer Reviews",
+      "messages": "Messages",
+      "profile": "Profile",
+      "settings": "Settings",
+      "help": "Help & Support",
+      "logout": "Logout",
+      "company": "Company"
+    }
+  },
+  "customerDashboard": {
+    "welcome": "Welcome back, {name}!",
+    "welcomeSub": "We make your move simple, transparent and stress-free.",
+    "newMoveCard": {
+      "title": "New Move",
+      "desc": "Start your request now and receive matching offers.",
+      "button": "Create Move"
+    },
+    "howItWorks": {
+      "title": "How MyMove Works",
+      "subtitle": "Your move in 5 simple steps",
+      "videoPlaceholder": "Explainer video coming soon",
+      "learnMore": "Learn more about the process"
+    },
+    "benefits": {
+      "title": "Your Benefits with MyMove",
+      "free": {
+        "title": "100% free & non-binding",
+        "desc": "Requests and offers are always free"
+      },
+      "verified": {
+        "title": "Verified Moving Companies",
+        "desc": "Only certified and rated partners"
+      },
+      "transparent": {
+        "title": "Safe & Transparent",
+        "desc": "No hidden costs, full transparency"
+      },
+      "support": {
+        "title": "Personal Support",
+        "desc": "We're here for you every step of the way"
+      }
+    },
+    "myMoves": {
+      "title": "Your Moves",
+      "showAll": "Show all",
+      "emptyTitle": "No move created yet",
+      "emptyDesc": "Create your first move now and receive matching offers from moving companies.",
+      "emptyButton": "Create first move"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "showAll": "Show all questions",
+      "1": {
+        "q": "How does MyMove work?",
+        "a": "Create your move, upload a video of your rooms and receive offers from verified moving companies in no time."
+      },
+      "2": {
+        "q": "What does it cost?",
+        "a": "Using MyMove is completely free for you. You only pay the agreed price to the moving company."
+      },
+      "3": {
+        "q": "How are moving companies verified?",
+        "a": "Every company is checked before admission: license, insurance and a clean trade register profile."
+      },
+      "4": {
+        "q": "Can I compare multiple offers?",
+        "a": "Yes! You receive offers from several companies and can compare prices, services and ratings directly."
+      }
+    },
+    "sidebar": {
+      "overview": "Overview",
+      "myMoves": "My Moves",
+      "offers": "Offers",
+      "messages": "Messages",
+      "favorites": "Favorites",
+      "profile": "Profile",
+      "settings": "Settings",
+      "customer": "Customer"
+    },
+    "help": {
+      "title": "Need help?",
+      "subtitle": "We're here for you!",
+      "link": "Go to Support"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage notifications, privacy and personal preferences",
+    "saveError": "Failed to save",
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Choose when we email you",
+      "newOffers": "New Offers",
+      "newOffersDesc": "Email when a moving company sends an offer",
+      "offerUpdates": "Offer Updates",
+      "offerUpdatesDesc": "Email when an offer is accepted or rejected",
+      "reminders": "Reminders",
+      "remindersDesc": "Email reminders before your moving date",
+      "saveSuccess": "Notifications saved"
+    },
+    "privacy": {
+      "title": "Privacy & Security",
+      "subtitle": "Your data belongs to you",
+      "infoText": "Your data is secure. Videos are automatically deleted after your move is completed.",
+      "exportData": "Export Data",
+      "exportComingSoon": "Coming soon",
+      "deleteAccount": "Delete Account"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "subtitle": "Customize MyMove to your needs",
+      "language": "Language",
+      "movingDays": "Preferred Moving Days",
+      "movingDaysPlaceholder": "e.g. weekends, weekdays",
+      "movingDaysHint": "Helps us suggest suitable appointment times",
+      "services": "Preferred Additional Services",
+      "servicePacking": "Packing Service",
+      "serviceAssembly": "Assembly & Disassembly",
+      "serviceStorage": "Storage",
+      "serviceCleaning": "Cleaning",
+      "saveSuccess": "Preferences saved"
+    },
+    "support": {
+      "title": "Help & Support",
+      "subtitle": "We're happy to help",
+      "contact": "Contact Support",
+      "faq": "FAQ"
+    },
+    "deleteDialogTitle": "Really delete account?",
+    "deleteDialogText": "Are you sure you want to delete your account? All your moves, offers and data will be permanently removed.",
+    "deleteDialogWarning": "This step cannot be undone!",
+    "deleteConfirmLabel": "Please type to confirm:",
+    "deleteConfirmWord": "DELETE",
+    "deleteError": "Deletion failed"
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your personal details and password",
+    "roleCustomer": "Customer",
+    "roleCompany": "Moving Company",
+    "passwordTitle": "Change Password",
+    "passwordSubtitle": "Update your password for better security",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "changePassword": "Change Password",
+    "passwordMinLength": "At least 8 characters",
+    "passwordMismatch": "Passwords do not match",
+    "saveSuccess": "Profile saved successfully",
+    "saveError": "Failed to save profile",
+    "passwordSuccess": "Password changed successfully",
+    "passwordError": "Failed to change password",
+    "deleteTitle": "Delete Profile",
+    "deleteSubtitle": "Permanently delete your account and all associated data.",
+    "deleteButton": "Delete Profile",
+    "deleteDialogTitle": "Really delete profile?",
+    "deleteDialogText": "Are you sure you want to delete your account? All your moves, offers and data will be irrevocably removed.",
+    "deleteDialogWarning": "This step cannot be undone!",
+    "deleteConfirmLabel": "Please type to confirm:",
+    "deleteConfirmWord": "DELETE",
+    "deleteError": "Deletion failed"
+  },
+  "comingSoon": {
+    "title": "Coming Soon",
+    "subtitle": "This feature will be available shortly."
+  },
+  "wizard": {
+    "stepOf": "Step {step} of {total}",
+    "steps": {
+      "basics": { "title": "Basic Data", "subtitle": "Where are you moving?" },
+      "video": { "title": "Video Upload", "subtitle": "Show us your move" },
+      "inventory": { "title": "Review Inventory", "subtitle": "Adjust AI analysis" },
+      "details": { "title": "Move Details", "subtitle": "Additional information" },
+      "companies": { "title": "Compare Companies", "subtitle": "Available offers" },
+      "summary": { "title": "Send Request", "subtitle": "Request company & receive offer" }
+    },
+    "basics": {
+      "headline": "Where are you moving?",
+      "subtitle": "Tell us briefly about your move.",
+      "origin": "Origin Address",
+      "destination": "Destination Address",
+      "stop": "Stopover",
+      "addStop": "Add stopover",
+      "moveDate": "Move Date",
+      "addressPlaceholder": "Street, number, ZIP, city",
+      "streetPlaceholder": "Street",
+      "houseNumberPlaceholder": "No.",
+      "zipPlaceholder": "ZIP code",
+      "cityPlaceholder": "City",
+      "flexibleDate": "Date is flexible (± a few days)",
+      "createError": "Could not create move"
+    },
+    "video": {
+      "headline": "Upload a video of your items",
+      "subtitle": "We analyze your video with AI and create your inventory.",
+      "dragDrop": "Drag & drop video here",
+      "or": "or",
+      "selectFile": "Select video",
+      "uploading": "Uploading video...",
+      "analyzing": "AI is analyzing your video...",
+      "analyzingSubtitle": "We automatically recognize furniture and items.",
+      "detected": "Detected",
+      "demoTitle": "Demo Video: Apartment Walkthrough",
+      "demoSubtitle": "This video simulates your recording",
+      "aiInfoTitle": "AI-Powered Object Detection",
+      "aiInfoText": "Our AI analyzes the video and automatically recognizes furniture and items for your moving inventory.",
+      "startAnalysis": "Start AI Analysis",
+      "skip": "Skip – create inventory manually",
+      "analysisComplete": "Analysis complete!",
+      "detectedCount": "{count} items detected",
+      "nextStepHint": "Detected items have been added to your inventory.",
+      "nextStepSubHint": "In the next step you can edit or add to them."
+    },
+    "inventory": {
+      "headline": "Review your inventory",
+      "subtitle": "Our AI detected the following items. You can edit or add to them.",
+      "totalItems": "Items",
+      "totalVolume": "Total Volume",
+      "totalWeight": "Total Weight",
+      "addItem": "Add item",
+      "addShort": "Add",
+      "name": "Name",
+      "itemPlaceholder": "Item",
+      "quantityPlaceholder": "Quantity",
+      "volume": "Volume (m³)",
+      "volumeEstimate": "Estimate volume",
+      "weight": "Weight (kg)",
+      "weightEstimate": "Estimate weight",
+      "items": "items",
+      "itemsLabel": "items",
+      "empty": "No items yet.",
+      "added": "Added",
+      "error": "Error",
+      "nameRequired": "Please enter an item name.",
+      "quantityRequired": "Please enter a valid quantity."
+    },
+    "details": {
+      "headline": "Additional Services",
+      "subtitle": "Choose the services and materials you need for your move.",
+      "importantServices": "Important Services",
+      "assemblyLabel": "Assembly required",
+      "assemblySub": "Assembly and disassembly of furniture",
+      "boxRentalLabel": "Moving boxes needed",
+      "boxRentalSub": "We deliver the right boxes for you",
+      "boxCountLabel": "Number of boxes",
+      "boxCountUnit": "pcs",
+      "boxRecommendation": "Recommended: ca. {count} boxes",
+      "boxBasedOnInventory": "Based on your inventory",
+      "insuranceLabel": "Additional insurance desired",
+      "insuranceSub": "Extra protection for your belongings",
+      "materials": "Additional moving materials (optional)",
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "priceNote": "Prices will be confirmed by the moving companies in the next step.",
+      "sidebar": {
+        "title": "Your move at a glance",
+        "from": "From",
+        "to": "To",
+        "moveDate": "Move date",
+        "inventory": "Inventory",
+        "itemsCount": "{count} items",
+        "volumeWeight": "{volume} m³ · {weight} kg",
+        "selectedServices": "Selected services",
+        "assembly": "Assembly required",
+        "boxesSelected": "Moving boxes: {count} pcs",
+        "additionalInsurance": "Additional insurance",
+        "noMaterials": "0 additional materials",
+        "trust": "Safe & reliable",
+        "trustText": "All services are provided by verified moving companies."
+      },
+      "materialItems": {
+        "tape": { "name": "Packing tape", "unit": "6 rolls", "price": "2.90" },
+        "wrap": { "name": "Stretch wrap", "unit": "1 roll", "price": "7.90" },
+        "mattressCover": { "name": "Mattress covers", "unit": "2 pcs", "price": "5.80" },
+        "blanket": { "name": "Protective blankets", "unit": "10 pcs", "price": "12.90" },
+        "wardrobeBox": { "name": "Wardrobe boxes", "unit": "5 pcs", "price": "14.90" }
+      },
+      "floors": "Floor & Elevator",
+      "originFloor": "Origin Floor",
+      "destinationFloor": "Destination Floor",
+      "elevatorOrigin": "Elevator Origin",
+      "elevatorDestination": "Elevator Destination",
+      "apartmentSize": "Apartment Size",
+      "apartmentSizeUnit": "m²",
+      "apartmentSizePlaceholder": "e.g. 75",
+      "apartmentSizeHint": "Helps us estimate box quantity",
+      "parking": "Distance to parking",
+      "parkingPlaceholder": "e.g. 20",
+      "parkingTooltip": "How far must items be carried from the parking spot to the front door?",
+      "noParkingZone": "No-parking zone needed",
+      "saveError": "Could not save details"
+    },
+    "companies": {
+      "headline": "Available Moving Companies",
+      "subtitle": "These companies have capacity on your moving date.",
+      "distance": "Distance (km)",
+      "search": "Search companies",
+      "estimated": "estimated",
+      "noResults": "No companies available for this date.",
+      "enterDistance": "Enter the distance",
+      "distanceHint": "We need the distance to calculate suitable offers."
+    },
+    "summary": {
+      "headline": "Your request overview",
+      "subtitle": "Please review your details before submitting.",
+      "moveData": "Your move data",
+      "details": "Details",
+      "from": "From",
+      "to": "To",
+      "date": "Date",
+      "originFloor": "Origin Floor",
+      "destinationFloor": "Destination Floor",
+      "elevatorYes": "with elevator",
+      "elevatorNo": "no elevator",
+      "apartmentSize": "Apartment size",
+      "boxRental": "Moving boxes",
+      "assembly": "Assembly",
+      "parking": "Parking distance",
+      "noParkingZone": "No-parking zone",
+      "yes": "Yes",
+      "no": "No",
+      "inventory": "Inventory",
+      "selectedCompany": "Selected company",
+      "materialsSubtotal": "Materials subtotal",
+      "costOverview": "Cost overview",
+      "moveCost": "Moving costs (estimated)",
+      "materialsCost": "Materials",
+      "totalCost": "Total cost",
+      "send": "Send request",
+      "sendError": "Could not send request",
+      "success": "Your request was sent successfully!",
+      "successTitle": "Request sent!",
+      "successMessage": "Your request has been successfully submitted to the moving company. You will receive a binding offer shortly.",
+      "autoRedirect": "Automatic redirect to dashboard...",
+      "nextStepsTitle": "What happens next?",
+      "nextStepsText": "After submitting, the company reviews your details and sends you a binding offer.",
+      "toDashboard": "To Dashboard"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "back": "Back",
+    "next": "Next",
+    "save": "Save",
+    "saving": "Saving...",
+    "sending": "Sending...",
+    "deleting": "Deleting...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No new notifications",
+    "newMessages": "You have {count} new messages",
+    "viewAll": "View all"
+  },
+  "companyProfile": {
+    "title": "Company Profile",
+    "subtitle": "Manage your company profile, services and pricing.",
+    "saveSuccess": "Profile saved successfully",
+    "saveError": "Failed to save",
+    "tabs": {
+      "profile": "Profile",
+      "services": "Services",
+      "pricing": "Pricing",
+      "verification": "Verification"
+    },
+    "completeness": {
+      "title": "Profile Completeness",
+      "complete": "Profile complete!"
+    },
+    "preview": {
+      "title": "Public Preview",
+      "noDescription": "No description yet"
+    },
+    "info": {
+      "title": "Company Information",
+      "subtitle": "Basic information about your company",
+      "companyName": "Company Name",
+      "contactPerson": "Contact Person",
+      "description": "Company Description",
+      "phone": "Phone",
+      "email": "Email",
+      "supportEmail": "Support Email",
+      "website": "Website",
+      "taxId": "Tax ID",
+      "foundingYear": "Year Founded",
+      "employeeCount": "Number of Employees"
+    },
+    "serviceArea": {
+      "title": "Service Area",
+      "subtitle": "Define the regions where you are active",
+      "mainLocation": "Main Location",
+      "radius": "Operating Radius",
+      "cities": "Covered Cities",
+      "addCity": "Add City",
+      "addCityPrompt": "Enter city name:",
+      "international": "Offer International Moves"
+    },
+    "capacity": {
+      "title": "Capacity & Statistics",
+      "subtitle": "Overview of your current capacity and performance",
+      "maxJobs": "Max Parallel Jobs",
+      "responseTime": "Avg Response Time",
+      "completedMoves": "Completed Moves",
+      "rating": "Rating"
+    },
+    "services": {
+      "title": "Services & Offerings",
+      "subtitle": "Select the services your company provides",
+      "list": {
+        "private_move": "Private Move",
+        "business_move": "Business Move",
+        "long_distance": "Long Distance",
+        "international": "International Move",
+        "assembly": "Assembly & Disassembly",
+        "packing": "Packing Service",
+        "storage": "Storage",
+        "disposal": "Disposal",
+        "piano": "Piano Transport",
+        "heavy_transport": "Heavy Transport",
+        "cleaning": "Cleaning",
+        "no_parking_zone": "No-Parking Zone"
+      }
+    },
+    "pricing": {
+      "title": "Pricing & Conditions",
+      "subtitle": "Configure your pricing models and surcharges",
+      "baseTitle": "Base Prices",
+      "materialsTitle": "Materials",
+      "extrasTitle": "Additional Services",
+      "surchargesTitle": "Surcharges",
+      "baseFee": "Base Fee",
+      "pricePerHour": "Hourly Rate",
+      "pricePerWorker": "Price per Worker",
+      "additionalWorker": "Additional Worker",
+      "pricePerKm": "Price per km",
+      "travelFee": "Travel Fee",
+      "minimumHours": "Minimum Hours",
+      "teamSize": "Standard Team Size",
+      "boxRental": "Box Rental",
+      "wardrobeBox": "Wardrobe Boxes",
+      "stretchFilm": "Stretch Film",
+      "tape": "Tape",
+      "mattressCover": "Mattress Covers",
+      "furnitureBlanket": "Furniture Blankets",
+      "packingService": "Packing Service (hourly)",
+      "noParkingZone": "No-Parking Zone",
+      "storage": "Storage (per m²)",
+      "disposal": "Disposal",
+      "weekend": "Weekend Surcharge",
+      "holiday": "Holiday Surcharge",
+      "evening": "Evening Surcharge",
+      "urgent": "Express Surcharge"
+    },
+    "verification": {
+      "badgesTitle": "Trust Badges",
+      "badgesSubtitle": "Show customers your reliability and quality",
+      "badges": {
+        "business": "Business Verified",
+        "insurance": "Insured",
+        "identity": "Identity Confirmed",
+        "premium": "Premium Partner",
+        "topRated": "Top Rated"
+      },
+      "documentsTitle": "Documents",
+      "documentsSubtitle": "Uploaded documents and their status",
+      "noDocuments": "No documents uploaded yet"
+    }
+  },
+  "messages": {
+    "title": "Messages",
+    "noConversations": "No conversations yet.",
+    "noMessages": "No messages yet. Be the first to write!",
+    "selectConversation": "Select a conversation",
+    "unknownCompany": "Unknown Company",
+    "unknownCustomer": "Unknown Customer",
+    "requestSummary": "Request Summary",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "inputPlaceholder": "Write a message...",
+    "securityNote": "Your messages are secure and will not be shared with third parties.",
+    "contactWarning": "Contact details must not be exchanged before booking confirmation. Detected: {types}",
+    "moveDetails": "Move Details",
+    "status": "Status",
+    "viewOffer": "View Offer",
+    "viewInventory": "Open Inventory",
+    "acceptOffer": "Accept Offer",
+    "uploadFile": "Upload File",
+    "uploading": "Uploading file...",
+    "fileTooLarge": "File is too large. Maximum 10 MB allowed.",
+    "reportProblem": "Report Problem"
+  }
+}

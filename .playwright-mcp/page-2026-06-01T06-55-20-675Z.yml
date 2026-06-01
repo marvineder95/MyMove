@@ -1,0 +1,90 @@
+- generic [ref=e3]:
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - complementary [ref=e6]:
+        - link "MyMove" [ref=e8] [cursor=pointer]:
+          - /url: /dashboard
+          - img "MyMove" [ref=e9]
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: AS
+            - generic [ref=e13]:
+              - paragraph [ref=e14]: Ana Schmidt
+              - paragraph [ref=e15]: Kunde
+          - button "Deutsch" [ref=e17] [cursor=pointer]:
+            - img [ref=e18]
+            - generic [ref=e21]: Deutsch
+            - img [ref=e22]
+        - navigation [ref=e24]:
+          - button "Übersicht" [ref=e25] [cursor=pointer]:
+            - img [ref=e26]
+            - generic [ref=e29]: Übersicht
+          - button "Meine Umzüge" [ref=e30] [cursor=pointer]:
+            - img [ref=e31]
+            - generic [ref=e35]: Meine Umzüge
+          - button "Angebote" [ref=e36] [cursor=pointer]:
+            - img [ref=e37]
+            - generic [ref=e40]: Angebote
+          - button "Nachrichten" [ref=e41] [cursor=pointer]:
+            - img [ref=e42]
+            - generic [ref=e44]: Nachrichten
+          - button "Profil" [ref=e45] [cursor=pointer]:
+            - img [ref=e46]
+            - generic [ref=e49]: Profil
+          - button "Einstellungen" [ref=e50] [cursor=pointer]:
+            - img [ref=e51]
+            - generic [ref=e54]: Einstellungen
+        - generic [ref=e55]:
+          - button "Abmelden" [ref=e56] [cursor=pointer]:
+            - img [ref=e57]
+            - generic [ref=e60]: Abmelden
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - img [ref=e63]
+              - generic [ref=e66]: Hilfe benötigt?
+            - paragraph [ref=e67]: Wir sind für dich da!
+            - button "Zum Support" [ref=e68] [cursor=pointer]:
+              - text: Zum Support
+              - img [ref=e69]
+      - main [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e75]:
+            - generic [ref=e77]:
+              - img [ref=e79]
+              - generic [ref=e81]: Basisdaten
+            - generic [ref=e84]:
+              - img [ref=e86]
+              - generic [ref=e88]: Video Upload
+            - generic [ref=e91]:
+              - img [ref=e93]
+              - generic [ref=e95]: Inventar prüfen
+            - generic [ref=e98]:
+              - img [ref=e100]
+              - generic [ref=e102]: Umzugsdetails
+            - generic [ref=e105]:
+              - generic [ref=e107]: "5"
+              - generic [ref=e108]: Firmen vergleichen
+            - generic [ref=e111]:
+              - generic [ref=e113]: "6"
+              - generic [ref=e114]: Anfrage senden
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - heading "Verfügbare Umzugsfirmen" [level=1] [ref=e118]
+              - paragraph [ref=e119]: Diese Firmen haben an deinem Umzugstermin Kapazitäten frei.
+            - generic [ref=e120]:
+              - generic [ref=e121]: Entfernung (km)
+              - generic [ref=e122]:
+                - spinbutton [ref=e123]: "10"
+                - button "Firmen suchen" [ref=e124] [cursor=pointer]
+            - paragraph [ref=e126]: Keine Firmen für dieses Datum verfügbar.
+          - generic [ref=e128]:
+            - button "Zurück" [ref=e129] [cursor=pointer]:
+              - img [ref=e130]
+              - text: Zurück
+            - button "Weiter" [disabled] [ref=e132]:
+              - text: Weiter
+              - img [ref=e133]
+      - button "Benachrichtigungen" [ref=e136] [cursor=pointer]:
+        - img [ref=e137]
+  - region "Notifications alt+T":
+    - list
