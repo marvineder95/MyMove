@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+<meta charset="UTF-8">
+<title>MyMove — DSGVO-Analyse (Österreich)</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --panel-2: #0b1220;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --crit: #ef4444;
+    --high: #f97316;
+    --med:  #eab308;
+    --low:  #38bdf8;
+    --good: #22c55e;
+    --line: #334155;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px; line-height: 1.6; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 48px 28px 96px; }
+  h1 { font-size: 32px; margin: 0 0 4px; letter-spacing: -0.02em; }
+  h2 { font-size: 24px; margin: 56px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: -0.01em; }
+  h3 { font-size: 18px; margin: 28px 0 10px; }
+  h4 { font-size: 14px; margin: 18px 0 6px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+  p { margin: 0 0 12px; }
+  code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; font-size: 13px;
+    font-family: "SF Mono", Menlo, Consolas, monospace; color: #fde68a; }
+  pre { background: var(--panel-2); padding: 14px 16px; border-radius: 8px; overflow-x: auto;
+    font-size: 13px; line-height: 1.5; border: 1px solid var(--line); white-space: pre-wrap; }
+  ul, ol { padding-left: 22px; margin: 8px 0 16px; }
+  li { margin-bottom: 6px; }
+  .lead { color: var(--muted); font-size: 16px; }
+  .meta { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+
+  .nav { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px; margin: 0 0 32px;
+    display: flex; gap: 18px; font-size: 13px; flex-wrap: wrap; }
+  .nav a { color: var(--muted); text-decoration: none; }
+  .nav a:hover, .nav a.active { color: var(--accent); }
+
+  .toc { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 22px; margin: 24px 0 40px; }
+  .toc h3 { margin: 0 0 8px; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; }
+  .toc a { color: var(--text); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  .callout {
+    background: linear-gradient(180deg, rgba(56,189,248,.08), rgba(56,189,248,.02));
+    border: 1px solid rgba(56,189,248,.25); border-radius: 10px; padding: 16px 22px; margin: 24px 0;
+  }
+  .callout.warn { background: linear-gradient(180deg, rgba(239,68,68,.10), rgba(239,68,68,.02)); border-color: rgba(239,68,68,.35); }
+  .callout.good { background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(34,197,94,.02)); border-color: rgba(34,197,94,.3); }
+  .callout strong { color: var(--accent); }
+  .callout.warn strong { color: #fdba74; }
+  .callout.good strong { color: #86efac; }
+
+  .gap {
+    background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--line);
+    border-radius: 10px; padding: 14px 18px 16px; margin: 14px 0;
+  }
+  .gap.crit { border-left-color: var(--crit); }
+  .gap.high { border-left-color: var(--high); }
+  .gap.med  { border-left-color: var(--med); }
+  .gap.low  { border-left-color: var(--low); }
+  .gap h3 { margin: 0 0 6px; font-size: 16px; }
+  .where { color: var(--muted); font-size: 12px; margin: 4px 0 10px; font-family: "SF Mono", Menlo, Consolas, monospace; }
+
+  .tag {
+    display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase; vertical-align: middle; margin-right: 8px;
+  }
+  .tag.crit { background: rgba(239, 68, 68, 0.18); color: #fca5a5; border: 1px solid rgba(239,68,68,.5); }
+  .tag.high { background: rgba(249, 115, 22, 0.15); color: #fdba74; border: 1px solid rgba(249,115,22,.5); }
+  .tag.med  { background: rgba(234, 179, 8, 0.15);  color: #fde68a; border: 1px solid rgba(234,179,8,.5); }
+  .tag.low  { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56,189,248,.5); }
+  .tag.now  { background: rgba(239, 68, 68, 0.18); color: #fca5a5; border: 1px solid rgba(239,68,68,.5); }
+  .tag.next { background: rgba(234, 179, 8, 0.15); color: #fde68a; border: 1px solid rgba(234,179,8,.5); }
+  .tag.later{ background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56,189,248,.5); }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 11px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .target {
+    background: rgba(34,197,94,.05); border: 1px solid rgba(34,197,94,.25);
+    border-radius: 8px; padding: 12px 16px; margin: 10px 0;
+  }
+  .target h4 { margin: 0 0 6px; color: #86efac; }
+
+  hr { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+  .cell { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; }
+  .cell h4 { margin-top: 0; }
+
+  .footnote { color: var(--muted); font-size: 13px; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>MyMove — DSGVO-Analyse</h1>
+<p class="lead">Aktuelle rechtliche Lücken sowie Soll-Architektur im Einklang mit der DSGVO, dem österreichischen DSG, UGB, BAO, TKG 2021 und ECG. Ausgangspunkt: MyMove ist primärer Verantwortlicher; die Umzugsunternehmen sind sequenzielle Verantwortliche, jedoch ausschließlich für ihre buchhalterische Kopie nach dem Handoff.</p>
+<p class="meta">Stand: 03.06.2026 · Rechtsraum: <strong>Österreich</strong> · Annahme: MyMove = primärer Verantwortlicher; Unternehmen = sequenzielle Verantwortliche · <strong>Disclaimer:</strong> Dieses Dokument ist keine Rechtsberatung. Die finalen Formulierungen, Aufbewahrungsfristen und die DSFA-Bewertung sind vor Produktivsetzung durch einen qualifizierten Datenschutzbeauftragten und Anwalt mit österreichischem Schwerpunkt zu prüfen.</p>
+
+<div class="toc">
+  <h3>Inhaltsverzeichnis</h3>
+  <ol>
+    <li><a href="#tldr">TL;DR</a></li>
+    <li><a href="#framework">Rechtlicher Rahmen — Verantwortlichenmodell</a></li>
+    <li><a href="#data-map">Datenkatalog × Rollen</a></li>
+    <li><a href="#rechtsgrundlagen">Rechtsgrundlagen</a></li>
+    <li><a href="#current">Aktueller Stand — Lücken</a></li>
+    <li><a href="#target">Soll-Architektur</a></li>
+    <li><a href="#video">Besondere Risiken: Video</a></li>
+    <li><a href="#rights">Betroffenenrechte (Art. 15–22)</a></li>
+    <li><a href="#operational">Operative Anforderungen (DSB, VVT, DSFA, AVV)</a></li>
+    <li><a href="#sales">Compliance-as-a-Shield als USP</a></li>
+    <li><a href="#roadmap">Umsetzungsroadmap</a></li>
+  </ol>
+</div>
+
+<h2 id="tldr">1. TL;DR</h2>
+
+<div class="callout warn">
+<strong>Drei Punkte, die bereits heute eine reale rechtliche Exposition darstellen:</strong>
+<ol style="margin: 8px 0 0;">
+  <li><strong>Videos verfallen nicht.</strong> Die Spalte <code>expires_at</code> existiert, jedoch fehlt der Cron-Job ebenso wie eine S3-Lifecycle-Policy. Wohnungsinnenvideos werden unbefristet gespeichert — einschließlich Bildern Dritter, die zufällig im Hintergrund erscheinen.</li>
+  <li><strong>Kein Recht auf Vergessenwerden.</strong> <code>DELETE /users/me</code> führt nur ein Soft-Delete in MySQL durch. S3-Dateien bleiben, der Supabase-OAuth-Eintrag bleibt, öffentliche Bewertungen mit Klarnamen bleiben, Datensätze in <code>move_requests</code>/<code>offers</code> bleiben, an Unternehmen übermittelte Daten werden nicht widerrufen.</li>
+  <li><strong>Unternehmen sehen die vollständigen Kundendaten vor Angebotsannahme.</strong> <code>RequestsRepository.findAvailableForCompany</code> joint <code>mr.user</code>. Ein Unternehmen, das die Anfrageliste durchscrollt, kennt bereits Vor- und Nachname sowie die Adresse eines Kunden, dessen Angebot noch nicht einmal existiert. Das verletzt den Grundsatz der Datenminimierung (Art. 5 Abs. 1 lit. c DSGVO).</li>
+</ol>
+</div>
+
+<div class="callout">
+<strong>Drei zentrale Designentscheidungen für den Soll-Zustand:</strong>
+<ol style="margin: 8px 0 0;">
+  <li><strong>Sequenzielle Verantwortliche mit minimalem Handoff.</strong> MyMove kontrolliert alles; das Unternehmen erhält bei Angebotsannahme nur ein operatives Datenpaket (Vorname, Adresse, Datum, Telefon, Inventarsumme). Video, Chat, Bewertungen und Präferenzen verlassen MyMove niemals.</li>
+  <li><strong>Zweckgebundene Aufbewahrung statt „forever".</strong> Video: 30 Tage nach <code>move_date</code> bzw. 7 Tage nach Ablehnung sämtlicher Angebote. Chat: 90 Tage nach Konversationsende. Move Requests: Anonymisierung nach 2 Jahren (buchhalterisch ausreichend bei separater Buchungsdokumentation). Audit-Log: 7 Jahre (immutable, gem. § 132 BAO / § 190 UGB).</li>
+  <li><strong>Cross-Storage-Erasure-Pipeline.</strong> Ein Befehl → löscht bzw. anonymisiert Datensätze in MySQL, entfernt Dateien aus S3 (per User-Prefix), löscht den User in Supabase, anonymisiert Bewertungen („Anna S." → „ehemaliger Kunde"), protokolliert den Vorgang im Audit-Log. Idempotent und retry-safe.</li>
+</ol>
+</div>
+
+<h2 id="framework">2. Rechtlicher Rahmen — Modell „sequenzielle Verantwortliche"</h2>
+
+<div class="grid-2">
+  <div class="cell">
+    <h4>MyMove als primärer Verantwortlicher</h4>
+    <p>Kontrolliert: Kunden- und Unternehmenskonten, Videos, Inventarlisten, Angebote vor Annahme, Chat-Verläufe, Bewertungen, Präferenzen, Audit-Log, technische Daten (Logs, IP-Adressen).</p>
+    <p>Verantwortlich für: Beantwortung von Betroffenenanfragen, Aufbewahrungsrichtlinien, Audit, DPO (Datenschutzbeauftragter), DSFA, Datenschutzerklärung, Cookie-Banner, Auftragsverarbeiterliste.</p>
+  </div>
+  <div class="cell">
+    <h4>Unternehmen als sequenzieller Verantwortlicher (post-Handoff)</h4>
+    <p>Kontrolliert: <em>ausschließlich</em> die operative Kopie zur Auftragsabwicklung sowie die Rechnungsdaten (§ 190 UGB iVm § 132 BAO — 7 Jahre Aufbewahrung gesetzlich vorgeschrieben).</p>
+    <p>Verantwortlich für: Sicherheit der eigenen buchhalterischen Kopie, eigene Datenschutzerklärung für die Beziehung „Unternehmen ↔ eigener Kunde", Aufbewahrungspflichten gemäß UGB/BAO.</p>
+  </div>
+</div>
+
+<p>Es handelt sich <strong>nicht</strong> um ein „gemeinsam Verantwortliche"-Modell iSd Art. 26 DSGVO (gemeinsam Verantwortliche entscheiden gemeinsam über Zwecke und Mittel — hier sind die Zwecke getrennt). Ebenso <strong>kein</strong> Auftragsverarbeitungsverhältnis iSd Art. 28 (das Unternehmen verarbeitet nicht im Auftrag von MyMove, sondern im eigenen Namen zur Erfüllung des Vertrags mit dem Kunden). Es liegen <strong>zwei unabhängige Verantwortliche in einer Kette</strong> vor, verbunden durch einen schmalen, vertraglich definierten Datentransfer zum Zeitpunkt der Angebotsannahme.</p>
+
+<div class="callout good">
+<strong>Warum dieses Modell vorteilhaft ist:</strong> Es minimiert die rechtliche Exposition des Unternehmens (es erhält nur das, was die gesetzlich vorgeschriebene Aufbewahrung ohnehin verlangt), zentralisiert den Compliance-Aufwand auf MyMove (wo er durch Abonnements amortisiert werden kann) und schafft einen sauberen Audit-Trail (es ist eindeutig erkennbar, wer welche Daten zu welchem Zeitpunkt hält). Gleichzeitig ist es ein <strong>Verkaufsargument</strong>: Ein Unternehmen, das einen Seat auf MyMove kauft, erhält eine „compliance-ready" Beziehung zum Kunden gleich mitgeliefert.
+</div>
+
+<h4>Datentransfer bei Angebotsannahme — minimales Paket</h4>
+<pre><code>{
+  // Kontaktidentifikation
+  "firstName": "Anna",
+  "lastName": "Schmidt",
+  "phone": "+43…",              // nur für die Dauer des Auftrags (Day-of-Contact)
+  // Adressen
+  "originAddress": "…",
+  "destinationAddress": "…",
+  "moveDate": "2026-07-15",
+  // Operative Daten
+  "inventorySummary": {
+    "totalVolume": 18.5,
+    "totalWeight": 1200,
+    "highlights": ["Klavier", "Geschirrspüler", "30 Kartons"]
+  },
+  "floorsOrigin": 3, "floorsDestination": 2, "elevatorOrigin": true,
+  "parkingDistance": 15, "extras": { "assembly": true }
+}
+// Was das Unternehmen NICHT erhält:
+// - Zugriff auf das Video (Ansicht im UI vor Angebotserstellung, kein Download)
+// - Zugriff auf den Chat (verbleibt bei MyMove, dort archiviert)
+// - E-Mail des Kunden (Kommunikation über MyMove-Chat und Systembenachrichtigungen)
+// - last_login_ip, profile_image_url, Präferenzen, Daten anderer Aufträge
+// - jegliche Daten anderer Kunden</code></pre>
+
+<h2 id="data-map">3. Datenkatalog × Rollen</h2>
+
+<table>
+<tr>
+  <th>Datenkategorie</th><th>Speicherort</th><th>Verantwortlicher</th><th>Zweck</th><th>Aufbewahrung (Soll)</th>
+</tr>
+<tr><td>Kundenkonto (E-Mail, Passwort, Name, Telefon)</td><td>MySQL <code>users</code></td><td>MyMove</td><td>Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO)</td><td>Kontolaufzeit + 30 Tage Karenz</td></tr>
+<tr><td>Konto der vertretenden Person eines Unternehmens</td><td>MySQL <code>users</code> + <code>companies</code></td><td>MyMove (als Plattform)</td><td>SaaS-Vertragserfüllung</td><td>Unternehmenslaufzeit + 90 Tage Karenz</td></tr>
+<tr><td>Unternehmensdaten (UID, Kontakt, Logo)</td><td>MySQL <code>companies</code> + S3</td><td>MyMove + Unternehmen (gemeinsam für veröffentlichten Anteil)</td><td>Marketplace-Funktionalität</td><td>Unternehmenslaufzeit</td></tr>
+<tr><td>Unternehmensdokumente (Gewerbeschein, Versicherung)</td><td>S3 <code>company_documents</code></td><td>MyMove</td><td>Überprüfung; Art. 6 Abs. 1 lit. c (gesetzl. Pflicht — Sorgfaltspflicht der Plattform)</td><td>Unternehmenslaufzeit + 3 Jahre nach Ablauf</td></tr>
+<tr><td>Umzugsanfrage (Adressen)</td><td>MySQL <code>move_requests</code></td><td>MyMove (pre-Annahme); beide (jeweils eigene Kopie post-Annahme)</td><td>Vertragserfüllung</td><td>2 Jahre, danach Anonymisierung</td></tr>
+<tr><td>Inventarliste</td><td>MySQL <code>move_request_items</code></td><td>MyMove</td><td>Vertragserfüllung</td><td>2 Jahre (mit move_request)</td></tr>
+<tr><td><strong>Wohnungsinnenvideo</strong></td><td>S3 <code>request_videos</code></td><td>MyMove (ausschließlich)</td><td>Vertragserfüllung + KI-Inventarisierung; Einwilligung (Art. 6 Abs. 1 lit. a) wegen möglicher Dritter im Bild</td><td><strong>30 Tage nach move_date</strong>, oder 7 Tage nach finaler Ablehnung der Angebote, oder unverzüglich auf Anforderung des Kunden</td></tr>
+<tr><td>Angebote (Preis, Aufschlüsselung)</td><td>MySQL <code>offers</code></td><td>MyMove + Unternehmen (jeweils eigene Kopie)</td><td>Vertragserfüllung + Audit</td><td>7 Jahre nach Annahme (§ 190 UGB, § 132 BAO)</td></tr>
+<tr><td>Konversationen + Anhänge</td><td>MySQL <code>messages</code> + S3</td><td>MyMove</td><td>Vertragserfüllung + Streitschlichtung</td><td>90 Tage nach letzter Aktivität</td></tr>
+<tr><td>Bewertungen (öffentlich)</td><td>MySQL <code>reviews</code></td><td>MyMove</td><td>Berechtigtes Interesse Art. 6 Abs. 1 lit. f (Markttransparenz)</td><td>3 Jahre, Widerspruch nach Art. 21 jederzeit möglich</td></tr>
+<tr><td>Technische Logs (last_login_ip, Audit)</td><td>MySQL <code>users.last_login_ip</code></td><td>MyMove</td><td>Sicherheit Art. 6 Abs. 1 lit. f</td><td>IP: 14 Tage; Audit-Log: 7 Jahre (immutable)</td></tr>
+<tr><td>Supabase-User (Google OAuth)</td><td>Supabase (Region prüfen — Frankfurt/EU oder US)</td><td>MyMove (als Kunde von Supabase) + Supabase als Auftragsverarbeiter</td><td>Authentifizierung</td><td>Mit Löschung des MyMove-Kontos</td></tr>
+<tr><td>Geocoding-Abfragen</td><td>Geoapify (Auftragsverarbeiter)</td><td>MyMove; Geoapify als Auftragsverarbeiter</td><td>Distanzberechnung</td><td>Nicht lokal gespeichert</td></tr>
+</table>
+
+<h2 id="rechtsgrundlagen">4. Rechtsgrundlagen</h2>
+
+<table>
+<tr><th>Verarbeitung</th><th>Art. 6 / Art. 9 DSGVO</th><th>Hinweise (AT-spezifisch)</th></tr>
+<tr><td>Registrierung und Stammdaten</td><td>Art. 6 Abs. 1 lit. b (Vertrag)</td><td>Standard</td></tr>
+<tr><td>Start-/Zieladressen</td><td>Art. 6 Abs. 1 lit. b</td><td>Vertragsnotwendig</td></tr>
+<tr><td>Video — Aufnahme und Speicherung</td><td><strong>Art. 6 Abs. 1 lit. a (Einwilligung)</strong> + Art. 6 Abs. 1 lit. b</td><td>Einwilligung erforderlich, da: (1) möglicherweise Dritte im Bild, (2) potenzielle Offenbarung von Art. 9-Daten (Medikamente, religiöse Symbole, medizinische Hilfsmittel), (3) Kundin/Kunde muss den Zweck verstehen; granulare Einwilligung: „Video für Kostenvoranschlag" vs. „Verwendung im KI-Training" (falls künftig vorgesehen)</td></tr>
+<tr><td>KI-Erkennung von Gegenständen (automatisierte Verarbeitung)</td><td>Art. 22 — Anspruch auf menschliches Eingreifen</td><td>Bereits im UI erfüllt („KI unterstützt, ersetzt nicht" — alles editierbar); muss in Datenschutzerklärung explizit beschrieben werden</td></tr>
+<tr><td>Öffentliche Bewertung</td><td>Art. 6 Abs. 1 lit. f (berechtigtes Interesse)</td><td>LIA (Legitimate Interest Assessment) erforderlich; Kundin/Kunde hat Widerspruchsrecht nach Art. 21</td></tr>
+<tr><td>Newsletter / Marketing</td><td>Art. 6 Abs. 1 lit. a (Opt-in)</td><td><strong>§ 174 TKG 2021</strong> (vormals § 107 TKG 2003): elektronische Direktwerbung benötigt grundsätzlich vorherige Einwilligung; eng begrenzte Ausnahme nur bei bestehender Kundenbeziehung für ähnliche eigene Produkte</td></tr>
+<tr><td>Sicherheitslogs, Betrugsprävention (IP, User-Agent)</td><td>Art. 6 Abs. 1 lit. f</td><td>Kurze Aufbewahrung, Dokumentation im VVT</td></tr>
+<tr><td>Analyse-Cookies (Plausible/Matomo)</td><td>Bei Anonymisierung: Art. 6 Abs. 1 lit. f; sonst Einwilligung</td><td><strong>§ 165 TKG 2021</strong>: nicht-essenzielle Cookies = Einwilligung; DSB Österreich hat dies in mehreren Bescheiden präzisiert</td></tr>
+<tr><td>Unternehmensdokumente (Aufbewahrung nach Prüfung)</td><td>Art. 6 Abs. 1 lit. c + lit. f</td><td>Bei Einzelunternehmen: volle Anwendung der DSGVO auf den Inhaber</td></tr>
+</table>
+
+<div class="callout">
+<strong>Österreichische Besonderheit — DSG § 1 mit Verfassungsrang:</strong> Das Grundrecht auf Datenschutz ist in Österreich verfassungsrechtlich verankert (§ 1 DSG, Verfassungsrang). Eine Änderung erfordert eine Zwei-Drittel-Mehrheit im Nationalrat. In der Praxis bedeutet das: bei Auslegungsstreit zugunsten des Betroffenen, und besondere Vorsicht bei rechtsstaatlich heiklen Verarbeitungen (Video!).
+</div>
+
+<h2 id="current">5. Aktueller Stand — Lücken</h2>
+
+<div class="gap crit">
+<h3><span class="tag crit">DSGVO-1</span>Video ohne Aufbewahrungssteuerung — Spalte existiert, Mechanismus fehlt</h3>
+<p class="where">Entität <code>RequestVideo</code> besitzt <code>expires_at</code>; fehlend: Cron-Job, S3-Lifecycle-Policy, On-Demand-Delete-Endpoint</p>
+<p><strong>Art. 5 Abs. 1 lit. e DSGVO</strong> (Speicherbegrenzung) — Aufbewahrung „nicht länger als erforderlich". Ein Video nach angenommenem Angebot erfüllt keinen Zweck mehr. Nach abgelehntem Angebot erst recht nicht. Nach abgebrochenem Wizard sollte es gar nicht existieren.</p>
+<p><strong>Konsequenz bei Audit:</strong> Direkter Verstoßbefund. Zusätzlich hat jede dritte Person im Hintergrund eines Videos (Gast, Kind, Partnerin/Partner) das Recht auf Löschung — ohne Einwilligung, die ihr/ihm gar nie erteilt wurde.</p>
+</div>
+
+<div class="gap crit">
+<h3><span class="tag crit">DSGVO-2</span>„DELETE /users/me" führt nur Soft-Delete in MySQL durch</h3>
+<p class="where">mymove-api/src/modules/users/users.service.ts:154-162 — <code>softDelete</code> setzt nur <code>deleted_at</code></p>
+<p>Nach Ausführung verbleiben:</p>
+<ul>
+  <li>Alle Einträge in <code>move_requests</code>, <code>move_request_items</code>, <code>offers</code>, <code>reviews</code>, <code>conversations</code>, <code>messages</code> mit FK auf <code>userId</code>.</li>
+  <li>Dateien in S3 — <code>request_videos</code>, <code>company_documents</code>, <code>message_files</code>, <code>profile_image_url</code>.</li>
+  <li>Supabase-Konto (falls OAuth).</li>
+  <li>Last-Login-IP, E-Mail im Klartext.</li>
+  <li>Bereits an Unternehmen übermittelte Daten (das Unternehmen weiß nichts davon und behält die Kopie).</li>
+</ul>
+<p>Art. 17 Abs. 1 DSGVO verlangt tatsächliche Löschung ohne unangemessene Verzögerung. Soft-Delete ist zulässig nur als operative Technik mit sofortiger Anonymisierung, nicht als Antwort auf ein Betroffenenanliegen.</p>
+</div>
+
+<div class="gap crit">
+<h3><span class="tag crit">DSGVO-3</span>Unternehmen sehen vollständige Kundendaten vor Angebotsannahme</h3>
+<p class="where">mymove-api/src/modules/requests/requests.repository.ts:161-183 (<code>findAvailableForCompany</code>) — joint <code>mr.user</code> und <code>mr.items</code></p>
+<p><strong>Art. 5 Abs. 1 lit. c DSGVO</strong> (Datenminimierung). Ein Unternehmen, das die Liste verfügbarer Anfragen durchsieht, benötigt keinen Vor- und Nachnamen sowie keine Telefonnummer eines Kunden, dessen Angebot noch gar nicht existiert — und hat dafür keine Rechtsgrundlage. Aktuell sieht es dennoch alles, da dies das Standard-Join-Verhalten von TypeORM ist.</p>
+<p><strong>Konsequenz:</strong> 50 Unternehmen, die die Liste „verfügbarer Anfragen" einsehen, sehen die Identität jedes Kunden, der eine Anfrage gestellt hat. Das sind Daten „in fremden Händen" iSd Art. 4 DSGVO. Jedes Leck dieser Liste (Insider, Breach) = Verstoß im großen Maßstab.</p>
+</div>
+
+<div class="gap high">
+<h3><span class="tag high">DSGVO-4</span>Öffentliche Bewertungen mit vollem Kundennamen</h3>
+<p class="where">mymove-api/src/modules/reviews/reviews.controller.ts:67-81 — Endpoint <code>@Public</code>; Relation <code>moveRequest.user</code> liefert firstName/lastName aus</p>
+<p>Eine öffentliche Bewertung „Anna Schmidt — 5★ — sehr gute Firma, hat den Umzug von 1010 Wien nach 1190 Wien zügig abgewickelt" verknüpft direkt Identität mit Aufenthaltsort. Die Kundin/der Kunde hat ein Widerspruchsrecht nach Art. 21, das im aktuellen UI nicht abgebildet ist. Zudem fehlt ein Mechanismus zur Anonymisierung der Bewertung nach Kontolöschung (FK auf <code>userId</code> ohne Display-Name-Fallback).</p>
+<p><strong>Soll:</strong> Pseudonymisierung von Beginn an („Anna S." oder Initialen + Stadtbezirk), Spalte <code>display_name</code> unabhängig vom FK, Widerspruch mit einem Klick realisierbar.</p>
+</div>
+
+<div class="gap high">
+<h3><span class="tag high">DSGVO-5</span>Kein Datenexport (Art. 20)</h3>
+<p>Es existiert kein Endpoint „lade alle meine Daten herunter" in einem strukturierten, gängigen und maschinenlesbaren Format (JSON / CSV). Art. 20 DSGVO verlangt dies für Daten, die auf Basis einer Einwilligung oder eines Vertrags verarbeitet werden.</p>
+<p>Implementierung: <code>GET /users/me/export</code> → Background Job → JSON + ZIP mit Videos + Dokumenten → Presigned-Download-Link → E-Mail-Versand. Response-Frist: 1 Monat (Art. 12 Abs. 3).</p>
+</div>
+
+<div class="gap high">
+<h3><span class="tag high">DSGVO-6</span>Kein Audit-Log für Admin-Aktionen und Datenoperationen</h3>
+<p>Aktionen wie „Admin Jan hat Unternehmen X freigegeben / Dokument Y abgelehnt", „Benutzer hat Daten exportiert", „Cron hat Video X gelöscht" werden nirgends in einer immutable Form protokolliert. <strong>Art. 5 Abs. 2 DSGVO</strong> (Rechenschaftspflicht) verlangt jedoch, dass Compliance <em>nachgewiesen</em> werden kann.</p>
+<p><strong>Konsequenz im Streitfall:</strong> Kein Nachweis darüber, ob das Unternehmen die Löschung verlangt hat, kein Nachweis darüber, wer wann auf welche Daten zugegriffen hat, kein Nachweis darüber, wann die Aufbewahrungsfrist umgesetzt wurde.</p>
+</div>
+
+<div class="gap high">
+<h3><span class="tag high">DSGVO-7</span>Keine DSFA für das Video (Art. 35)</h3>
+<p>Eine Datenschutz-Folgenabschätzung (DSFA) ist <strong>verpflichtend</strong>, wenn die Verarbeitung „voraussichtlich ein hohes Risiko" birgt. Die österreichische Datenschutzbehörde (DSB) hat dies in der <strong>DSFA-V (Verordnung über Verarbeitungsvorgänge, für die eine Datenschutz-Folgenabschätzung durchzuführen ist)</strong> konkretisiert. Die systematische Aufzeichnung privater Wohnräume zwecks automatisierter Auswertung fällt mit hoher Wahrscheinlichkeit unter die dortigen Tatbestände (insb. Position 6, 9, 12 der DSFA-V).</p>
+<p>Eine fehlende DSFA stellt unabhängig von der sonstigen Systemqualität einen Verstoß gegen Art. 35 dar.</p>
+</div>
+
+<div class="gap high">
+<h3><span class="tag high">DSGVO-8</span>Keine Datenschutzerklärung, kein Cookie-Banner, kein Opt-in für Video</h3>
+<p>Das Frontend besitzt keinen Cookie-Banner (§ 165 TKG 2021), keine „Ich willige ein"-Komponente beim Video-Upload mit Zweckdarlegung und keinen Link zu einer öffentlichen Datenschutzerklärung.</p>
+<p>Die Spalten <code>gdpr_consent_at</code> und <code>gdpr_consent_version</code> in <code>users</code> existieren, jedoch fehlt der Einwilligungs-Flow im UI. Das bedeutet, dass <em>kein</em> bestehender Benutzer eine dokumentierte, granulare Einwilligung besitzt — selbst wenn es heute einen Eintrag „AGB bei Registrierung akzeptiert" gibt.</p>
+</div>
+
+<div class="gap med">
+<h3><span class="tag med">DSGVO-9</span>last_login_ip unbefristet gespeichert</h3>
+<p>IP-Adressen sind personenbezogene Daten (EuGH C-582/14 Breyer; in AT durch DSB-Entscheidung 2019-0.232.394 bestätigt). Die Spalte wird bei jedem Login überschrieben, jedoch nie gelöscht. Sie sollte nach N Tagen (15–30) entfernt oder anonymisiert werden (Nullung der letzten Oktette).</p>
+</div>
+
+<div class="gap med">
+<h3><span class="tag med">DSGVO-10</span>Keine Auftragsverarbeiterliste und ungeklärte Datenstandorte</h3>
+<p>Auftragsverarbeiter im aktuellen Stack:</p>
+<ul>
+  <li><strong>AWS S3</strong> — Region <code>eu-central-1</code> (Frankfurt). In Ordnung, jedoch AVV mit AWS erforderlich (Standard-AVV) und Eintrag in Auftragsverarbeiterliste.</li>
+  <li><strong>Supabase</strong> — Region ist zu verifizieren. Bei US-Region: <strong>SCC (Standardvertragsklauseln)</strong> erforderlich + Adäquanzbewertung + Verifizierung der Data-Privacy-Framework-Zertifizierung (seit Juli 2023 partiell adäquat, jedoch nur für zertifizierte Unternehmen).</li>
+  <li><strong>Geoapify</strong> — österreichisches Unternehmen mit Sitz in Wien, datenschutzrechtlich günstig; AVV dennoch erforderlich.</li>
+  <li><strong>Backend-Hosting</strong> — derzeit nicht konfiguriert (kein Dockerfile, keine Deployment-Config im Repo). Bei Hetzner (Falkenstein/DE) oder österreichischen Anbietern (z. B. Anexia, World4You) unproblematisch; bei US-Anbietern: SCC.</li>
+</ul>
+</div>
+
+<div class="gap med">
+<h3><span class="tag med">DSGVO-11</span>Chat-Nachrichten — Anhänge unbefristet + keine Aufbewahrungsfrist für Konversationen</h3>
+<p>Dateien in <code>message_files</code> können beliebige Inhalte sein (Schadensfotos, Rechnungen, Ausweisdokumente). Fehlende Aufbewahrungsfrist = Dateien existieren ewig nach Konversationsende. Verstoß gegen Art. 5 Abs. 1 lit. e.</p>
+</div>
+
+<div class="gap med">
+<h3><span class="tag med">DSGVO-12</span>Kein Widerspruchsmechanismus für Verarbeitungen auf Basis berechtigten Interesses</h3>
+<p>Öffentliche Bewertungen, Sicherheitslogs, Betrugsprävention — alles Art. 6 Abs. 1 lit. f. Art. 21 räumt ein Widerspruchsrecht ein, das MyMove prüfen muss (sofern das berechtigte Interesse nicht überwiegt). Es fehlt ein Endpoint / UI für die Einreichung eines Widerspruchs.</p>
+</div>
+
+<div class="gap low">
+<h3><span class="tag low">DSGVO-13</span>Passwort wird mit bcryptjs (12 Rounds) gehasht — gut; jedoch fehlt Password-Reset</h3>
+<p>Es existiert kein Endpoint <code>POST /auth/password-reset</code>. Wer das Passwort vergisst, kann nicht zurücksetzen. Per se kein DSGVO-Verstoß, beeinträchtigt jedoch die tatsächliche Wahrnehmung der Auskunfts- und Kontosicherheitsrechte.</p>
+</div>
+
+<div class="gap low">
+<h3><span class="tag low">DSGVO-14</span>Hardcoded E-Mails im devLogin gelangen in echte DBs</h3>
+<p>Die Konten <code>admin@point4studio.de</code>, <code>company@mymove.de</code>, <code>endcustomer@mymove.de</code> samt Klartextpasswörtern befinden sich im Repository. Geringes Risiko derzeit (CRIT-1 aus REVIEW.html blockiert dies ohnehin in Produktion), jedoch konzeptionell: sobald diese E-Mails einmal in einer echten Datenbank auftauchen, werden sie zu personenbezogenen Daten. Es gibt keinen Prozess zu ihrer Löschung.</p>
+</div>
+
+<h2 id="target">6. Soll-Architektur</h2>
+
+<div class="target">
+<h4>6.1 Cross-Storage-Erasure-Pipeline</h4>
+<p>Eine Queue, idempotent, retry-safe:</p>
+<pre><code>POST /users/me/delete
+  → erzeugt ErasureRequest(userId, requestedAt, status=PENDING)
+  → 14 Tage Karenzzeit (Art. 17 Abs. 1 lit. b — Widerruf möglich)
+  → nach 14 Tagen Worker:
+     1. Anonymisiere users.* → 'deleted_user_{hash(userId)}'
+        - email   → 'deleted_{hash}@invalid.local'
+        - first_name/last_name → 'gelöschter Nutzer'
+        - phone, last_login_ip, profile_image_url → null
+     2. Anonymisiere reviews.user_id → null + reviews.display_name → 'ehemaliger Kunde'
+     3. Anonymisiere move_requests.origin_address/destination_address
+        → 'deleted' (Aggregatstatistiken pro Bezirk bleiben damit erhalten)
+     4. Anonymisiere messages.sender_id → null (Inhalt bleibt für die Gegenseite erhalten)
+     5. S3: Alle Keys mit Prefix 'videos/.../user-{userId}/' löschen
+            sowie 'avatars/{userId}/' + Lifecycle-Marker für Konversations-Anhänge
+     6. Supabase: admin.deleteUser(supabaseUserId)
+     7. Audit-Log: ErasureCompleted(userId, deletedAt, deletedKeys[...])
+     8. Bestätigungs-E-Mail: „Ihr Konto wurde gemäß Art. 17 DSGVO gelöscht"
+  → Queue mit Dead-Letter — Failures werden ans DPO-Postfach eskaliert</code></pre>
+<p><strong>Warum Anonymisierung statt physischer DELETE:</strong> Die Angebote der Unternehmen sowie deren akzeptierte Buchungen müssen für die Buchhaltung der Unternehmen erhalten bleiben (§ 190 UGB, § 132 BAO — 7 Jahre). Die Kundendaten werden ausgespült, die Finanzdaten der Unternehmen bleiben erhalten — exakt das, was das Modell „sequenzielle Verantwortliche" verlangt.</p>
+</div>
+
+<div class="target">
+<h4>6.2 Video-Lifecycle mit Auto-Deletion</h4>
+<p>Mehrstufige Aufbewahrung in Abhängigkeit vom Anfragestatus:</p>
+<pre><code>// Cron stündlich
+expires_at <= NOW():
+  if request.status == DRAFT, 7 Tage nach Upload          → DELETE
+  if request.status == SENT_TO_COMPANIES ohne Annahme     → DELETE 14 Tage nach sent_at
+  if Angebot angenommen                                    → DELETE 30 Tage nach move_date
+  if User fordert „delete now"                             → sofort (Art. 17)
+  if Einwilligungswiderruf (Art. 7 Abs. 3)                 → sofort
+
+// S3 Lifecycle Rule (Defense in depth)
+prefix: videos/
+expiration: 60 Tage (harter Backup-Mechanismus falls Cron ausfällt)
+
+// Nach DELETE:
+- request_videos.s3_key → null
+- request_videos.deleted_at = NOW()  // Metadaten bleiben für Audit
+- audit_log Eintrag: VideoDeleted(videoId, reason, deletedAt)</code></pre>
+<p><strong>Streaming statt Download:</strong> Im UI sieht das Unternehmen das Video über eine Presigned-GET-URL mit 5-Minuten-TTL, IP-Bindung und Wasserzeichen mit Firmennamen. „Video herunterladen" gibt es im UI nicht. Nach Inventarberechnung benötigt das Unternehmen das Video nicht mehr — und hat keinen Zugriff darauf.</p>
+</div>
+
+<div class="target">
+<h4>6.3 Anonymisierte Ansicht vor Angebotsannahme</h4>
+<p>Zwei „Ansichten" einer Anfrage für das Unternehmen:</p>
+<pre><code>// PRE-ANNAHME (Unternehmen scrollt die Liste verfügbarer Anfragen)
+{
+  "id": 1042,
+  "originCity": "Wien",             // nur Stadt, keine Straße
+  "originPostalArea": "10",         // nur die ersten beiden Stellen der PLZ
+  "destinationCity": "Salzburg",
+  "destinationPostalArea": "50",
+  "moveDate": "2026-07-15",
+  "estimatedVolume": 18.5,
+  "floors": "3 → 2",
+  // KEINE: Vor-/Nachname, Telefon, exakte Adresse, E-Mail
+  // KEINE: Relation zu user.firstName/lastName
+}
+
+// POST-ANNAHME (nach Annahme des Angebots durch die Kundin/den Kunden)
+{
+  // vollständiges operatives Paket wie in Abschnitt 2
+}</code></pre>
+<p>Implementierung: Aufteilung von <code>findAvailableForCompany</code> in <code>findAvailableAnonymous(companyId)</code> (gibt DTO ohne User-Relation zurück) und <code>findAcceptedDetails(companyId, requestId)</code> (gibt vollständiges Paket zurück, nach Prüfung, dass dieses Unternehmen den Zuschlag erhielt). Das Frontend hat nie die Gelegenheit, Personendaten pre-Annahme anzuzeigen, weil der Server sie nicht sendet.</p>
+</div>
+
+<div class="target">
+<h4>6.4 Öffentliche Bewertungen — Pseudonymisierung by Default</h4>
+<pre><code>// Reviews-Entität
+{
+  display_name: "Anna S.",         // erzeugt bei Erstellung
+                                   // = firstName + " " + lastName[0] + "."
+  display_location: "Wien",        // nur Stadt
+  user_id: 42,                     // für Public-Endpoint ausgeblendet
+  rating: 5,
+  review_text: "..."
+}
+
+// Public GET /companies/:id/reviews
+SELECT display_name, display_location, rating, review_text, created_at
+FROM reviews WHERE company_id = ? AND deleted_at IS NULL
+// user_id wird NICHT zurückgegeben
+
+// Widerspruchs-Endpoint (Art. 21)
+POST /users/me/reviews/:id/objection
+  → reviews.deleted_at = NOW()
+  → company.rating wird neu berechnet (ohne diese Bewertung)
+  → audit_log Eintrag</code></pre>
+</div>
+
+<div class="target">
+<h4>6.5 Immutable Audit-Log</h4>
+<pre><code>CREATE TABLE audit_log (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  actor_id INT UNSIGNED NULL,           -- wer (NULL = System/Cron)
+  actor_role ENUM(...) NULL,
+  action VARCHAR(80) NOT NULL,          -- 'COMPANY_APPROVED', 'VIDEO_DELETED', etc.
+  target_type VARCHAR(40) NOT NULL,
+  target_id BIGINT UNSIGNED NULL,
+  metadata JSON NULL,
+  ip VARCHAR(45) NULL,
+  created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+) ENGINE=InnoDB;
+
+-- Append-only durch:
+GRANT INSERT, SELECT ON audit_log TO 'app_user';
+REVOKE UPDATE, DELETE ON audit_log FROM 'app_user';
+
+-- Aufbewahrung: 7 Jahre (§ 132 BAO / § 190 UGB)
+-- Wöchentliches Tape-Backup (Art. 32 — Belastbarkeit)</code></pre>
+</div>
+
+<div class="target">
+<h4>6.6 Consent-Management zur Laufzeit</h4>
+<p>Tabelle <code>consent_records</code> statt einer einzelnen Spalte:</p>
+<pre><code>CREATE TABLE consent_records (
+  id, user_id, consent_type, version, granted_at, revoked_at, ip, user_agent
+);
+-- consent_type:  'tos', 'datenschutz', 'video_recording', 'marketing_email', 'analytics'
+
+-- Bei jeder Richtlinienänderung:
+-- 1. Neue Version veröffentlichen
+-- 2. Bei nächstem Login sieht der User einen Banner „Wir haben unsere Richtlinien
+--    geändert, bitte erneut zustimmen"
+-- 3. Verweigerung für 'tos'/'datenschutz' = Kontosperre
+-- 4. Verweigerung für 'video_recording' = Video-Upload blockiert
+-- 5. Widerruf von 'analytics' → sofortige Deaktivierung des Trackers</code></pre>
+</div>
+
+<div class="target">
+<h4>6.7 DSAR-Flow (Data Subject Access Request)</h4>
+<pre><code>GET  /users/me/data              → JSON: Profil, Präferenzen, Anfragen
+POST /users/me/export            → Queue: erstellt ZIP mit {profile.json,
+                                    requests.json, inventories.json,
+                                    offers.json, messages.json,
+                                    /videos/*, /attachments/*}
+                                    → Presigned-URL, 7 Tage gültig
+                                    → E-Mail mit Download-Link
+PATCH /users/me                  → Berichtigung (bereits vorhanden)
+POST /users/me/delete            → Erasure-Pipeline (Abschnitt 6.1)
+POST /users/me/restriction       → Art. 18: Konto als „restricted" markieren,
+                                    weitere Verarbeitung gesperrt
+POST /users/me/objection         → Art. 21: konkrete Verarbeitungskategorie
+GET  /users/me/dsar-status       → Status aller aktiven Anliegen</code></pre>
+<p>Antwortfrist: 1 Monat (Art. 12 Abs. 3), mit Verlängerungsoption von 2 weiteren Monaten bei komplexen Anliegen (mit Mitteilung innerhalb des ersten Monats).</p>
+</div>
+
+<h2 id="video">7. Besondere Risiken: Video</h2>
+
+<p>Dies ist die schwierigste Einzelfrage in MyMove. Sie erfordert eine eigene DSFA sowie Konsultation mit dem Datenschutzbeauftragten vor dem Launch.</p>
+
+<h3>7.1 Dritte im Bild</h3>
+<p>Ein in der Wohnung der Kundin/des Kunden aufgenommenes Video erfasst mit hoher Wahrscheinlichkeit eine Partnerin/einen Partner, ein Kind, Mitbewohnerin/Mitbewohner oder Gäste. <strong>Diese Personen haben nicht eingewilligt.</strong> Die Kundin/der Kunde (faktische Verantwortliche/r) hat kein Recht, sie an MyMove zu „übergeben".</p>
+<p><strong>Maßnahmen:</strong></p>
+<ul>
+  <li>Hinweise vor der Aufnahme: „Filme leere Räume, bitte Haushaltsangehörige, sich zu entfernen" — UI-Prompt + Checkbox „Ich bestätige, dass auf dem Video keine Dritten ohne deren Einwilligung erscheinen".</li>
+  <li>Wasserzeichen + ausschließlich Streaming-Zugriff (kein Download) — erschwert Weitergabe.</li>
+  <li>Kurze Aufbewahrung (Soll: 30 Tage nach Umzug) — minimiert das Expositionsfenster.</li>
+  <li>Eigene Seite „Kontakt für Personen, die sich auf einem Video sehen" → Löschungsanforderung ohne MyMove-Konto möglich.</li>
+  <li>Optional (kostenintensiver): Face-Blur-Pipeline vor Bereitstellung an das Unternehmen (z. B. YOLOv8-Face → Blur).</li>
+</ul>
+
+<h3>7.2 Kinder (Art. 8 DSGVO)</h3>
+<p>Sind Kinder im Video sichtbar, handelt es sich um Daten von Personen, die keine eigene Einwilligung erteilen können. Art. 8 DSGVO + § 4 Abs. 4 DSG (Österreich: 14 Jahre als Einwilligungsalter). Maßnahmen aus 7.1 plus zusätzliche UI-Hinweise „insbesondere bitte Kinder, den Raum zu verlassen".</p>
+
+<h3>7.3 Art. 9 — besondere Datenkategorien im Bild</h3>
+<p>Ein Video kann <em>versehentlich</em> offenbaren:</p>
+<ul>
+  <li>Gesundheitszustand (Medikamente auf dem Nachttisch, Pflegebett, Rollstuhl, Rehabilitationshilfsmittel).</li>
+  <li>Religiöse Überzeugungen (Kruzifix, Menora, Gebetsteppich, Koran).</li>
+  <li>Sexuelle Orientierung (Fotos, Dekoration).</li>
+  <li>Gewerkschaftszugehörigkeit oder politische Ansichten (Plakate, Aufkleber).</li>
+</ul>
+<p>Allein der Umstand, dass das Video solche Daten <em>enthalten könnte</em>, qualifiziert die Verarbeitung als Hochrisiko. Maßnahmen: kurze Aufbewahrung + kein öffentlicher Zugriff + ausschließlich Streaming-Zugriff + DSFA, die dokumentiert, dass dieses Risiko bewusst gemanagt wird.</p>
+
+<h3>7.4 DSFA (Art. 35) — konkrete Abschnitte</h3>
+<p>Die Datenschutz-Folgenabschätzung für das Video sollte enthalten:</p>
+<ol>
+  <li>Beschreibung der Verarbeitung (Wer, Was, Wie, Wo, Wie lange).</li>
+  <li>Bewertung der Erforderlichkeit und Verhältnismäßigkeit (warum es ohne Video nicht geht).</li>
+  <li>Risikobewertung für die Betroffenen (Art, Wahrscheinlichkeit, Schweregrad) — Tabelle gemäß DSB-Leitfaden.</li>
+  <li>Abhilfemaßnahmen (siehe 7.1).</li>
+  <li>Konsultation der Betroffenen — optional, jedoch stärkungsfördernd.</li>
+  <li>Konsultation mit dem Datenschutzbeauftragten und ggf. Vorabkonsultation mit der österreichischen Datenschutzbehörde (DSB) nach Art. 36 DSGVO.</li>
+</ol>
+<p><strong>Wichtig (AT-spezifisch):</strong> Die DSB führt eine eigene DSFA-Liste (DSFA-V) sowie eine „Whitelist" (Verarbeitungen, für die keine DSFA erforderlich ist). Beide sind vor Erstellung der DSFA zu prüfen — sie sind auf <code>dsb.gv.at</code> abrufbar.</p>
+
+<h2 id="rights">8. Betroffenenrechte — Art. 15–22</h2>
+
+<table>
+<tr><th>Recht</th><th>Artikel</th><th>Aktueller Stand</th><th>Soll</th></tr>
+<tr><td>Auskunft</td><td>Art. 15</td><td>fehlt</td><td>GET /users/me/data + asynchroner Export</td></tr>
+<tr><td>Berichtigung</td><td>Art. 16</td><td>PATCH /users/me — OK</td><td>OK, Berichtigung für Bewertungen ergänzen</td></tr>
+<tr><td>Löschung</td><td>Art. 17</td><td>nur Soft-Delete in MySQL</td><td>Cross-Storage-Erasure-Pipeline (6.1)</td></tr>
+<tr><td>Einschränkung</td><td>Art. 18</td><td>fehlt</td><td>Restriction-Flag am Konto + Filter in allen Queries</td></tr>
+<tr><td>Datenübertragbarkeit</td><td>Art. 20</td><td>fehlt</td><td>JSON-Export (6.7)</td></tr>
+<tr><td>Widerspruch</td><td>Art. 21</td><td>fehlt (Bewertungen, Marketing, Analyse)</td><td>Endpoints je Verarbeitungszweck</td></tr>
+<tr><td>Einwilligungswiderruf</td><td>Art. 7 Abs. 3</td><td>fehlt (Spalten vorhanden, Mechanismus fehlt)</td><td>consent_records-Tabelle (6.6)</td></tr>
+<tr><td>Kein automatisierter Einzelfallbeschluss</td><td>Art. 22</td><td>OK — KI unterstützt, ersetzt nicht</td><td>Explizit in Datenschutzerklärung + Opt-out für KI-Inventarisierung („lieber manuell")</td></tr>
+<tr><td>Beschwerde bei der Aufsichtsbehörde</td><td>Art. 77</td><td>fehlt</td><td>In der Datenschutzerklärung: <strong>Datenschutzbehörde, Barichgasse 40-42, 1030 Wien</strong>, <code>dsb@dsb.gv.at</code></td></tr>
+</table>
+
+<h2 id="operational">9. Operative Anforderungen</h2>
+
+<div class="grid-2">
+<div class="cell">
+<h4>Datenschutzbeauftragte/r (DPO)</h4>
+<p>In Österreich keine 20-Personen-Schwelle (anders als in Deutschland — Österreich hat kein BDSG-Äquivalent zu § 38 BDSG). Verpflichtend gem. Art. 37 Abs. 1 DSGVO, wenn:</p>
+<ul>
+  <li>Kerntätigkeit umfasst Verarbeitung, die DSFA erfordert (Art. 37 Abs. 1 lit. b), oder</li>
+  <li>Kerntätigkeit umfasst Verarbeitung von Art. 9-Daten im großen Umfang.</li>
+</ul>
+<p>MyMove fällt aufgrund der Video-Verarbeitung unter den DSFA-Trigger. <strong>DPO vom ersten Tag an verpflichtend.</strong> Kann extern sein (Vertrag mit Kanzlei oder spezialisierter Beratung).</p>
+</div>
+
+<div class="cell">
+<h4>Verzeichnis von Verarbeitungstätigkeiten (VVT)</h4>
+<p>Art. 30 DSGVO — schriftliches Verzeichnis. Auf Anforderung der DSB vorzulegen. Pro Kategorie aus Abschnitt 3. Sektionen:</p>
+<ul>
+  <li>Zweck</li>
+  <li>Kategorien betroffener Personen</li>
+  <li>Kategorien von Empfängern (Unternehmen, Auftragsverarbeiter)</li>
+  <li>Drittlandübermittlungen</li>
+  <li>Aufbewahrungsfristen</li>
+  <li>Technisch-organisatorische Maßnahmen (TOM)</li>
+</ul>
+</div>
+
+<div class="cell">
+<h4>DSFA (Art. 35) — vor Launch</h4>
+<p>Mindestens für:</p>
+<ul>
+  <li>Video (Abschnitt 7.4).</li>
+  <li>KI-Inventarisierung (automatisierte Verarbeitung).</li>
+  <li>Veröffentlichung von Bewertungen mit Ortsangabe.</li>
+</ul>
+<p>Bei verbleibendem Restrisiko: Vorabkonsultation mit der DSB (Art. 36).</p>
+</div>
+
+<div class="cell">
+<h4>Datentransfer-Vereinbarung mit Unternehmen</h4>
+<p>Obwohl die Unternehmen sequenzielle Verantwortliche (keine Auftragsverarbeiter) sind, ist <strong>ein schriftliches Dokument erforderlich</strong>, das Folgendes definiert:</p>
+<ul>
+  <li>Welche Daten MyMove bei Angebotsannahme übermittelt.</li>
+  <li>Zwecke, zu denen das Unternehmen sie nutzen darf.</li>
+  <li>Verbot der Weitergabe.</li>
+  <li>Aufbewahrungspflichten.</li>
+  <li>Vorgehen bei direkt an das Unternehmen gerichteten Betroffenenanliegen → Weiterleitung an MyMove.</li>
+  <li>Meldepflicht bei Datenpanne innerhalb von 24 Stunden.</li>
+</ul>
+<p>Einfachste Konstruktion: <em>Data Sharing Agreement</em> als Anhang zum SaaS-Vertrag des Unternehmens mit MyMove.</p>
+</div>
+
+<div class="cell">
+<h4>AVV mit Auftragsverarbeitern</h4>
+<ul>
+  <li>AWS S3 — AWS GDPR DPA + österreichische DPA-Ergänzung.</li>
+  <li>Supabase — eigener AVV + Regionsverifikation.</li>
+  <li>Geoapify — AVV + Bestätigung, dass Queries nicht geloggt werden.</li>
+  <li>E-Mail-Provider (sobald hinzugefügt) — z. B. Postmark, Sendgrid, MailJet; AVV.</li>
+  <li>Backend-Hosting — AVV mit Anbieter.</li>
+  <li>Plausible / Matomo / Analyse — AVV (Matomo self-hosted = kein Auftragsverarbeiter).</li>
+</ul>
+<p>Auftragsverarbeiterliste veröffentlicht unter <code>mymove.at/datenschutz/auftragsverarbeiter</code> mit 30-Tage-Vorankündigung bei Änderungen.</p>
+</div>
+
+<div class="cell">
+<h4>Öffentliche Dokumente</h4>
+<ul>
+  <li>Datenschutzerklärung (ca. 5.000–8.000 Wörter).</li>
+  <li>Impressum (§ 5 ECG + § 24 MedienG + § 63 GewO).</li>
+  <li>AGB.</li>
+  <li>Cookie-Banner (§ 165 TKG 2021) mit Opt-in für nicht-essenzielle Cookies.</li>
+  <li>Auftragsverarbeiterliste.</li>
+  <li>DSAR-Portal („Meine Daten anfordern").</li>
+</ul>
+</div>
+</div>
+
+<div class="callout">
+<strong>Österreichische Aufsichtsbehörde — Kontakt:</strong>
+<ul style="margin-top: 8px; margin-bottom: 0;">
+  <li><strong>Österreichische Datenschutzbehörde (DSB)</strong></li>
+  <li>Barichgasse 40-42, 1030 Wien</li>
+  <li>Tel.: +43 1 52 152-0</li>
+  <li>E-Mail: <code>dsb@dsb.gv.at</code></li>
+  <li>Web: <code>dsb.gv.at</code></li>
+  <li>Verfahrenssprache: Deutsch (Eingaben dürfen jedoch auch in Englisch verfasst sein)</li>
+</ul>
+</div>
+
+<h2 id="sales">10. Compliance-as-a-Shield — Verkauf</h2>
+
+<p>Da MyMove die DSGVO-Last bewusst übernimmt, lohnt es sich, dies im Onboarding der Unternehmen <em>aktiv zu kommunizieren</em>. Konkrete Materialien für das Vertriebspaket:</p>
+
+<div class="callout good">
+<strong>One-Pager für das Verkaufsgespräch:</strong>
+<ul style="margin-top: 8px; margin-bottom: 0;">
+  <li>„Sie benötigen keinen eigenen Datenschutzbeauftragten — wir stellen ihn."</li>
+  <li>„Sie benötigen keine eigene Datenschutzerklärung für Kundinnen und Kunden aus MyMove — die Beziehung führen wir."</li>
+  <li>„Sie beantworten keine Löschungsanforderungen für MyMove-Daten — das übernehmen wir."</li>
+  <li>„Sie speichern weder Videos noch Chat noch Bewertungen — das verwalten wir. Sie führen lediglich die Rechnung in den Büchern, wie es § 190 UGB / § 132 BAO ohnehin verlangt."</li>
+  <li>„Sie erhalten das minimale Datenpaket zur Auftragsabwicklung — geschützt vor Übersammlung."</li>
+  <li>„Im Audit-Fall durch die DSB: Kontakt erfolgt mit uns, nicht mit Ihnen."</li>
+</ul>
+</div>
+
+<p>Diese Argumente sind <strong>nur dann tragfähig</strong>, wenn das Soll-Design aus Abschnitt 6 implementiert ist. Solange nicht, würde der Verkauf dieses Versprechens irreführende Werbung darstellen (§ 2 UWG) und im Ernstfall die rechtliche Exposition erhöhen. Vertrieb und Roadmap müssen synchronisiert sein.</p>
+
+<h2 id="roadmap">11. Umsetzungsroadmap</h2>
+
+<h3><span class="tag now">Phase 0 — Stop-the-Bleeding (2 Wochen)</span></h3>
+<p>Ziel: Sollte morgen jemand bei der DSB eine Beschwerde einreichen, ist die Antwort „Arbeiten laufen — hier der Stand und der Plan" möglich.</p>
+<ol>
+  <li><strong>Öffentliche Endpoints abschalten</strong>, die vollständige Unternehmensdaten preisgeben (CRIT-5 aus REVIEW.html).</li>
+  <li><strong>Personenbezogene Daten in der Pre-Annahme-Ansicht für Unternehmen ausblenden</strong> (DSGVO-3) — am einfachsten: <code>leftJoinAndSelect('mr.user')</code> aus <code>findAvailableForCompany</code> entfernen und nicht im DTO ausgeben.</li>
+  <li><strong>S3-Lifecycle-Rule</strong> auf Bucket <code>request_videos</code>: Hard-Expiration 90 Tage — Defense in Depth, solange der Cron nicht steht.</li>
+  <li><strong>Datenschutzerklärung v1.0</strong> veröffentlicht + Cookie-Banner. Idealerweise vom DPO (extern) verfasst; ungefährer Kostenrahmen: 2–5k EUR einmalig + 200–500 EUR/Monat laufend.</li>
+  <li><strong>DPO-Bestellung</strong> (Vertrag mit externer Stelle).</li>
+  <li><strong>Verkauf von „Compliance-as-a-Shield" aussetzen</strong>, bis Phase 1 abgeschlossen ist.</li>
+</ol>
+
+<h3><span class="tag next">Phase 1 — Erasure + Retention + DSAR (4-6 Wochen)</span></h3>
+<ol>
+  <li>Cross-Storage-Erasure-Pipeline (Abschnitt 6.1) — Queue mit BullMQ oder nestjs-schedule.</li>
+  <li>Video-Auto-Deletion-Cron (Abschnitt 6.2).</li>
+  <li>Pseudonymisierung der Bewertungen + Widerspruchs-Endpoint nach Art. 21 (Abschnitt 6.4).</li>
+  <li>Audit-Log-Tabelle + Integration in alle Admin-Aktionen (Abschnitt 6.5).</li>
+  <li>DSAR-Endpoints: /me/data, /me/export, /me/delete, /me/restriction, /me/objection (Abschnitt 6.7).</li>
+  <li>Anonymisierungs-Cron für last_login_ip.</li>
+  <li>consent_records (Abschnitt 6.6) + UI-Flow bei Registrierung und bei jeder Richtlinienänderung.</li>
+  <li>DSFA für Video + KI-Inventarisierung (Abschnitt 7.4) — mit DPO.</li>
+  <li>Auftragsverarbeiterliste + AVVs (AWS, Supabase, Geoapify).</li>
+  <li>Supabase-Region verifizieren; bei US-Region → SCC + DPF-Verifikation oder Regionsmigration.</li>
+</ol>
+
+<h3><span class="tag later">Phase 2 — Sequenzielle Verantwortliche + Vertriebs-Tooling (4-6 Wochen)</span></h3>
+<ol>
+  <li>Aufteilung von Pre-Annahme- und Post-Annahme-Ansichten für Unternehmen (Abschnitt 6.3).</li>
+  <li>Video ausschließlich per Streaming, Wasserzeichen, IP-gebundene URL.</li>
+  <li>Data-Sharing-Agreement-Template + Integration in Unternehmens-Onboarding (Klick auf „Ich akzeptiere" bei Registrierung, versionsverwaltet).</li>
+  <li>Sales-One-Pager + Compliance-Abschnitt in Unternehmens-Demos.</li>
+  <li>Mechanismus „Unternehmen widerrufen" — bei Sperrung/Löschung eines Unternehmens muss dessen Kopie des operativen Datenpakets als „über die gesetzliche Aufbewahrungspflicht hinaus zu löschen" gekennzeichnet werden (das Unternehmen hat seine Pflichten, MyMove hat den Trail und kann vertraglich durchsetzen).</li>
+  <li>Vollständiges VVT, im Notion oder SharePoint, bei jeder Moduländerung aktualisiert.</li>
+</ol>
+
+<h3><span class="tag later">Phase 3 — Hardening + Advanced (laufend)</span></h3>
+<ul>
+  <li>Face-Blur-Pipeline für Video (sobald Unternehmensbelastung dies rechtfertigt).</li>
+  <li>Datenschutz-by-Design-Checkliste im PR-Review.</li>
+  <li>Jährliche Re-DSFA und VVT-Review.</li>
+  <li>Penetrationstest (Art. 32) jährlich.</li>
+  <li>Tabletop-Übung „Breach-Response 24h" (Art. 33) jährlich.</li>
+  <li>Cyber-Versicherung + D&amp;O-Versicherung für die Geschäftsführung.</li>
+</ul>
+
+<hr>
+
+<div class="callout warn">
+<strong>Drei Punkte, die nicht aus dem Code heraus gelöst werden können:</strong>
+<ol style="margin-top: 8px; margin-bottom: 0;">
+  <li><strong>DPO-Bestellung</strong> — entweder extern (auf österreichisches Datenschutzrecht spezialisierte Kanzlei) oder intern (sobald der Umfang dies rechtfertigt). Hier gibt es keine Abkürzung.</li>
+  <li><strong>Datenschutzerklärung</strong>, verfasst von einem Anwalt oder zumindest durch einen Anwalt geprüft. Generatoren liefern einen Entwurf, jedoch ist die letzte Meile MyMove-spezifisch (Video, KI, sequenzielle Verantwortliche — kein Standard).</li>
+  <li><strong>Strategische Beratung</strong>: ob die DSFA eine Vorabkonsultation mit der DSB vor Launch erfordert (Art. 36) — dies ist eine Entscheidung des DPO, nicht der Entwicklung.</li>
+</ol>
+</div>
+
+<p class="footnote">Dieses Dokument basiert auf dem Code-Stand vom 03.06.2026 sowie auf der allgemein zugänglichen Auslegung der DSGVO/DSG/UGB/BAO/TKG/ECG im österreichischen Kontext. Die Artikelnummerierung verweist auf die DS-GVO (Verordnung (EU) 2016/679). Sämtliche konkreten Aufbewahrungsfristen, Rechtsgrundlagen für Bewertungen sowie die DSFA-Qualifikation sind vor produktivem Einsatz durch eine/n qualifizierte/n Datenschutzbeauftragte/n zu bestätigen.</p>
+
+</div>
+</body>
+</html>
